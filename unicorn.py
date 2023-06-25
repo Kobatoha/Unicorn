@@ -4,7 +4,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import datetime
 from keyboard import add_hotkey
 from pynput.keyboard import Key, Controller
-from PyQt5.QtGui import QKeySequence
 
 
 class Ui_MainWindow(object):
