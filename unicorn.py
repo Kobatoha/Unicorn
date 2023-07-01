@@ -1,9 +1,14 @@
 import threading
 import time
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QIcon, QPixmap, QDrag
+from PyQt5.QtCore import QSize, Qt, QMimeData
+import pyautogui
 import datetime
 from keyboard import add_hotkey
 from pynput.keyboard import Key, Controller
+import win32gui
+import win32api
 
 
 class Ui_MainWindow(object):
@@ -531,7 +536,7 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.pushButton_located.setFont(font)
         self.pushButton_located.setObjectName("pushButton_located")
-        self.pushButton_located.setText('located')
+        self.pushButton_located.clicked.connect(self.get_window_id)
 
         self.label_id_window = QtWidgets.QLabel(self.centralwidget)
         self.label_id_window.setGeometry(QtCore.QRect(20, 530, 60, 21))
@@ -694,6 +699,17 @@ class Ui_MainWindow(object):
             self.keyboard.release('w')
             QtCore.QTimer.singleShot(interval, self.press_w)
 
+    def press_f11(self):
+        self.pushButton_located.click()
+
+    def hotkey_thread_f11(self):
+        add_hotkey('F11', self.press_f11)
+
+    def get_window_id(self):
+        x, y = win32api.GetCursorPos()
+        coordinate = win32gui.WindowFromPoint((x, y))
+        self.label_id_window.setText(str(coordinate))
+
 
 if __name__ == "__main__":
     import sys
@@ -705,5 +721,7 @@ if __name__ == "__main__":
     thread.start()
     thread_press_f12 = threading.Thread(target=ui.hotkey_thread)
     thread_press_f12.start()
+    thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
+    thread_press_f11.start()
     MainWindow.show()
     sys.exit(app.exec_())
