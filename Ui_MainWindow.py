@@ -499,7 +499,7 @@ class Ui_MainWindow(object):
         self.lineEdit_window_id.setGeometry(QtCore.QRect(40, 460, 90, 20))
         self.lineEdit_window_id.setObjectName("lineEdit_window_id")
         self.lineEdit_window_id.setStyleSheet("background-color: rgb(239, 239, 239);")
-        self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignBottom | QtCore.Qt.AlignHCenter)
+        self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
         self.lineEdit_window_id.setText('')
 
         ### button start/stop ###
@@ -538,6 +538,8 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.pushButton_located.setFont(font)
         self.pushButton_located.setObjectName("pushButton_located")
+        self.pushButton_located.setIcon(QtGui.QIcon('target_off.png'))
+        self.pushButton_located.setIconSize(QtCore.QSize(40, 40))
         self.pushButton_located.clicked.connect(self.get_window_id)
 
         self.label_id_window = QtWidgets.QLabel(self.centralwidget)
