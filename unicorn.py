@@ -2,7 +2,7 @@ import threading
 import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon, QPixmap, QDrag
-from PyQt5.QtCore import QSize, Qt, QMimeData
+from PyQt5.QtCore import QSize, Qt, QMimeData, QTimer
 import pyautogui
 import datetime
 from keyboard import add_hotkey
@@ -16,11 +16,15 @@ class Main(Ui_MainWindow):
     def __init__(self):
         super().__init__()
 
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.update_located)
+        self.timer.start(5000)
+
     ### functions ###
     def press_f12(self):
         self.pushButton_startstop.click()
 
-    def hotkey_thread(self):
+    def hotkey_thread_f12(self):
         add_hotkey('F12', self.press_f12)
 
     def startstop(self):
@@ -52,6 +56,14 @@ class Main(Ui_MainWindow):
             else:
                 self.label_hottime.setPixmap(QtGui.QPixmap("../image/icons/hot_time_off.png"))
             time.sleep(60)
+
+    def update_located(self):
+        id = self.label_id_window.text()
+        if id in self.lineEdit_window_id.text():
+            self.pushButton_located.setIcon(QtGui.QIcon('target_on.png'))
+            self.label_information_actions.setText('Windows located')
+        else:
+            self.pushButton_located.setIcon(QtGui.QIcon('target_off.png'))
 
     def toggle_q(self, state):
         if state == QtCore.Qt.Checked:
@@ -107,7 +119,7 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     thread = threading.Thread(target=ui.update_hot_time_icon)
     thread.start()
-    thread_press_f12 = threading.Thread(target=ui.hotkey_thread)
+    thread_press_f12 = threading.Thread(target=ui.hotkey_thread_f12)
     thread_press_f12.start()
     thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
     thread_press_f11.start()
