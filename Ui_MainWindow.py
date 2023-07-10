@@ -18,6 +18,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(300, 600)
         MainWindow.setMinimumSize(QtCore.QSize(165, 600))
         MainWindow.setMaximumSize(QtCore.QSize(300, 600))
+        MainWindow.setStyleSheet("background-image: url('bg_image.jpg');")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -33,24 +34,28 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.label_tuning_keys.setFont(font)
         self.label_tuning_keys.setObjectName("label_tuning_keys")
+        self.label_tuning_keys.setStyleSheet("background: none;")
         self.label_tuning_keys.setText("Tuning keys")
 
         self.line_tuning_keys_1 = QtWidgets.QFrame(self.centralwidget)
         self.line_tuning_keys_1.setGeometry(QtCore.QRect(69, 0, 81, 20))
         self.line_tuning_keys_1.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_tuning_keys_1.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_tuning_keys_1.setStyleSheet("background: none;")
         self.line_tuning_keys_1.setObjectName("line_tuning_keys_1")
 
         self.line_tuning_keys_2 = QtWidgets.QFrame(self.centralwidget)
         self.line_tuning_keys_2.setGeometry(QtCore.QRect(170, 0, 111, 20))
         self.line_tuning_keys_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_tuning_keys_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_tuning_keys_2.setStyleSheet("background: none;")
         self.line_tuning_keys_2.setObjectName("line_tuning_keys_2")
 
         self.line_half_window = QtWidgets.QFrame(self.centralwidget)
         self.line_half_window.setGeometry(QtCore.QRect(150, 20, 20, 350))
         self.line_half_window.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_half_window.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_half_window.setStyleSheet("background: none;")
         self.line_half_window.setObjectName("line_half_window")
 
         ### --------------------- ###
@@ -96,9 +101,6 @@ class Ui_MainWindow(object):
         self.lineEdit_f10.setGeometry(QtCore.QRect(30, 290, 60, 20))
         self.lineEdit_f10.setObjectName("lineEdit_f10")
 
-        self.lineEdit_f11 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_f11.setGeometry(QtCore.QRect(30, 320, 60, 20))
-        self.lineEdit_f11.setObjectName("lineEdit_f11")
 
         ### --------------------- ###
         ### CheckBox F1-F12 BLOCK ###
@@ -111,6 +113,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.checkBox_f1.setFont(font)
         self.checkBox_f1.setObjectName("checkBox_f1")
+        self.checkBox_f1.setStyleSheet("background: none;")
 
         self.checkBox_f2 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f2.setGeometry(QtCore.QRect(100, 50, 40, 20))
@@ -120,6 +123,7 @@ class Ui_MainWindow(object):
         self.checkBox_f2.setFont(font)
         self.checkBox_f2.setObjectName("checkBox_f2")
         self.checkBox_f2.setText("F2")
+        self.checkBox_f2.setStyleSheet("background: none;")
 
         self.checkBox_f3 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f3.setGeometry(QtCore.QRect(100, 80, 40, 20))
@@ -129,6 +133,7 @@ class Ui_MainWindow(object):
         self.checkBox_f3.setFont(font)
         self.checkBox_f3.setObjectName("checkBox_f3")
         self.checkBox_f3.setText("F3")
+        self.checkBox_f3.setStyleSheet("background: none;")
 
         self.checkBox_f4 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f4.setGeometry(QtCore.QRect(100, 110, 40, 20))
@@ -138,6 +143,7 @@ class Ui_MainWindow(object):
         self.checkBox_f4.setFont(font)
         self.checkBox_f4.setObjectName("checkBox_f4")
         self.checkBox_f4.setText("F4")
+        self.checkBox_f4.setStyleSheet("background: none;")
 
         self.checkBox_f5 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f5.setGeometry(QtCore.QRect(100, 140, 40, 20))
@@ -147,6 +153,7 @@ class Ui_MainWindow(object):
         self.checkBox_f5.setFont(font)
         self.checkBox_f5.setObjectName("checkBox_f5")
         self.checkBox_f5.setText("F5")
+        self.checkBox_f5.setStyleSheet("background: none;")
 
         self.checkBox_f6 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f6.setGeometry(QtCore.QRect(100, 170, 40, 20))
@@ -156,6 +163,7 @@ class Ui_MainWindow(object):
         self.checkBox_f6.setFont(font)
         self.checkBox_f6.setObjectName("checkBox_f6")
         self.checkBox_f6.setText("F6")
+        self.checkBox_f6.setStyleSheet("background: none;")
 
         self.checkBox_f7 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f7.setGeometry(QtCore.QRect(100, 200, 40, 20))
@@ -165,6 +173,7 @@ class Ui_MainWindow(object):
         self.checkBox_f7.setFont(font)
         self.checkBox_f7.setObjectName("checkBox_f7")
         self.checkBox_f7.setText("F7")
+        self.checkBox_f7.setStyleSheet("background: none;")
 
         self.checkBox_f8 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f8.setGeometry(QtCore.QRect(100, 230, 40, 20))
@@ -174,6 +183,7 @@ class Ui_MainWindow(object):
         self.checkBox_f8.setFont(font)
         self.checkBox_f8.setObjectName("checkBox_f8")
         self.checkBox_f8.setText("F8")
+        self.checkBox_f8.setStyleSheet("background: none;")
 
         self.checkBox_f9 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f9.setGeometry(QtCore.QRect(100, 260, 40, 20))
@@ -183,6 +193,7 @@ class Ui_MainWindow(object):
         self.checkBox_f9.setFont(font)
         self.checkBox_f9.setObjectName("checkBox_f9")
         self.checkBox_f9.setText("F9")
+        self.checkBox_f9.setStyleSheet("background: none;")
 
         self.checkBox_f10 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f10.setGeometry(QtCore.QRect(100, 290, 40, 20))
@@ -192,15 +203,8 @@ class Ui_MainWindow(object):
         self.checkBox_f10.setFont(font)
         self.checkBox_f10.setObjectName("checkBox_f10")
         self.checkBox_f10.setText("F10")
+        self.checkBox_f10.setStyleSheet("background: none;")
 
-        self.checkBox_f11 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_f11.setGeometry(QtCore.QRect(100, 320, 40, 20))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.checkBox_f11.setFont(font)
-        self.checkBox_f11.setObjectName("checkBox_f11")
-        self.checkBox_f11.setText("F11")
 
         ### --------------------- ###
         ###   CheckBox Q-V BLOCK  ###
@@ -213,6 +217,7 @@ class Ui_MainWindow(object):
         self.checkBox_q.setFont(font)
         self.checkBox_q.setObjectName("checkBox_q")
         self.checkBox_q.setText("Q")
+        self.checkBox_q.setStyleSheet("background: none;")
         self.checkBox_q.stateChanged.connect(self.toggle_q)
         self.keyboard = Controller()
         self.q_pressed = False
@@ -225,6 +230,7 @@ class Ui_MainWindow(object):
         self.checkBox_w.setFont(font)
         self.checkBox_w.setObjectName("checkBox_w")
         self.checkBox_w.setText("W")
+        self.checkBox_w.setStyleSheet("background: none;")
         self.checkBox_w.stateChanged.connect(self.toggle_w)
         self.keyboard = Controller()
         self.w_pressed = False
@@ -237,6 +243,7 @@ class Ui_MainWindow(object):
         self.checkBox_e.setFont(font)
         self.checkBox_e.setObjectName("checkBox_e")
         self.checkBox_e.setText("E")
+        self.checkBox_e.setStyleSheet("background: none;")
 
         self.checkBox_r = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_r.setGeometry(QtCore.QRect(250, 110, 40, 20))
@@ -246,6 +253,7 @@ class Ui_MainWindow(object):
         self.checkBox_r.setFont(font)
         self.checkBox_r.setObjectName("checkBox_r")
         self.checkBox_r.setText("R")
+        self.checkBox_r.setStyleSheet("background: none;")
 
         self.checkBox_a = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_a.setGeometry(QtCore.QRect(250, 140, 40, 20))
@@ -255,6 +263,7 @@ class Ui_MainWindow(object):
         self.checkBox_a.setFont(font)
         self.checkBox_a.setObjectName("checkBox_a")
         self.checkBox_a.setText("A")
+        self.checkBox_a.setStyleSheet("background: none;")
 
         self.checkBox_s = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_s.setGeometry(QtCore.QRect(250, 170, 40, 20))
@@ -264,6 +273,7 @@ class Ui_MainWindow(object):
         self.checkBox_s.setFont(font)
         self.checkBox_s.setObjectName("checkBox_s")
         self.checkBox_s.setText("S")
+        self.checkBox_s.setStyleSheet("background: none;")
 
         self.checkBox_d = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_d.setGeometry(QtCore.QRect(250, 200, 40, 20))
@@ -273,6 +283,7 @@ class Ui_MainWindow(object):
         self.checkBox_d.setFont(font)
         self.checkBox_d.setObjectName("checkBox_d")
         self.checkBox_d.setText("D")
+        self.checkBox_d.setStyleSheet("background: none;")
 
         self.checkBox_f = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f.setGeometry(QtCore.QRect(250, 230, 40, 20))
@@ -282,6 +293,7 @@ class Ui_MainWindow(object):
         self.checkBox_f.setFont(font)
         self.checkBox_f.setObjectName("checkBox_f")
         self.checkBox_f.setText("F")
+        self.checkBox_f.setStyleSheet("background: none;")
 
         self.checkBox_z = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_z.setGeometry(QtCore.QRect(250, 260, 40, 20))
@@ -291,6 +303,7 @@ class Ui_MainWindow(object):
         self.checkBox_z.setFont(font)
         self.checkBox_z.setObjectName("checkBox_z")
         self.checkBox_z.setText("Z")
+        self.checkBox_z.setStyleSheet("background: none;")
 
         self.checkBox_x = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_x.setGeometry(QtCore.QRect(250, 290, 40, 20))
@@ -300,24 +313,8 @@ class Ui_MainWindow(object):
         self.checkBox_x.setFont(font)
         self.checkBox_x.setObjectName("checkBox_x")
         self.checkBox_x.setText("X")
+        self.checkBox_x.setStyleSheet("background: none;")
 
-        self.checkBox_c = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_c.setGeometry(QtCore.QRect(250, 320, 40, 20))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.checkBox_c.setFont(font)
-        self.checkBox_c.setObjectName("checkBox_c")
-        self.checkBox_c.setText("C")
-
-        self.checkBox_v = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_v.setGeometry(QtCore.QRect(250, 350, 40, 20))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.checkBox_v.setFont(font)
-        self.checkBox_v.setObjectName("checkBox_v")
-        self.checkBox_v.setText("V")
 
         ### --------------------- ###
         ###   LineEdit Q-V BLOCK  ###
@@ -372,15 +369,6 @@ class Ui_MainWindow(object):
         self.lineEdit_x.setObjectName("lineEdit_x")
         self.lineEdit_x.setText('333')
 
-        self.lineEdit_c = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_c.setGeometry(QtCore.QRect(180, 320, 60, 20))
-        self.lineEdit_c.setObjectName("lineEdit_c")
-        self.lineEdit_c.setText('333')
-
-        self.lineEdit_v = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_v.setGeometry(QtCore.QRect(180, 350, 60, 20))
-        self.lineEdit_v.setObjectName("lineEdit_v")
-        self.lineEdit_v.setText('333')
 
         ### --------------------- ###
         ###      ICONS BLOCK      ###
@@ -395,18 +383,21 @@ class Ui_MainWindow(object):
         self.label_icons.setAlignment(QtCore.Qt.AlignCenter)
         self.label_icons.setObjectName("label_icons")
         self.label_icons.setText("Icons")
+        self.label_icons.setStyleSheet("background: none;")
 
         self.line_icons_1 = QtWidgets.QFrame(self.centralwidget)
         self.line_icons_1.setGeometry(QtCore.QRect(50, 370, 101, 20))
         self.line_icons_1.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_icons_1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_icons_1.setObjectName("line_icons_1")
+        self.line_icons_1.setStyleSheet("background: none;")
 
         self.line_icons_2 = QtWidgets.QFrame(self.centralwidget)
         self.line_icons_2.setGeometry(QtCore.QRect(170, 370, 111, 20))
         self.line_icons_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_icons_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_icons_2.setObjectName("line_icons_2")
+        self.line_icons_2.setStyleSheet("background: none;")
 
         ### hot time ###
         self.label_hottime = QtWidgets.QLabel(self.centralwidget)
@@ -415,6 +406,7 @@ class Ui_MainWindow(object):
         self.label_hottime.setScaledContents(True)
         self.label_hottime.setAlignment(QtCore.Qt.AlignCenter)
         self.label_hottime.setObjectName("label_hottime")
+        self.label_hottime.setStyleSheet("background: none;")
 
         self.label_hottime_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_hottime_2.setGeometry(QtCore.QRect(10, 420, 51, 16))
@@ -428,6 +420,7 @@ class Ui_MainWindow(object):
         self.label_hottime_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_hottime_2.setObjectName("label_hottime_2")
         self.label_hottime_2.setText("Hot Time")
+        self.label_hottime_2.setStyleSheet("background: none;")
 
         ### lamps ###
         self.label_lamps = QtWidgets.QLabel(self.centralwidget)
@@ -440,6 +433,7 @@ class Ui_MainWindow(object):
         self.label_lamps.setScaledContents(True)
         self.label_lamps.setAlignment(QtCore.Qt.AlignCenter)
         self.label_lamps.setObjectName("label_lamps")
+        self.label_lamps.setStyleSheet("background: none;")
 
         self.label_lamps_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_lamps_2.setGeometry(QtCore.QRect(60, 420, 51, 16))
@@ -453,6 +447,7 @@ class Ui_MainWindow(object):
         self.label_lamps_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_lamps_2.setObjectName("label_lamps_2")
         self.label_lamps_2.setText("Lamps")
+        self.label_lamps_2.setStyleSheet("background: none;")
 
         ### sayha ###
         self.label_sayha = QtWidgets.QLabel(self.centralwidget)
@@ -462,6 +457,7 @@ class Ui_MainWindow(object):
         self.label_sayha.setScaledContents(True)
         self.label_sayha.setAlignment(QtCore.Qt.AlignCenter)
         self.label_sayha.setObjectName("label_sayha")
+        self.label_sayha.setStyleSheet("background: none;")
 
         self.label_sayha_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_sayha_2.setGeometry(QtCore.QRect(110, 420, 51, 16))
@@ -475,6 +471,7 @@ class Ui_MainWindow(object):
         self.label_sayha_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_sayha_2.setObjectName("label_sayha_2")
         self.label_sayha_2.setText("Sayha")
+        self.label_sayha_2.setStyleSheet("background: none;")
 
         ### --------------------- ###
         ###      Window BLOCK     ###
@@ -488,12 +485,14 @@ class Ui_MainWindow(object):
         self.label_window.setAlignment(QtCore.Qt.AlignCenter)
         self.label_window.setObjectName("label_window")
         self.label_window.setText("Window")
+        self.label_window.setStyleSheet("background: none;")
 
         self.line_window = QtWidgets.QFrame(self.centralwidget)
         self.line_window.setGeometry(QtCore.QRect(60, 440, 91, 20))
         self.line_window.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_window.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_window.setObjectName("line_window")
+        self.line_window.setStyleSheet("background: none;")
 
         self.lineEdit_window_id = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_window_id.setGeometry(QtCore.QRect(40, 460, 90, 20))
@@ -501,6 +500,7 @@ class Ui_MainWindow(object):
         self.lineEdit_window_id.setStyleSheet("background-color: rgb(239, 239, 239);")
         self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
         self.lineEdit_window_id.setText('')
+
 
         ### button start/stop ###
         self.pushButton_startstop = QtWidgets.QPushButton(self.centralwidget)
@@ -527,6 +527,7 @@ class Ui_MainWindow(object):
         self.label_hotkey_startstop.setAlignment(QtCore.Qt.AlignCenter)
         self.label_hotkey_startstop.setObjectName("label_hotkey_startstop")
         self.label_hotkey_startstop.setText('press F12')
+        self.label_hotkey_startstop.setStyleSheet("background: none;")
 
         ### button lockated ###
         self.pushButton_located = QtWidgets.QPushButton(self.centralwidget)
@@ -554,6 +555,7 @@ class Ui_MainWindow(object):
         self.label_id_window.setAlignment(QtCore.Qt.AlignCenter)
         self.label_id_window.setObjectName("label_id_window")
         self.label_id_window.setText("id window")
+        self.label_id_window.setStyleSheet("background: none;")
 
         ### --------------------- ###
         ###     profile BLOCK     ###
@@ -562,6 +564,7 @@ class Ui_MainWindow(object):
         self.label_profiles.setGeometry(QtCore.QRect(170, 390, 111, 16))
         self.label_profiles.setObjectName("label_profiles")
         self.label_profiles.setText('Profiles')
+        self.label_profiles.setStyleSheet("background: none;")
 
         self.pushButton_profile1 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_profile1.setGeometry(QtCore.QRect(170, 420, 111, 21))
@@ -586,6 +589,7 @@ class Ui_MainWindow(object):
         self.line_profiles.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_profiles.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_profiles.setObjectName("line_profiles")
+        self.line_profiles.setStyleSheet("background: none;")
 
         ### button save ###
         self.pushButton_save = QtWidgets.QPushButton(self.centralwidget)
@@ -620,11 +624,13 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 300, 21))
         self.menubar.setObjectName("menubar")
+        self.menubar.setStyleSheet("background: none;")
 
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.statusbar.setStyleSheet("background: none;")
 
         ### --------------------- ###
         ###  info.actions BLOCK   ###
@@ -636,5 +642,6 @@ class Ui_MainWindow(object):
         self.label_information_actions.setFont(font)
         self.label_information_actions.setAlignment(QtCore.Qt.AlignCenter)
         self.label_information_actions.setObjectName("label_information_actions")
+        self.label_information_actions.setStyleSheet("background: none;")
 
 
