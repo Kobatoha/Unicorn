@@ -494,12 +494,6 @@ class Ui_MainWindow(object):
         self.line_window.setObjectName("line_window")
         self.line_window.setStyleSheet("background: none;")
 
-        self.lineEdit_window_id = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_window_id.setGeometry(QtCore.QRect(40, 460, 90, 20))
-        self.lineEdit_window_id.setObjectName("lineEdit_window_id")
-        self.lineEdit_window_id.setStyleSheet("background-color: rgb(239, 239, 239);")
-        self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
-        self.lineEdit_window_id.setText('')
 
 
         ### button start/stop ###
@@ -556,6 +550,13 @@ class Ui_MainWindow(object):
         self.label_id_window.setObjectName("label_id_window")
         self.label_id_window.setText("id window")
         self.label_id_window.setStyleSheet("background: none;")
+
+        self.lineEdit_window_id = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_window_id.setGeometry(QtCore.QRect(40, 460, 90, 20))
+        self.lineEdit_window_id.setObjectName("lineEdit_window_id")
+        self.lineEdit_window_id.setStyleSheet("background-color: rgb(239, 239, 239);")
+        self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
+        self.lineEdit_window_id.setText('')
 
         ### --------------------- ###
         ###     profile BLOCK     ###
@@ -643,5 +644,3 @@ class Ui_MainWindow(object):
         self.label_information_actions.setAlignment(QtCore.Qt.AlignCenter)
         self.label_information_actions.setObjectName("label_information_actions")
         self.label_information_actions.setStyleSheet("background: none;")
-
-
