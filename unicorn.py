@@ -27,12 +27,14 @@ class Main(Ui_MainWindow):
         if self.pushButton_startstop.text() == 'Start':
             self.pushButton_startstop.setText('Stop')
             self.label_information_actions.setText("Started clicker")
+            self.lineEdit_window_id.setDisabled(True)
             self.toggle_q(self.checkBox_q.checkState())
             self.toggle_w(self.checkBox_w.checkState())
 
         else:
             self.pushButton_startstop.setText('Start')
             self.label_information_actions.setText('Stopped clicker')
+            self.lineEdit_window_id.setEnabled(True)
             self.q_pressed = False
             self.w_pressed = False
 
