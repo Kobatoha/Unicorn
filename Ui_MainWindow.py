@@ -202,7 +202,6 @@ class Ui_MainWindow(object):
         self.checkBox_f11.setObjectName("checkBox_f11")
         self.checkBox_f11.setText("F11")
 
-
         ### --------------------- ###
         ###   CheckBox Q-V BLOCK  ###
         ### --------------------- ###
@@ -218,7 +217,6 @@ class Ui_MainWindow(object):
         self.keyboard = Controller()
         self.q_pressed = False
 
-
         self.checkBox_w = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_w.setGeometry(QtCore.QRect(250, 50, 40, 20))
         font = QtGui.QFont()
@@ -230,7 +228,6 @@ class Ui_MainWindow(object):
         self.checkBox_w.stateChanged.connect(self.toggle_w)
         self.keyboard = Controller()
         self.w_pressed = False
-
 
         self.checkBox_e = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_e.setGeometry(QtCore.QRect(250, 80, 40, 20))
@@ -413,14 +410,14 @@ class Ui_MainWindow(object):
 
         ### hot time ###
         self.label_hottime = QtWidgets.QLabel(self.centralwidget)
-        self.label_hottime.setGeometry(QtCore.QRect(20, 400, 31, 31))
+        self.label_hottime.setGeometry(QtCore.QRect(20, 390, 31, 31))
         self.label_hottime.setPixmap(QtGui.QPixmap("../image/icons/hot_time_off.png"))
         self.label_hottime.setScaledContents(True)
         self.label_hottime.setAlignment(QtCore.Qt.AlignCenter)
         self.label_hottime.setObjectName("label_hottime")
 
         self.label_hottime_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_hottime_2.setGeometry(QtCore.QRect(10, 430, 51, 16))
+        self.label_hottime_2.setGeometry(QtCore.QRect(10, 420, 51, 16))
         font = QtGui.QFont()
         font.setPointSize(7)
         font.setItalic(False)
@@ -432,11 +429,9 @@ class Ui_MainWindow(object):
         self.label_hottime_2.setObjectName("label_hottime_2")
         self.label_hottime_2.setText("Hot Time")
 
-
-
         ### lamps ###
         self.label_lamps = QtWidgets.QLabel(self.centralwidget)
-        self.label_lamps.setGeometry(QtCore.QRect(70, 400, 31, 31))
+        self.label_lamps.setGeometry(QtCore.QRect(70, 390, 31, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -447,7 +442,7 @@ class Ui_MainWindow(object):
         self.label_lamps.setObjectName("label_lamps")
 
         self.label_lamps_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_lamps_2.setGeometry(QtCore.QRect(60, 430, 51, 16))
+        self.label_lamps_2.setGeometry(QtCore.QRect(60, 420, 51, 16))
         font = QtGui.QFont()
         font.setPointSize(7)
         font.setItalic(False)
@@ -461,7 +456,7 @@ class Ui_MainWindow(object):
 
         ### sayha ###
         self.label_sayha = QtWidgets.QLabel(self.centralwidget)
-        self.label_sayha.setGeometry(QtCore.QRect(120, 400, 31, 31))
+        self.label_sayha.setGeometry(QtCore.QRect(120, 390, 31, 31))
         self.label_sayha.setText("")
         self.label_sayha.setPixmap(QtGui.QPixmap("../image/icons/sayha_on.png"))
         self.label_sayha.setScaledContents(True)
@@ -469,7 +464,7 @@ class Ui_MainWindow(object):
         self.label_sayha.setObjectName("label_sayha")
 
         self.label_sayha_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_sayha_2.setGeometry(QtCore.QRect(110, 430, 51, 16))
+        self.label_sayha_2.setGeometry(QtCore.QRect(110, 420, 51, 16))
         font = QtGui.QFont()
         font.setPointSize(7)
         font.setItalic(False)
@@ -484,9 +479,8 @@ class Ui_MainWindow(object):
         ### --------------------- ###
         ###      Window BLOCK     ###
         ### --------------------- ###
-        ### window ###
         self.label_window = QtWidgets.QLabel(self.centralwidget)
-        self.label_window.setGeometry(QtCore.QRect(10, 470, 51, 20))
+        self.label_window.setGeometry(QtCore.QRect(10, 440, 51, 20))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
@@ -496,14 +490,21 @@ class Ui_MainWindow(object):
         self.label_window.setText("Window")
 
         self.line_window = QtWidgets.QFrame(self.centralwidget)
-        self.line_window.setGeometry(QtCore.QRect(60, 470, 91, 20))
+        self.line_window.setGeometry(QtCore.QRect(60, 440, 91, 20))
         self.line_window.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_window.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_window.setObjectName("line_window")
 
-        ### start/stop ###
+        self.lineEdit_window_id = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_window_id.setGeometry(QtCore.QRect(40, 460, 90, 20))
+        self.lineEdit_window_id.setObjectName("lineEdit_window_id")
+        self.lineEdit_window_id.setStyleSheet("background-color: rgb(239, 239, 239);")
+        self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignBottom | QtCore.Qt.AlignHCenter)
+        self.lineEdit_window_id.setText('')
+
+        ### button start/stop ###
         self.pushButton_startstop = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_startstop.setGeometry(QtCore.QRect(90, 490, 60, 40))
+        self.pushButton_startstop.setGeometry(QtCore.QRect(100, 490, 40, 40))
         self.pushButton_startstop.setStyleSheet("background-color: rgb(255, 239, 220);")
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -514,9 +515,8 @@ class Ui_MainWindow(object):
         self.pushButton_startstop.setText('Start')
         self.pushButton_startstop.clicked.connect(self.startstop)
 
-
         self.label_hotkey_startstop = QtWidgets.QLabel(self.centralwidget)
-        self.label_hotkey_startstop.setGeometry(QtCore.QRect(90, 530, 60, 21))
+        self.label_hotkey_startstop.setGeometry(QtCore.QRect(95, 530, 50, 21))
         font = QtGui.QFont()
         font.setPointSize(7)
         font.setItalic(False)
@@ -530,7 +530,7 @@ class Ui_MainWindow(object):
 
         ### button lockated ###
         self.pushButton_located = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_located.setGeometry(QtCore.QRect(20, 490, 61, 41))
+        self.pushButton_located.setGeometry(QtCore.QRect(30, 490, 41, 41))
         self.pushButton_located.setStyleSheet("background-color: rgb(255, 239, 220);")
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -540,9 +540,8 @@ class Ui_MainWindow(object):
         self.pushButton_located.setObjectName("pushButton_located")
         self.pushButton_located.clicked.connect(self.get_window_id)
 
-
         self.label_id_window = QtWidgets.QLabel(self.centralwidget)
-        self.label_id_window.setGeometry(QtCore.QRect(20, 530, 60, 21))
+        self.label_id_window.setGeometry(QtCore.QRect(25, 530, 50, 21))
         font = QtGui.QFont()
         font.setPointSize(7)
         font.setItalic(False)
@@ -599,7 +598,6 @@ class Ui_MainWindow(object):
         self.pushButton_save.setText('save')
         self.pushButton_save.clicked.connect(self.profile_save)
 
-
         ### button load ###
         self.pushButton_load = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_load.setGeometry(QtCore.QRect(230, 510, 51, 31))
@@ -613,7 +611,9 @@ class Ui_MainWindow(object):
         self.pushButton_load.setText('load')
         self.pushButton_load.clicked.connect(self.profile_load)
 
-
+        ###   ---------------------------  ###
+        ###  menubar and statusbar BLOCK   ###
+        ###   ---------------------------  ###
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 300, 21))
@@ -634,3 +634,5 @@ class Ui_MainWindow(object):
         self.label_information_actions.setFont(font)
         self.label_information_actions.setAlignment(QtCore.Qt.AlignCenter)
         self.label_information_actions.setObjectName("label_information_actions")
+
+
