@@ -10,6 +10,7 @@ from pynput.keyboard import Key, Controller
 import win32gui
 import win32api
 from Ui_MainWindow import Ui_MainWindow
+import json
 
 
 class Main(Ui_MainWindow):
@@ -21,10 +22,13 @@ class Main(Ui_MainWindow):
         self.timer.start(5000)
 
 
+
+
     ### settings file ###
     def save_settings(self):
         settings = {
             'edit_window_id': self.lineEdit_window_id.text(),
+
             'edit_f1': self.lineEdit_f1.text(),
             'edit_f2': self.lineEdit_f2.text(),
             'edit_f3': self.lineEdit_f3.text(),
@@ -35,6 +39,7 @@ class Main(Ui_MainWindow):
             'edit_f8': self.lineEdit_f8.text(),
             'edit_f9': self.lineEdit_f9.text(),
             'edit_f10': self.lineEdit_f10.text(),
+
             'checkbox_f1': self.checkBox_f1.isChecked(),
             'checkbox_f2': self.checkBox_f2.isChecked(),
             'checkbox_f3': self.checkBox_f3.isChecked(),
@@ -45,6 +50,7 @@ class Main(Ui_MainWindow):
             'checkbox_f8': self.checkBox_f8.isChecked(),
             'checkbox_f9': self.checkBox_f9.isChecked(),
             'checkbox_f10': self.checkBox_f10.isChecked(),
+
             'edit_1': self.lineEdit_1.text(),
             'edit_2': self.lineEdit_2.text(),
             'edit_3': self.lineEdit_3.text(),
@@ -55,6 +61,7 @@ class Main(Ui_MainWindow):
             'edit_8': self.lineEdit_8.text(),
             'edit_9': self.lineEdit_9.text(),
             'edit_0': self.lineEdit_0.text(),
+
             'checkbox_1': self.checkBox_1.isChecked(),
             'checkbox_2': self.checkBox_2.isChecked(),
             'checkbox_3': self.checkBox_3.isChecked(),
@@ -65,9 +72,63 @@ class Main(Ui_MainWindow):
             'checkbox_8': self.checkBox_8.isChecked(),
             'checkbox_9': self.checkBox_9.isChecked(),
             'checkbox_0': self.checkBox_0.isChecked(),
-
-
         }
+        with open('settings.json', 'w') as file:
+            json.dump(settings, file)
+
+    def load_settings(self):
+        try:
+            with open('settings.json', 'r') as file:
+                settings = json.load(file)
+
+                self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+
+                self.lineEdit_f1.setText(settings.get('edit_f1', '')),
+                self.lineEdit_f2.setText(settings.get('edit_f2', '')),
+                self.lineEdit_f3.setText(settings.get('edit_f3', '')),
+                self.lineEdit_f4.setText(settings.get('edit_f4', '')),
+                self.lineEdit_f5.setText(settings.get('edit_f5', '')),
+                self.lineEdit_f6.setText(settings.get('edit_f6', '')),
+                self.lineEdit_f7.setText(settings.get('edit_f7', '')),
+                self.lineEdit_f8.setText(settings.get('edit_f8', '')),
+                self.lineEdit_f9.setText(settings.get('edit_f9', '')),
+                self.lineEdit_f10.setText(settings.get('edit_f10', '')),
+
+                self.checkBox_f1.setChecked(settings.get('checkbox_f1', '')),
+                self.checkBox_f2.setChecked(settings.get('checkbox_f2', '')),
+                self.checkBox_f3.setChecked(settings.get('checkbox_f3', '')),
+                self.checkBox_f4.setChecked(settings.get('checkbox_f4', '')),
+                self.checkBox_f5.setChecked(settings.get('checkbox_f5', '')),
+                self.checkBox_f6.setChecked(settings.get('checkbox_f6', '')),
+                self.checkBox_f7.setChecked(settings.get('checkbox_f7', '')),
+                self.checkBox_f8.setChecked(settings.get('checkbox_f8', '')),
+                self.checkBox_f9.setChecked(settings.get('checkbox_f9', '')),
+                self.checkBox_f10.setChecked(settings.get('checkbox_f10', '')),
+
+                self.lineEdit_1.setText(settings.get('edit_1', '')),
+                self.lineEdit_2.setText(settings.get('edit_2', '')),
+                self.lineEdit_3.setText(settings.get('edit_3', '')),
+                self.lineEdit_4.setText(settings.get('edit_4', '')),
+                self.lineEdit_5.setText(settings.get('edit_5', '')),
+                self.lineEdit_6.setText(settings.get('edit_6', '')),
+                self.lineEdit_7.setText(settings.get('edit_7', '')),
+                self.lineEdit_8.setText(settings.get('edit_8', '')),
+                self.lineEdit_9.setText(settings.get('edit_9', '')),
+                self.lineEdit_0.setText(settings.get('edit_0', '')),
+
+                self.checkBox_1.setChecked(settings.get('checkbox_1', '')),
+                self.checkBox_2.setChecked(settings.get('checkbox_2', '')),
+                self.checkBox_3.setChecked(settings.get('checkbox_3', '')),
+                self.checkBox_4.setChecked(settings.get('checkbox_4', '')),
+                self.checkBox_5.setChecked(settings.get('checkbox_5', '')),
+                self.checkBox_6.setChecked(settings.get('checkbox_6', '')),
+                self.checkBox_7.setChecked(settings.get('checkbox_7', '')),
+                self.checkBox_8.setChecked(settings.get('checkbox_8', '')),
+                self.checkBox_9.setChecked(settings.get('checkbox_9', '')),
+                self.checkBox_0.setChecked(settings.get('checkbox_0', '')),
+
+        except FileNotFoundError:
+            pass
 
 
     ### functions ###
