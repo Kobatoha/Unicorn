@@ -209,31 +209,31 @@ class Ui_MainWindow(object):
         ### --------------------- ###
         ###   CheckBox Q-V BLOCK  ###
         ### --------------------- ###
-        self.checkBox_q = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_q.setGeometry(QtCore.QRect(250, 20, 40, 20))
+        self.checkBox_1 = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox_1.setGeometry(QtCore.QRect(250, 20, 40, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.checkBox_q.setFont(font)
-        self.checkBox_q.setObjectName("checkBox_q")
-        self.checkBox_q.setText("Q")
-        self.checkBox_q.setStyleSheet("background: none;")
-        self.checkBox_q.stateChanged.connect(self.toggle_q)
+        self.checkBox_1.setFont(font)
+        self.checkBox_1.setObjectName("checkBox_q")
+        self.checkBox_1.setText("Q")
+        self.checkBox_1.setStyleSheet("background: none;")
+        self.checkBox_1.stateChanged.connect(self.toggle_1)
         self.keyboard = Controller()
-        self.q_pressed = False
+        self.pressed_1 = False
 
-        self.checkBox_w = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_w.setGeometry(QtCore.QRect(250, 50, 40, 20))
+        self.checkBox_2 = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox_2.setGeometry(QtCore.QRect(250, 50, 40, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.checkBox_w.setFont(font)
-        self.checkBox_w.setObjectName("checkBox_w")
-        self.checkBox_w.setText("W")
-        self.checkBox_w.setStyleSheet("background: none;")
-        self.checkBox_w.stateChanged.connect(self.toggle_w)
+        self.checkBox_2.setFont(font)
+        self.checkBox_2.setObjectName("checkBox_w")
+        self.checkBox_2.setText("W")
+        self.checkBox_2.setStyleSheet("background: none;")
+        self.checkBox_2.stateChanged.connect(self.toggle_2)
         self.keyboard = Controller()
-        self.w_pressed = False
+        self.pressed_2 = False
 
         self.checkBox_e = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_e.setGeometry(QtCore.QRect(250, 80, 40, 20))
@@ -319,55 +319,45 @@ class Ui_MainWindow(object):
         ### --------------------- ###
         ###   LineEdit Q-V BLOCK  ###
         ### --------------------- ###
-        self.lineEdit_q = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_q.setGeometry(QtCore.QRect(180, 20, 60, 20))
-        self.lineEdit_q.setObjectName("lineEdit_q")
-        self.lineEdit_q.setText('333')
+        self.lineEdit_1 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_1.setGeometry(QtCore.QRect(180, 20, 60, 20))
+        self.lineEdit_1.setObjectName("lineEdit_q")
 
-        self.lineEdit_w = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_w.setGeometry(QtCore.QRect(180, 50, 60, 20))
-        self.lineEdit_w.setObjectName("lineEdit_w")
-        self.lineEdit_w.setText('333')
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_2.setGeometry(QtCore.QRect(180, 50, 60, 20))
+        self.lineEdit_2.setObjectName("lineEdit_w")
 
         self.lineEdit_e = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_e.setGeometry(QtCore.QRect(180, 80, 60, 20))
         self.lineEdit_e.setObjectName("lineEdit_e")
-        self.lineEdit_e.setText('333')
 
         self.lineEdit_r = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_r.setGeometry(QtCore.QRect(180, 110, 60, 20))
         self.lineEdit_r.setObjectName("lineEdit_r")
-        self.lineEdit_r.setText('333')
 
         self.lineEdit_a = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_a.setGeometry(QtCore.QRect(180, 140, 60, 20))
         self.lineEdit_a.setObjectName("lineEdit_a")
-        self.lineEdit_a.setText('333')
 
         self.lineEdit_s = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_s.setGeometry(QtCore.QRect(180, 170, 60, 20))
         self.lineEdit_s.setObjectName("lineEdit_s")
-        self.lineEdit_s.setText('333')
 
         self.lineEdit_d = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_d.setGeometry(QtCore.QRect(180, 200, 60, 20))
         self.lineEdit_d.setObjectName("lineEdit_d")
-        self.lineEdit_d.setText('333')
 
         self.lineEdit_f = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_f.setGeometry(QtCore.QRect(180, 230, 60, 20))
         self.lineEdit_f.setObjectName("lineEdit_f")
-        self.lineEdit_f.setText('333')
 
         self.lineEdit_z = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_z.setGeometry(QtCore.QRect(180, 260, 60, 20))
         self.lineEdit_z.setObjectName("lineEdit_z")
-        self.lineEdit_z.setText('333')
 
         self.lineEdit_x = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_x.setGeometry(QtCore.QRect(180, 290, 60, 20))
         self.lineEdit_x.setObjectName("lineEdit_x")
-        self.lineEdit_x.setText('333')
 
 
         ### --------------------- ###
