@@ -145,6 +145,8 @@ class Main(Ui_MainWindow):
             self.lineEdit_window_id.setDisabled(True)
             self.toggle_1(self.checkBox_1.checkState())
             self.toggle_2(self.checkBox_2.checkState())
+            self.toggle_f1(self.checkBox_f1.checkState())
+            self.toggle_3(self.checkBox_3.checkState())
 
         else:
             self.pushButton_startstop.setText('Start')
@@ -152,6 +154,8 @@ class Main(Ui_MainWindow):
             self.lineEdit_window_id.setEnabled(True)
             self.pressed_1 = False
             self.pressed_2 = False
+            self.pressed_3 = False
+            self.pressed_f1 = False
 
     def profile_load(self):
         self.label_information_actions.setText('Load profile')
@@ -184,7 +188,6 @@ class Main(Ui_MainWindow):
         else:
             self.pressed_1 = False
 
-
     def press_1(self):
         if self.pressed_1:
             interval = int(self.lineEdit_1.text())
@@ -201,7 +204,6 @@ class Main(Ui_MainWindow):
         else:
             self.pressed_2 = False
 
-
     def press_2(self):
         if self.pressed_2:
             interval = int(self.lineEdit_2.text())
@@ -209,6 +211,39 @@ class Main(Ui_MainWindow):
             time.sleep(interval / 1000)
             self.keyboard.release('2')
             QtCore.QTimer.singleShot(interval, self.press_2)
+
+    def toggle_3(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_3 = True
+                self.press_3()
+        else:
+            self.pressed_3 = False
+
+    def press_3(self):
+        if self.pressed_3:
+            interval = int(self.lineEdit_3.text())
+            self.keyboard.press('3')
+            time.sleep(interval / 1000)
+            self.keyboard.release('3')
+            QtCore.QTimer.singleShot(interval, self.press_3)
+
+    def toggle_f1(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f1 = True
+                self.press_f1()
+        else:
+            self.pressed_f1 = False
+
+    def press_f1(self):
+        if self.pressed_f1:
+            interval = int(self.lineEdit_f1.text())
+            self.keyboard.press('f1')
+            time.sleep(interval / 1000)
+            self.keyboard.release('f1')
+            QtCore.QTimer.singleShot(interval, self.press_f1)
+
 
     def press_f11(self):
         self.pushButton_located.click()
