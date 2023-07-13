@@ -116,6 +116,9 @@ class Ui_MainWindow(object):
         self.checkBox_f1.setFont(font)
         self.checkBox_f1.setObjectName("checkBox_f1")
         self.checkBox_f1.setStyleSheet("background: none;")
+        self.checkBox_f1.stateChanged.connect(self.toggle_f1)
+        self.keyboard = Controller()
+        self.pressed_f1 = False
 
         self.checkBox_f2 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f2.setGeometry(QtCore.QRect(100, 50, 40, 20))
@@ -246,6 +249,9 @@ class Ui_MainWindow(object):
         self.checkBox_3.setObjectName("checkBox_3")
         self.checkBox_3.setText("3")
         self.checkBox_3.setStyleSheet("background: none;")
+        self.checkBox_3.stateChanged.connect(self.toggle_3)
+        self.keyboard = Controller()
+        self.pressed_3 = False
 
         self.checkBox_4 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_4.setGeometry(QtCore.QRect(250, 110, 40, 20))
