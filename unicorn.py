@@ -21,9 +21,6 @@ class Main(Ui_MainWindow):
         self.timer.timeout.connect(self.update_located)
         self.timer.start(5000)
 
-
-
-
     ### settings file ###
     def save_settings(self):
         settings = {
@@ -130,7 +127,6 @@ class Main(Ui_MainWindow):
         except FileNotFoundError:
             pass
 
-
     ### functions ###
     def press_f12(self):
         self.pushButton_startstop.click()
@@ -148,6 +144,7 @@ class Main(Ui_MainWindow):
             self.toggle_3(self.checkBox_3.checkState())
             self.toggle_4(self.checkBox_4.checkState())
             self.toggle_5(self.checkBox_5.checkState())
+            self.toggle_6(self.checkBox_6.checkState())
             self.toggle_f1(self.checkBox_f1.checkState())
 
         else:
@@ -159,6 +156,7 @@ class Main(Ui_MainWindow):
             self.pressed_3 = False
             self.pressed_4 = False
             self.pressed_5 = False
+            self.pressed_6 = False
             self.pressed_f1 = False
 
     def profile_load(self):
@@ -232,7 +230,6 @@ class Main(Ui_MainWindow):
             self.keyboard.release('3')
             QtCore.QTimer.singleShot(interval, self.press_3)
 
-
     def toggle_4(self, state):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
@@ -265,6 +262,22 @@ class Main(Ui_MainWindow):
             self.keyboard.release('5')
             QtCore.QTimer.singleShot(interval, self.press_5)
 
+    def toggle_6(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_6 = True
+                self.press_6()
+        else:
+            self.pressed_6 = False
+
+    def press_6(self):
+        if self.pressed_6:
+            interval = int(self.lineEdit_6.text())
+            self.keyboard.press('6')
+            time.sleep(interval / 1000)
+            self.keyboard.release('6')
+            QtCore.QTimer.singleShot(interval, self.press_6)
+
     def toggle_f1(self, state):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
@@ -280,7 +293,6 @@ class Main(Ui_MainWindow):
             time.sleep(interval / 1000)
             self.keyboard.release('f1')
             QtCore.QTimer.singleShot(interval, self.press_f1)
-
 
     def press_f11(self):
         self.pushButton_located.click()
