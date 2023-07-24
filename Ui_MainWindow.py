@@ -327,6 +327,9 @@ class Ui_MainWindow(object):
         self.checkBox_9.setObjectName("checkBox_9")
         self.checkBox_9.setText("9")
         self.checkBox_9.setStyleSheet("background: none;")
+        self.checkBox_9.stateChanged.connect(self.toggle_9)
+        self.keyboard = Controller()
+        self.pressed_9 = False
 
         self.checkBox_0 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_0.setGeometry(QtCore.QRect(250, 290, 40, 20))
