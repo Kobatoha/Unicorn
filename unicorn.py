@@ -147,6 +147,7 @@ class Main(Ui_MainWindow):
             self.toggle_6(self.checkBox_6.checkState())
             self.toggle_7(self.checkBox_7.checkState())
             self.toggle_8(self.checkBox_8.checkState())
+            self.toggle_9(self.checkBox_9.checkState())
             self.toggle_f1(self.checkBox_f1.checkState())
 
         else:
@@ -161,6 +162,7 @@ class Main(Ui_MainWindow):
             self.pressed_6 = False
             self.pressed_7 = False
             self.pressed_8 = False
+            self.pressed_9 = False
             self.pressed_f1 = False
 
     def profile_load(self):
@@ -313,6 +315,22 @@ class Main(Ui_MainWindow):
             time.sleep(interval / 1000)
             self.keyboard.release('8')
             QtCore.QTimer.singleShot(interval, self.press_8)
+
+    def toggle_9(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_9 = True
+                self.press_9()
+        else:
+            self.pressed_9 = False
+
+    def press_9(self):
+        if self.pressed_9:
+            interval = int(self.lineEdit_9.text())
+            self.keyboard.press('9')
+            time.sleep(interval / 1000)
+            self.keyboard.release('9')
+            QtCore.QTimer.singleShot(interval, self.press_9)
 
     def toggle_f1(self, state):
         if state == QtCore.Qt.Checked:
