@@ -129,6 +129,9 @@ class Ui_MainWindow(object):
         self.checkBox_f2.setObjectName("checkBox_f2")
         self.checkBox_f2.setText("F2")
         self.checkBox_f2.setStyleSheet("background: none;")
+        self.checkBox_f2.stateChanged.connect(self.toggle_f2)
+        self.keyboard = Controller()
+        self.pressed_f2 = False
 
         self.checkBox_f3 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f3.setGeometry(QtCore.QRect(100, 80, 40, 20))
@@ -139,6 +142,9 @@ class Ui_MainWindow(object):
         self.checkBox_f3.setObjectName("checkBox_f3")
         self.checkBox_f3.setText("F3")
         self.checkBox_f3.setStyleSheet("background: none;")
+        self.checkBox_f3.stateChanged.connect(self.toggle_f3)
+        self.keyboard = Controller()
+        self.pressed_f3 = False
 
         self.checkBox_f4 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f4.setGeometry(QtCore.QRect(100, 110, 40, 20))
@@ -149,6 +155,9 @@ class Ui_MainWindow(object):
         self.checkBox_f4.setObjectName("checkBox_f4")
         self.checkBox_f4.setText("F4")
         self.checkBox_f4.setStyleSheet("background: none;")
+        self.checkBox_f4.stateChanged.connect(self.toggle_f4)
+        self.keyboard = Controller()
+        self.pressed_f4 = False
 
         self.checkBox_f5 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f5.setGeometry(QtCore.QRect(100, 140, 40, 20))
@@ -159,6 +168,9 @@ class Ui_MainWindow(object):
         self.checkBox_f5.setObjectName("checkBox_f5")
         self.checkBox_f5.setText("F5")
         self.checkBox_f5.setStyleSheet("background: none;")
+        self.checkBox_f5.stateChanged.connect(self.toggle_f5)
+        self.keyboard = Controller()
+        self.pressed_f5 = False
 
         self.checkBox_f6 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f6.setGeometry(QtCore.QRect(100, 170, 40, 20))
@@ -169,6 +181,9 @@ class Ui_MainWindow(object):
         self.checkBox_f6.setObjectName("checkBox_f6")
         self.checkBox_f6.setText("F6")
         self.checkBox_f6.setStyleSheet("background: none;")
+        self.checkBox_f6.stateChanged.connect(self.toggle_f6)
+        self.keyboard = Controller()
+        self.pressed_f6 = False
 
         self.checkBox_f7 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f7.setGeometry(QtCore.QRect(100, 200, 40, 20))
@@ -179,6 +194,9 @@ class Ui_MainWindow(object):
         self.checkBox_f7.setObjectName("checkBox_f7")
         self.checkBox_f7.setText("F7")
         self.checkBox_f7.setStyleSheet("background: none;")
+        self.checkBox_f7.stateChanged.connect(self.toggle_f7)
+        self.keyboard = Controller()
+        self.pressed_f7 = False
 
         self.checkBox_f8 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f8.setGeometry(QtCore.QRect(100, 230, 40, 20))
@@ -189,6 +207,9 @@ class Ui_MainWindow(object):
         self.checkBox_f8.setObjectName("checkBox_f8")
         self.checkBox_f8.setText("F8")
         self.checkBox_f8.setStyleSheet("background: none;")
+        self.checkBox_f8.stateChanged.connect(self.toggle_f8)
+        self.keyboard = Controller()
+        self.pressed_f8 = False
 
         self.checkBox_f9 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f9.setGeometry(QtCore.QRect(100, 260, 40, 20))
@@ -199,6 +220,9 @@ class Ui_MainWindow(object):
         self.checkBox_f9.setObjectName("checkBox_f9")
         self.checkBox_f9.setText("F9")
         self.checkBox_f9.setStyleSheet("background: none;")
+        self.checkBox_f9.stateChanged.connect(self.toggle_f9)
+        self.keyboard = Controller()
+        self.pressed_f9 = False
 
         self.checkBox_f10 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f10.setGeometry(QtCore.QRect(100, 290, 40, 20))
@@ -209,6 +233,9 @@ class Ui_MainWindow(object):
         self.checkBox_f10.setObjectName("checkBox_f10")
         self.checkBox_f10.setText("F10")
         self.checkBox_f10.setStyleSheet("background: none;")
+        self.checkBox_f10.stateChanged.connect(self.toggle_f10)
+        self.keyboard = Controller()
+        self.pressed_f10 = False
 
 
         ### --------------------- ###
@@ -340,6 +367,9 @@ class Ui_MainWindow(object):
         self.checkBox_0.setObjectName("checkBox_0")
         self.checkBox_0.setText("0")
         self.checkBox_0.setStyleSheet("background: none;")
+        self.checkBox_0.stateChanged.connect(self.toggle_0)
+        self.keyboard = Controller()
+        self.pressed_0 = False
 
 
         ### --------------------- ###

@@ -9,6 +9,7 @@ from keyboard import add_hotkey
 from pynput.keyboard import Key, Controller
 import win32gui
 import win32api
+import win32con
 from Ui_MainWindow import Ui_MainWindow
 import json
 
@@ -21,7 +22,7 @@ class Main(Ui_MainWindow):
         self.timer.timeout.connect(self.update_located)
         self.timer.start(5000)
 
-    ### settings file ###
+    # settings file
     def save_settings(self):
         settings = {
             'edit_window_id': self.lineEdit_window_id.text(),
@@ -148,7 +149,17 @@ class Main(Ui_MainWindow):
             self.toggle_7(self.checkBox_7.checkState())
             self.toggle_8(self.checkBox_8.checkState())
             self.toggle_9(self.checkBox_9.checkState())
+            self.toggle_0(self.checkBox_0.checkState())
             self.toggle_f1(self.checkBox_f1.checkState())
+            self.toggle_f2(self.checkBox_f2.checkState())
+            self.toggle_f3(self.checkBox_f3.checkState())
+            self.toggle_f4(self.checkBox_f4.checkState())
+            self.toggle_f5(self.checkBox_f5.checkState())
+            self.toggle_f6(self.checkBox_f6.checkState())
+            self.toggle_f7(self.checkBox_f7.checkState())
+            self.toggle_f8(self.checkBox_f8.checkState())
+            self.toggle_f9(self.checkBox_f9.checkState())
+            self.toggle_f10(self.checkBox_f10.checkState())
 
         else:
             self.pushButton_startstop.setText('Start')
@@ -164,6 +175,7 @@ class Main(Ui_MainWindow):
             self.pressed_8 = False
             self.pressed_9 = False
             self.pressed_f1 = False
+            self.pressed_f2 = False
 
     def profile_load(self):
         self.label_information_actions.setText('Load profile')
@@ -199,9 +211,9 @@ class Main(Ui_MainWindow):
     def press_1(self):
         if self.pressed_1:
             interval = int(self.lineEdit_1.text())
-            self.keyboard.press('1')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 49, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('1')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 49, 0)
             QtCore.QTimer.singleShot(interval, self.press_1)
 
     def toggle_2(self, state):
@@ -215,9 +227,9 @@ class Main(Ui_MainWindow):
     def press_2(self):
         if self.pressed_2:
             interval = int(self.lineEdit_2.text())
-            self.keyboard.press('2')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 50, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('2')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 50, 0)
             QtCore.QTimer.singleShot(interval, self.press_2)
 
     def toggle_3(self, state):
@@ -231,9 +243,9 @@ class Main(Ui_MainWindow):
     def press_3(self):
         if self.pressed_3:
             interval = int(self.lineEdit_3.text())
-            self.keyboard.press('3')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 51, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('3')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 51, 0)
             QtCore.QTimer.singleShot(interval, self.press_3)
 
     def toggle_4(self, state):
@@ -247,9 +259,9 @@ class Main(Ui_MainWindow):
     def press_4(self):
         if self.pressed_4:
             interval = int(self.lineEdit_4.text())
-            self.keyboard.press('4')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 52, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('4')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 52, 0)
             QtCore.QTimer.singleShot(interval, self.press_4)
 
     def toggle_5(self, state):
@@ -263,9 +275,9 @@ class Main(Ui_MainWindow):
     def press_5(self):
         if self.pressed_5:
             interval = int(self.lineEdit_5.text())
-            self.keyboard.press('5')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 53, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('5')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 53, 0)
             QtCore.QTimer.singleShot(interval, self.press_5)
 
     def toggle_6(self, state):
@@ -279,9 +291,9 @@ class Main(Ui_MainWindow):
     def press_6(self):
         if self.pressed_6:
             interval = int(self.lineEdit_6.text())
-            self.keyboard.press('6')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 54, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('6')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 54, 0)
             QtCore.QTimer.singleShot(interval, self.press_6)
 
     def toggle_7(self, state):
@@ -295,9 +307,9 @@ class Main(Ui_MainWindow):
     def press_7(self):
         if self.pressed_7:
             interval = int(self.lineEdit_7.text())
-            self.keyboard.press('7')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 55, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('7')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 55, 0)
             QtCore.QTimer.singleShot(interval, self.press_7)
 
     def toggle_8(self, state):
@@ -311,9 +323,9 @@ class Main(Ui_MainWindow):
     def press_8(self):
         if self.pressed_8:
             interval = int(self.lineEdit_8.text())
-            self.keyboard.press('8')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 56, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('8')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 56, 0)
             QtCore.QTimer.singleShot(interval, self.press_8)
 
     def toggle_9(self, state):
@@ -327,10 +339,26 @@ class Main(Ui_MainWindow):
     def press_9(self):
         if self.pressed_9:
             interval = int(self.lineEdit_9.text())
-            self.keyboard.press('9')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 57, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('9')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 57, 0)
             QtCore.QTimer.singleShot(interval, self.press_9)
+
+    def toggle_0(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_0 = True
+                self.press_0()
+        else:
+            self.pressed_0 = False
+
+    def press_0(self):
+        if self.pressed_0:
+            interval = int(self.lineEdit_0.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 48, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 48, 0)
+            QtCore.QTimer.singleShot(interval, self.press_0)
 
     def toggle_f1(self, state):
         if state == QtCore.Qt.Checked:
@@ -343,10 +371,154 @@ class Main(Ui_MainWindow):
     def press_f1(self):
         if self.pressed_f1:
             interval = int(self.lineEdit_f1.text())
-            self.keyboard.press('f1')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F1, 0)
             time.sleep(interval / 1000)
-            self.keyboard.release('f1')
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F1, 0)
             QtCore.QTimer.singleShot(interval, self.press_f1)
+
+    def toggle_f2(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f2 = True
+                self.press_f2()
+        else:
+            self.pressed_f2 = False
+
+    def press_f2(self):
+        if self.pressed_f2:
+            interval = int(self.lineEdit_f2.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F2, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F2, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f2)
+
+    def toggle_f3(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f3 = True
+                self.press_f3()
+        else:
+            self.pressed_f3 = False
+
+    def press_f3(self):
+        if self.pressed_f3:
+            interval = int(self.lineEdit_f3.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F3, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F3, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f3)
+
+    def toggle_f4(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f4 = True
+                self.press_f4()
+        else:
+            self.pressed_f4 = False
+
+    def press_f4(self):
+        if self.pressed_f4:
+            interval = int(self.lineEdit_f4.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F4, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F4, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f4)
+
+    def toggle_f5(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f5 = True
+                self.press_f5()
+        else:
+            self.pressed_f5 = False
+
+    def press_f5(self):
+        if self.pressed_f5:
+            interval = int(self.lineEdit_f5.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F5, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F5, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f5)
+
+    def toggle_f6(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f6 = True
+                self.press_f6()
+        else:
+            self.pressed_f6 = False
+
+    def press_f6(self):
+        if self.pressed_f6:
+            interval = int(self.lineEdit_f6.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F6, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F6, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f6)
+
+    def toggle_f7(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f7 = True
+                self.press_f7()
+        else:
+            self.pressed_f7 = False
+
+    def press_f7(self):
+        if self.pressed_f7:
+            interval = int(self.lineEdit_f7.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F7, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F7, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f7)
+
+    def toggle_f8(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f8 = True
+                self.press_f8()
+        else:
+            self.pressed_f8 = False
+
+    def press_f8(self):
+        if self.pressed_f8:
+            interval = int(self.lineEdit_f8.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F8, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F8, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f8)
+
+    def toggle_f9(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f9 = True
+                self.press_f9()
+        else:
+            self.pressed_f9 = False
+
+    def press_f9(self):
+        if self.pressed_f9:
+            interval = int(self.lineEdit_f9.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F9, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F9, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f9)
+
+    def toggle_f10(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_f10 = True
+                self.press_f10()
+        else:
+            self.pressed_f10 = False
+
+    def press_f10(self):
+        if self.pressed_f10:
+            interval = int(self.lineEdit_f10.text())
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F10, 0)
+            time.sleep(interval / 1000)
+            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F10, 0)
+            QtCore.QTimer.singleShot(interval, self.press_f10)
 
     def press_f11(self):
         self.pushButton_located.click()
@@ -358,6 +530,7 @@ class Main(Ui_MainWindow):
         x, y = win32api.GetCursorPos()
         coordinate = win32gui.WindowFromPoint((x, y))
         self.label_id_window.setText(str(coordinate))
+        print(coordinate)
 
 
 if __name__ == "__main__":
