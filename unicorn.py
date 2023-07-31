@@ -174,8 +174,17 @@ class Main(Ui_MainWindow):
             self.pressed_7 = False
             self.pressed_8 = False
             self.pressed_9 = False
+            self.pressed_0 = False
             self.pressed_f1 = False
             self.pressed_f2 = False
+            self.pressed_f3 = False
+            self.pressed_f4 = False
+            self.pressed_f5 = False
+            self.pressed_f6 = False
+            self.pressed_f7 = False
+            self.pressed_f8 = False
+            self.pressed_f9 = False
+            self.pressed_f10 = False
 
     def profile_load(self):
         self.label_information_actions.setText('Load profile')

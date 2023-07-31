@@ -15,14 +15,15 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowTitle("Unicorn")
+        MainWindow.setWindowIcon(QtGui.QIcon("unicorn.png"))
         MainWindow.resize(300, 600)
-        MainWindow.setMinimumSize(QtCore.QSize(165, 600))
+        MainWindow.setMinimumSize(QtCore.QSize(165, 360))
         MainWindow.setMaximumSize(QtCore.QSize(300, 600))
+        MainWindow.setBaseSize(QtCore.QSize(300, 600))
         MainWindow.setStyleSheet("background-image: url('bg_image.jpg');")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-
 
 
         ### --------------------- ###
@@ -468,57 +469,6 @@ class Ui_MainWindow(object):
         self.label_hottime_2.setText("Hot Time")
         self.label_hottime_2.setStyleSheet("background: none;")
 
-        ### lamps ###
-        self.label_lamps = QtWidgets.QLabel(self.centralwidget)
-        self.label_lamps.setGeometry(QtCore.QRect(70, 390, 31, 31))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_lamps.setFont(font)
-        self.label_lamps.setPixmap(QtGui.QPixmap("../image/icons/lamps_on.png"))
-        self.label_lamps.setScaledContents(True)
-        self.label_lamps.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_lamps.setObjectName("label_lamps")
-        self.label_lamps.setStyleSheet("background: none;")
-
-        self.label_lamps_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_lamps_2.setGeometry(QtCore.QRect(60, 420, 51, 16))
-        font = QtGui.QFont()
-        font.setPointSize(7)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        self.label_lamps_2.setFont(font)
-        self.label_lamps_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_lamps_2.setObjectName("label_lamps_2")
-        self.label_lamps_2.setText("Lamps")
-        self.label_lamps_2.setStyleSheet("background: none;")
-
-        ### sayha ###
-        self.label_sayha = QtWidgets.QLabel(self.centralwidget)
-        self.label_sayha.setGeometry(QtCore.QRect(120, 390, 31, 31))
-        self.label_sayha.setText("")
-        self.label_sayha.setPixmap(QtGui.QPixmap("../image/icons/sayha_on.png"))
-        self.label_sayha.setScaledContents(True)
-        self.label_sayha.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_sayha.setObjectName("label_sayha")
-        self.label_sayha.setStyleSheet("background: none;")
-
-        self.label_sayha_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_sayha_2.setGeometry(QtCore.QRect(110, 420, 51, 16))
-        font = QtGui.QFont()
-        font.setPointSize(7)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        self.label_sayha_2.setFont(font)
-        self.label_sayha_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_sayha_2.setObjectName("label_sayha_2")
-        self.label_sayha_2.setText("Sayha")
-        self.label_sayha_2.setStyleSheet("background: none;")
-
         ### --------------------- ###
         ###      Window BLOCK     ###
         ### --------------------- ###
@@ -547,7 +497,7 @@ class Ui_MainWindow(object):
         self.pushButton_startstop.setGeometry(QtCore.QRect(100, 490, 40, 40))
         self.pushButton_startstop.setStyleSheet("background-color: rgb(255, 239, 220);")
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         self.pushButton_startstop.setFont(font)
@@ -678,6 +628,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.statusbar.setFixedHeight(22)
         self.statusbar.setStyleSheet("background: none;")
 
         ### --------------------- ###
@@ -691,3 +642,5 @@ class Ui_MainWindow(object):
         self.label_information_actions.setAlignment(QtCore.Qt.AlignCenter)
         self.label_information_actions.setObjectName("label_information_actions")
         self.label_information_actions.setStyleSheet("background: none;")
+
+
