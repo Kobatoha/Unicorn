@@ -449,7 +449,7 @@ class Ui_MainWindow(object):
         ### hot time ###
         self.label_hottime = QtWidgets.QLabel(self.centralwidget)
         self.label_hottime.setGeometry(QtCore.QRect(20, 390, 31, 31))
-        self.label_hottime.setPixmap(QtGui.QPixmap("../image/icons/hot_time_off.png"))
+        self.label_hottime.setPixmap(QtGui.QPixmap("hot_time_off.png"))
         self.label_hottime.setScaledContents(True)
         self.label_hottime.setAlignment(QtCore.Qt.AlignCenter)
         self.label_hottime.setObjectName("label_hottime")
@@ -516,7 +516,7 @@ class Ui_MainWindow(object):
         self.label_hotkey_startstop.setFont(font)
         self.label_hotkey_startstop.setAlignment(QtCore.Qt.AlignCenter)
         self.label_hotkey_startstop.setObjectName("label_hotkey_startstop")
-        self.label_hotkey_startstop.setText('press F12')
+        self.label_hotkey_startstop.setText('INSERT')
         self.label_hotkey_startstop.setStyleSheet("background: none;")
 
         ### button lockated ###
@@ -532,6 +532,8 @@ class Ui_MainWindow(object):
         self.pushButton_located.setIcon(QtGui.QIcon('target_off.png'))
         self.pushButton_located.setIconSize(QtCore.QSize(40, 40))
         self.pushButton_located.clicked.connect(self.get_window_id)
+
+        self.msg_box_active = False
 
         self.label_id_window = QtWidgets.QLabel(self.centralwidget)
         self.label_id_window.setGeometry(QtCore.QRect(25, 530, 50, 21))

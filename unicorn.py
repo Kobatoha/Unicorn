@@ -12,6 +12,7 @@ import win32api
 import win32con
 from Ui_MainWindow import Ui_MainWindow
 import json
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Main(Ui_MainWindow):
@@ -21,6 +22,17 @@ class Main(Ui_MainWindow):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_located)
         self.timer.start(5000)
+
+        # Добавляем обработчик закрытия окна
+        self.window = MainWindow
+        self.window.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        self.window.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowCloseButtonHint)
+        self.window.closeEvent = self.closeEvent
+
+    def closeEvent(self, event):
+        # Вызываем функцию sys.exit() при закрытии окна
+        QtWidgets.QApplication.closeAllWindows()
+        QtWidgets.QApplication.exit()
 
     # settings file
     def save_settings(self):
@@ -129,11 +141,11 @@ class Main(Ui_MainWindow):
             pass
 
     ### functions ###
-    def press_f12(self):
+    def press_insert(self):
         self.pushButton_startstop.click()
 
-    def hotkey_thread_f12(self):
-        add_hotkey('F12', self.press_f12)
+    def hotkey_thread_insert(self):
+        add_hotkey('INSERT', self.press_insert)
 
     def startstop(self):
         if self.pushButton_startstop.text() == 'Start':
@@ -196,9 +208,9 @@ class Main(Ui_MainWindow):
         while True:
             time_now = datetime.datetime.now().strftime('%H:%M')
             if time_now >= '12:00' and time_now <= '14:00' or time_now >= '19:00' and time_now <= '23:00':
-                self.label_hottime.setPixmap(QtGui.QPixmap("../image/icons/hot_time_on.png"))
+                self.label_hottime.setPixmap(QtGui.QPixmap("hot_time_on.png"))
             else:
-                self.label_hottime.setPixmap(QtGui.QPixmap("../image/icons/hot_time_off.png"))
+                self.label_hottime.setPixmap(QtGui.QPixmap("hot_time_off.png"))
             time.sleep(60)
 
     def update_located(self):
@@ -536,10 +548,37 @@ class Main(Ui_MainWindow):
         add_hotkey('F11', self.press_f11)
 
     def get_window_id(self):
-        x, y = win32api.GetCursorPos()
-        coordinate = win32gui.WindowFromPoint((x, y))
-        self.label_id_window.setText(str(coordinate))
-        print(coordinate)
+        if self.msg_box_active:
+            return
+
+        # создаем сообщение с вопросом
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Question)
+        msg_box.setWindowTitle("Изменить выбранное окно?")
+        msg_box.setText("Вы хотите изменить выбранное окно?")
+        yes_button = msg_box.addButton("Да", QMessageBox.YesRole)
+        no_button = msg_box.addButton("Нет", QMessageBox.NoRole)
+
+        # устанавливаем флаг активности диалогового окна
+        self.msg_box_active = True
+
+        # запускаем сообщение и ждем ответа пользователя
+        msg_box.exec_()
+
+        # сбрасываем флаг активности диалогового окна
+        self.msg_box_active = False
+
+        # если нажата кнопка "Да", то записываем значение в lineEdit_window_id
+        if msg_box.clickedButton() == yes_button:
+            x, y = win32api.GetCursorPos()
+            coordinate = win32gui.WindowFromPoint((x, y))
+            self.lineEdit_window_id.setText(str(coordinate))
+            self.label_id_window.setText(str(coordinate))
+
+        elif msg_box.clickedButton() == no_button:
+            x, y = win32api.GetCursorPos()
+            coordinate = win32gui.WindowFromPoint((x, y))
+            self.label_id_window.setText(str(coordinate))
 
 
 if __name__ == "__main__":
@@ -550,8 +589,8 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     thread = threading.Thread(target=ui.update_hot_time_icon)
     thread.start()
-    thread_press_f12 = threading.Thread(target=ui.hotkey_thread_f12)
-    thread_press_f12.start()
+    thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
+    thread_press_insert.start()
     thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
     thread_press_f11.start()
     MainWindow.show()
