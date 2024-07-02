@@ -9,6 +9,7 @@ import win32gui
 import win32ui
 import win32con
 import win32api
+import mouse
 
 if not os.path.exists('screenshots'):
     os.makedirs('screenshots')
@@ -23,9 +24,18 @@ def get_lineage_hwnd():
     return windows_hwnd
 
 
-def check_active_window():
-    active = window.isActive
-    return active
+def get_lineage_windows():
+    windows = gw.getWindowsWithTitle('Lineage II')
+    return windows
+
+
+def check_active_window(hwnd) -> bool:
+    windows = get_lineage_windows()
+    for window in windows:
+        if window._hWnd == hwnd:
+            active = window.isActive
+            if not active:
+                window.activate()
 
 
 def create_screenshot(hwnd):
@@ -43,8 +53,8 @@ def get_red_pixels(image):
 
     red_pixels = []
 
-    for y in range(cropped_image.size[1]):
-        for x in range(cropped_image.size[0]):
+    for y in range(image.size[1]):
+        for x in range(image.size[0]):
             current_color = pixels[x, y]
 
             if abs(current_color[0] - desired_red_color[0]) < 20 and \
@@ -71,3 +81,45 @@ def check_health_bar():
 
     time.sleep(2)
     os.remove(file)
+
+
+def get_mouse_position():
+
+    x, y = pyautogui.position()
+
+    rect = win32gui.GetWindowRect(hwnd)
+    x0, y0 = rect[0], rect[1]
+
+    x_rel = x - x0
+    y_rel = y - y0
+
+    return x_rel, y_rel
+
+
+def send_left_click_sm(hwnd, x, y):
+    lParam = win32api.MAKELONG(x, y)
+
+    # Отправляем сообщение о нажатии левой кнопки мыши
+    win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+    win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, None, lParam)
+
+
+def send_left_click_pyautogui(hwnd, x, y):
+    rect = win32gui.GetWindowRect(hwnd)
+    x0, y0 = rect[0], rect[1]
+
+    pyautogui.moveTo(x0 + x, y0 + y)
+    time.sleep(2)
+    pyautogui.leftClick()
+    mouse.click('left')
+
+
+if __name__ == '__main__':
+    hwnd = get_lineage_hwnd()
+    time.sleep(5)
+    get = get_mouse_position()
+    rect_recovery_exp = (910, 553)
+    send_left_click_pyautogui(hwnd, rect_recovery_exp[0], rect_recovery_exp[1])
+    time.sleep(2)
+    rect_recovery_agree = (879, 567)
+    send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
