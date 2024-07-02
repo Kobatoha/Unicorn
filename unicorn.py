@@ -29,6 +29,7 @@ class Main(Ui_MainWindow):
         self.window.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowCloseButtonHint)
         self.window.closeEvent = self.closeEvent
 
+
     def closeEvent(self, event):
         # Вызываем функцию sys.exit() при закрытии окна
         QtWidgets.QApplication.closeAllWindows()
