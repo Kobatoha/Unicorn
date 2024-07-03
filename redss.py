@@ -10,9 +10,8 @@ import win32ui
 import win32con
 import win32api
 import mouse
-
-if not os.path.exists('screenshots'):
-    os.makedirs('screenshots')
+import random
+from pywinauto import Desktop
 
 
 def get_lineage_hwnd():
@@ -84,6 +83,8 @@ def check_health_bar():
 
 
 def get_mouse_position():
+    print('У вас есть 5 секунд навести мышку в нужное место')
+    time.sleep(5)
 
     x, y = pyautogui.position()
 
@@ -112,6 +113,16 @@ def send_left_click_pyautogui(hwnd, x, y):
     time.sleep(2)
     pyautogui.leftClick()
     mouse.click('left')
+
+
+def get_taskbar_icon():
+    window_name = 'LaunchRes —1 запущенное окно'
+    desktop = Desktop(backend="uia")
+    taskbar = desktop.window(class_name='Shell_TrayWnd')
+    icons = taskbar.descendants(control_type="Button", title='LaunchRes —1 запущенное окно')
+    icon_l2 = [icon for icon in icons if window_name in icon.window_text()]
+    time.sleep(2)
+    icons[0].click_input()
 
 
 if __name__ == '__main__':
