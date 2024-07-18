@@ -13,6 +13,7 @@ import win32con
 from Ui_MainWindow import Ui_MainWindow
 import json
 from PyQt5.QtWidgets import QMessageBox
+import redss
 
 
 class Main(Ui_MainWindow):
@@ -173,6 +174,7 @@ class Main(Ui_MainWindow):
             self.toggle_E(self.checkBox_E.checkState())
             self.toggle_R(self.checkBox_R.checkState())
             self.toggle_T(self.checkBox_T.checkState())
+            self.toggle_res(self.check_box_res.checkState())
 
         else:
             self.pushButton_startstop.setText('Start')
@@ -198,6 +200,7 @@ class Main(Ui_MainWindow):
             self.pressed_E = False
             self.pressed_R = False
             self.pressed_T = False
+            self.pressed_res = False
 
     def profile_load(self):
         self.label_information_actions.setText('Load profile')
@@ -550,6 +553,20 @@ class Main(Ui_MainWindow):
             time.sleep(interval / 1000)
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 84, 0)
             QtCore.QTimer.singleShot(interval, self.press_T)
+
+    def toggle_res(self, state):
+        if state == QtCore.Qt.Checked:
+            if self.pushButton_startstop.text() == 'Stop':
+                self.pressed_res = True
+                self.press_res()
+        else:
+            self.pressed_res = False
+
+    def press_res(self):
+        if self.pressed_res:
+            hwnd = int(self.lineEdit_window_id.text())
+            redss.go_to_village(hwnd)
+            QtCore.QTimer.singleShot(120000, self.press_res)
 
     def press_f11(self):
         self.pushButton_located.click()

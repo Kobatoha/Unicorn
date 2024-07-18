@@ -469,6 +469,21 @@ class Ui_MainWindow(object):
         self.label_hottime_2.setText("Hot Time")
         self.label_hottime_2.setStyleSheet("background: none;")
 
+        ### auto ressurection ###
+        self.check_box_res = QtWidgets.QCheckBox(self.centralwidget)
+        self.check_box_res.setGeometry(QtCore.QRect(250, 320, 40, 20))
+
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.check_box_res.setFont(font)
+        self.check_box_res.setObjectName("check_box_res")
+        self.check_box_res.setText("res")
+        self.check_box_res.setStyleSheet("background: none;")
+        self.check_box_res.stateChanged.connect(self.toggle_res)
+        self.keyboard = Controller()
+        self.pressed_res = False
+
         ### --------------------- ###
         ###      Window BLOCK     ###
         ### --------------------- ###

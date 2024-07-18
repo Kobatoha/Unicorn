@@ -28,13 +28,14 @@ def get_lineage_windows():
     return windows
 
 
-def check_active_window(hwnd) -> bool:
+def check_active_window(hwnd):
     windows = get_lineage_windows()
     for window in windows:
         if window._hWnd == hwnd:
             active = window.isActive
             if not active:
-                window.activate()
+                time.sleep(2)
+                get_focus_lineage_window(hwnd)
 
 
 def create_screenshot(hwnd):
@@ -64,22 +65,26 @@ def get_red_pixels(image):
     return len(red_pixels)
 
 
-def check_health_bar():
+def check_health_bar(hwnd):
     file = create_screenshot(hwnd)
     image = Image.open(file)
     x1, y1 = 63, 0
     x2, y2 = x1 + 345, y1 + 33
+    death = False
 
     cropped_image = image.crop((x1, y1, x2, y2))
 
     red_pixels = get_red_pixels(cropped_image)
     if red_pixels <= 200:
         print('Боец погиб')
+        death = True
     else:
         print('Боец еще в строю')
+        death = False
 
     time.sleep(2)
     os.remove(file)
+    return death
 
 
 def get_mouse_position():
@@ -115,14 +120,21 @@ def send_left_click_pyautogui(hwnd, x, y):
     mouse.click('left')
 
 
-def get_taskbar_icon():
-    window_name = 'LaunchRes —1 запущенное окно'
+def get_focus_lineage_window(hwnd):
     desktop = Desktop(backend="uia")
-    taskbar = desktop.window(class_name='Shell_TrayWnd')
-    icons = taskbar.descendants(control_type="Button", title='LaunchRes —1 запущенное окно')
-    icon_l2 = [icon for icon in icons if window_name in icon.window_text()]
-    time.sleep(2)
-    icons[0].click_input()
+    window = desktop.windows(title='Lineage II', handle=hwnd)[0].click_input()
+
+
+def go_to_village(hwnd):
+    flag = check_health_bar(hwnd)
+    if flag:
+        check_active_window(hwnd)
+        time.sleep(2)
+        rect_recovery_exp = (910, 553)
+        send_left_click_pyautogui(hwnd, rect_recovery_exp[0], rect_recovery_exp[1])
+        time.sleep(2)
+        rect_recovery_agree = (879, 567)
+        send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
 
 
 if __name__ == '__main__':
