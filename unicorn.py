@@ -220,7 +220,7 @@ class Main(Ui_MainWindow):
     def update_hot_time_icon(self):
         while True:
             time_now = datetime.datetime.now().strftime('%H:%M')
-            if time_now >= '12:00' and time_now <= '14:00' or time_now >= '19:00' and time_now <= '23:00':
+            if '12:00' >= time_now <= '14:00' or '19:00' >= time_now <= '23:00':
                 self.label_hottime.setPixmap(QtGui.QPixmap("images/hot_time_on.png"))
             else:
                 self.label_hottime.setPixmap(QtGui.QPixmap("images/hot_time_off.png"))
