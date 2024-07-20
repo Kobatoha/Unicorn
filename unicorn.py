@@ -238,12 +238,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_1 = True
-                self.press_1()
+                # self.press_1()
+                threading.Thread(target=self.press_1).start()
         else:
             self.pressed_1 = False
 
     def press_1(self):
-        if self.pressed_1:
+        while self.pressed_1:
             interval = int(self.lineEdit_1.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 49, 0)
             time.sleep(interval / 1000)
@@ -254,12 +255,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_2 = True
-                self.press_2()
+                # self.press_2()
+                threading.Thread(target=self.press_2).start()
         else:
             self.pressed_2 = False
 
     def press_2(self):
-        if self.pressed_2:
+        while self.pressed_2:
             interval = int(self.lineEdit_2.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 50, 0)
             time.sleep(interval / 1000)
@@ -270,12 +272,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_3 = True
-                self.press_3()
+                # self.press_3()
+                threading.Thread(target=self.press_3).start()
         else:
             self.pressed_3 = False
 
     def press_3(self):
-        if self.pressed_3:
+        while self.pressed_3:
             interval = int(self.lineEdit_3.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 51, 0)
             time.sleep(interval / 1000)
@@ -286,12 +289,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_4 = True
-                self.press_4()
+                # self.press_4()
+                threading.Thread(target=self.press_4).start()
         else:
             self.pressed_4 = False
 
     def press_4(self):
-        if self.pressed_4:
+        while self.pressed_4:
             interval = int(self.lineEdit_4.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 52, 0)
             time.sleep(interval / 1000)
@@ -302,12 +306,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_5 = True
-                self.press_5()
+                # self.press_5()
+                threading.Thread(target=self.press_5).start()
         else:
             self.pressed_5 = False
 
     def press_5(self):
-        if self.pressed_5:
+        while self.pressed_5:
             interval = int(self.lineEdit_5.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 53, 0)
             time.sleep(interval / 1000)
@@ -318,12 +323,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_6 = True
-                self.press_6()
+                # self.press_6()
+                threading.Thread(target=self.press_6).start()
         else:
             self.pressed_6 = False
 
     def press_6(self):
-        if self.pressed_6:
+        while self.pressed_6:
             interval = int(self.lineEdit_6.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 54, 0)
             time.sleep(interval / 1000)
@@ -334,12 +340,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_7 = True
-                self.press_7()
+                # self.press_7()
+                threading.Thread(target=self.press_7).start()
         else:
             self.pressed_7 = False
 
     def press_7(self):
-        if self.pressed_7:
+        while self.pressed_7:
             interval = int(self.lineEdit_7.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 55, 0)
             time.sleep(interval / 1000)
@@ -350,12 +357,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_8 = True
-                self.press_8()
+                # self.press_8()
+                threading.Thread(target=self.press_8).start()
         else:
             self.pressed_8 = False
 
     def press_8(self):
-        if self.pressed_8:
+        while self.pressed_8:
             interval = int(self.lineEdit_8.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 56, 0)
             time.sleep(interval / 1000)
@@ -366,12 +374,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_9 = True
-                self.press_9()
+                # self.press_9()
+                threading.Thread(target=self.press_9).start()
         else:
             self.pressed_9 = False
 
     def press_9(self):
-        if self.pressed_9:
+        while self.pressed_9:
             interval = int(self.lineEdit_9.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 57, 0)
             time.sleep(interval / 1000)
@@ -382,12 +391,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_tilda = True
-                self.press_tilda()
+                # self.press_tilda()
+                threading.Thread(target=self.press_tilda).start()
         else:
             self.pressed_tilda = False
 
     def press_tilda(self):
-        if self.pressed_tilda:
+        while self.pressed_tilda:
             interval = int(self.lineEdit_tilda.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 192, 0)
             time.sleep(interval / 1000)
@@ -398,12 +408,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_f1 = True
-                self.press_f1()
+                # self.press_f1()
+                threading.Thread(target=self.press_f1).start()
         else:
             self.pressed_f1 = False
 
     def press_f1(self):
-        if self.pressed_f1:
+        while self.pressed_f1:
             interval = int(self.lineEdit_f1.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F1, 0)
             time.sleep(interval / 1000)
@@ -414,12 +425,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_f2 = True
-                self.press_f2()
+                # self.press_f2()
+                threading.Thread(target=self.press_f2).start()
         else:
             self.pressed_f2 = False
 
     def press_f2(self):
-        if self.pressed_f2:
+        while self.pressed_f2:
             interval = int(self.lineEdit_f2.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F2, 0)
             time.sleep(interval / 1000)
@@ -430,12 +442,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_f3 = True
-                self.press_f3()
+                # self.press_f3()
+                threading.Thread(target=self.press_f3).start()
         else:
             self.pressed_f3 = False
 
     def press_f3(self):
-        if self.pressed_f3:
+        while self.pressed_f3:
             interval = int(self.lineEdit_f3.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F3, 0)
             time.sleep(interval / 1000)
@@ -446,12 +459,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_f4 = True
-                self.press_f4()
+                # self.press_f4()
+                threading.Thread(target=self.press_f4).start()
         else:
             self.pressed_f4 = False
 
     def press_f4(self):
-        if self.pressed_f4:
+        while self.pressed_f4:
             interval = int(self.lineEdit_f4.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F4, 0)
             time.sleep(interval / 1000)
@@ -462,12 +476,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_f5 = True
-                self.press_f5()
+                # self.press_f5()
+                threading.Thread(target=self.press_f5).start()
         else:
             self.pressed_f5 = False
 
     def press_f5(self):
-        if self.pressed_f5:
+        while self.pressed_f5:
             interval = int(self.lineEdit_f5.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F5, 0)
             time.sleep(interval / 1000)
@@ -478,12 +493,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_Q = True
-                self.press_Q()
+                # self.press_Q()
+                threading.Thread(target=self.press_Q).start()
         else:
             self.pressed_Q = False
 
     def press_Q(self):
-        if self.pressed_Q:
+        while self.pressed_Q:
             interval = int(self.lineEdit_Q.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 81, 0)
             time.sleep(interval / 1000)
@@ -494,12 +510,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_W = True
-                self.press_W()
+                # self.press_W()
+                threading.Thread(target=self.press_W).start()
         else:
             self.pressed_W = False
 
     def press_W(self):
-        if self.pressed_W:
+        while self.pressed_W:
             interval = int(self.lineEdit_W.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 87, 0)
             time.sleep(interval / 1000)
@@ -510,12 +527,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_E = True
-                self.press_E()
+                # self.press_E()
+                threading.Thread(target=self.press_E).start()
         else:
             self.pressed_E = False
 
     def press_E(self):
-        if self.pressed_E:
+        while self.pressed_E:
             interval = int(self.lineEdit_E.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 69, 0)
             time.sleep(interval / 1000)
@@ -526,12 +544,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_R = True
-                self.press_R()
+                # self.press_R()
+                threading.Thread(target=self.press_R).start()
         else:
             self.pressed_R = False
 
     def press_R(self):
-        if self.pressed_R:
+        while self.pressed_R:
             interval = int(self.lineEdit_R.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 82, 0)
             time.sleep(interval / 1000)
@@ -542,12 +561,13 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_T = True
-                self.press_T()
+                # self.press_T()
+                threading.Thread(target=self.press_T).start()
         else:
             self.pressed_T = False
 
     def press_T(self):
-        if self.pressed_T:
+        while self.pressed_T:
             interval = int(self.lineEdit_T.text())
             win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 84, 0)
             time.sleep(interval / 1000)
@@ -564,9 +584,14 @@ class Main(Ui_MainWindow):
 
     def press_res(self):
         if self.pressed_res:
-            hwnd = int(self.lineEdit_window_id.text())
-            redss.go_to_village(hwnd)
-            QtCore.QTimer.singleShot(120000, self.press_res)
+            try:
+                hwnd = int(self.lineEdit_window_id.text())
+                redss.go_to_village(hwnd)
+                print(datetime.datetime.now().strftime('%H:%M:%S'))
+                QtCore.QTimer.singleShot(120000, self.press_res)
+            except:
+                print('Произошла ошибка воскрешения, ждем минуту для повтора')
+                time.sleep(60)
 
     def press_f11(self):
         self.pushButton_located.click()
@@ -614,6 +639,7 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Main()
     ui.setupUi(MainWindow)
+
     thread = threading.Thread(target=ui.update_hot_time_icon)
     thread.start()
     thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
