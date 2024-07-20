@@ -138,12 +138,12 @@ def go_to_village(hwnd):
         time.sleep(1)
         rect_recovery_pay_exp = (879, 606)
         send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
-        time.sleep(1)
-        use_teleport()
+        time.sleep(5)
+        use_teleport(hwnd)
         time.sleep(2)
 
 
-def use_teleport():
+def use_teleport(hwnd):
     time.sleep(1)
     print('Летим на свободный телепорт')
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x38, 0)
