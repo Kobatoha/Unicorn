@@ -495,11 +495,11 @@ class Ui_MainWindow(object):
         self.label_window.setFont(font)
         self.label_window.setAlignment(QtCore.Qt.AlignCenter)
         self.label_window.setObjectName("label_window")
-        self.label_window.setText("Window")
+        self.label_window.setText("Window id")
         self.label_window.setStyleSheet("background: none;")
 
         self.line_window = QtWidgets.QFrame(self.centralwidget)
-        self.line_window.setGeometry(QtCore.QRect(60, 440, 91, 20))
+        self.line_window.setGeometry(QtCore.QRect(65, 440, 91, 20))
         self.line_window.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_window.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_window.setObjectName("line_window")
@@ -559,7 +559,7 @@ class Ui_MainWindow(object):
         self.label_id_window.setFont(font)
         self.label_id_window.setAlignment(QtCore.Qt.AlignCenter)
         self.label_id_window.setObjectName("label_id_window")
-        self.label_id_window.setText("id window")
+        self.label_id_window.setText("F11")
         self.label_id_window.setStyleSheet("background: none;")
 
         self.lineEdit_window_id = QtWidgets.QLineEdit(self.centralwidget)
