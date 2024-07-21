@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(165, 360))
         MainWindow.setMaximumSize(QtCore.QSize(300, 600))
         MainWindow.setBaseSize(QtCore.QSize(300, 600))
-        MainWindow.setStyleSheet("background-image: url('bg_image.jpg');")
+        MainWindow.setStyleSheet("background-image: url('images/bg_image.jpg');")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
