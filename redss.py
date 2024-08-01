@@ -1,5 +1,4 @@
 import time
-
 from PIL import Image, ImageDraw
 from datetime import datetime
 import os
@@ -120,9 +119,43 @@ def send_left_click_pyautogui(hwnd, x, y):
     mouse.click('left')
 
 
+def move_mouse(hwnd, x, y):
+    rect = win32gui.GetWindowRect(hwnd)
+    x0, y0 = rect[0], rect[1]
+
+    pyautogui.moveTo(x0 + x, y0 + y)
+
+
 def get_focus_lineage_window(hwnd):
     desktop = Desktop(backend="uia")
     window = desktop.windows(title='Lineage II', handle=hwnd)[0].click_input()
+
+
+def free_res_rect():
+    x = [852, 1006]
+    y = [540, 555]
+    new_x = random.randint(x[0], x[1])
+    new_y = random.randint(y[0], y[1])
+
+    return [new_x, new_y]
+
+
+def res_agree_rect():
+    x = [855, 915]
+    y = [560, 573]
+    new_x = random.randint(x[0], x[1])
+    new_y = random.randint(y[0], y[1])
+
+    return [new_x, new_y]
+
+
+def res_agree_pay_rect():
+    x = [845, 915]
+    y = [599, 610]
+    new_x = random.randint(x[0], x[1])
+    new_y = random.randint(y[0], y[1])
+
+    return [new_x, new_y]
 
 
 def go_to_village(hwnd):
@@ -130,17 +163,17 @@ def go_to_village(hwnd):
     if flag:
         check_active_window(hwnd)
         time.sleep(2)
-        rect_recovery_free_exp = (910, 553)
+        rect_recovery_free_exp = free_res_rect()
         send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
         time.sleep(2)
-        rect_recovery_agree = (879, 567)
+        rect_recovery_agree = res_agree_rect()
         send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
         time.sleep(1)
-        rect_recovery_pay_exp = (879, 606)
+        rect_recovery_pay_exp = res_agree_pay_rect()
         send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
         time.sleep(5)
-        use_teleport(hwnd)
-        time.sleep(2)
+        return True
+    return False
 
 
 def use_teleport(hwnd):
@@ -150,13 +183,8 @@ def use_teleport(hwnd):
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x38, 0)
 
 
-
 if __name__ == '__main__':
     hwnd = get_lineage_hwnd()
     time.sleep(5)
     get = get_mouse_position()
-    rect_recovery_exp = (910, 553)
-    send_left_click_pyautogui(hwnd, rect_recovery_exp[0], rect_recovery_exp[1])
-    time.sleep(2)
-    rect_recovery_agree = (879, 567)
-    send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
+
