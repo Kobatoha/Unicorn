@@ -5,6 +5,7 @@ from PyQt5.QtGui import QIcon, QPixmap, QDrag
 from PyQt5.QtCore import QSize, Qt, QMimeData, QTimer
 import pyautogui
 import datetime
+import random
 from keyboard import add_hotkey
 from pynput.keyboard import Key, Controller
 import win32gui
@@ -200,6 +201,52 @@ class Main(Ui_MainWindow):
             self.pressed_R = False
             self.pressed_T = False
             self.pressed_res = False
+
+    def paused_pressed(self):
+        self.pressed_1 = False
+        self.pressed_2 = False
+        self.pressed_3 = False
+        self.pressed_4 = False
+        self.pressed_5 = False
+        self.pressed_6 = False
+        self.pressed_7 = False
+        self.pressed_8 = False
+        self.pressed_9 = False
+        self.pressed_tilda = False
+        self.pressed_f1 = False
+        self.pressed_f2 = False
+        self.pressed_f3 = False
+        self.pressed_f4 = False
+        self.pressed_f5 = False
+        self.pressed_Q = False
+        self.pressed_W = False
+        self.pressed_E = False
+        self.pressed_R = False
+        self.pressed_T = False
+        self.label_information_actions.setText('Continue clicking')
+
+    def continue_pressed(self):
+        self.toggle_1(self.checkBox_1.checkState())
+        self.toggle_2(self.checkBox_2.checkState())
+        self.toggle_3(self.checkBox_3.checkState())
+        self.toggle_4(self.checkBox_4.checkState())
+        self.toggle_5(self.checkBox_5.checkState())
+        self.toggle_6(self.checkBox_6.checkState())
+        self.toggle_7(self.checkBox_7.checkState())
+        self.toggle_8(self.checkBox_8.checkState())
+        self.toggle_9(self.checkBox_9.checkState())
+        self.toggle_tilda(self.checkBox_tilda.checkState())
+        self.toggle_f1(self.checkBox_f1.checkState())
+        self.toggle_f2(self.checkBox_f2.checkState())
+        self.toggle_f3(self.checkBox_f3.checkState())
+        self.toggle_f4(self.checkBox_f4.checkState())
+        self.toggle_f5(self.checkBox_f5.checkState())
+        self.toggle_Q(self.checkBox_Q.checkState())
+        self.toggle_W(self.checkBox_W.checkState())
+        self.toggle_E(self.checkBox_E.checkState())
+        self.toggle_R(self.checkBox_R.checkState())
+        self.toggle_T(self.checkBox_T.checkState())
+        self.label_information_actions.setText('Paused clicking')
 
     def profile_load(self):
         self.label_information_actions.setText('Load profile')
@@ -584,10 +631,21 @@ class Main(Ui_MainWindow):
     def press_res(self):
         if self.pressed_res:
             try:
-                hwnd = int(self.lineEdit_window_id.text())
-                redss.go_to_village(hwnd)
+                respawn = random.randint(60000, 360000)
+                total_seconds = respawn / 1000
+                minutes = int(total_seconds // 60)
+                seconds = int(total_seconds % 60)
                 print(datetime.datetime.now().strftime('%H:%M:%S'))
-                QtCore.QTimer.singleShot(120000, self.press_res)
+                hwnd = int(self.lineEdit_window_id.text())
+                death = redss.go_to_village(hwnd)
+                if death:
+                    self.paused_pressed()
+                    time.sleep(2)
+                    redss.use_teleport(hwnd)
+                    time.sleep(2)
+                    self.continue_pressed()
+                print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+                QtCore.QTimer.singleShot(respawn, self.press_res)
             except:
                 print('Произошла ошибка воскрешения, ждем минуту для повтора')
                 time.sleep(60)
