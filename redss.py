@@ -127,7 +127,6 @@ def get_window_pay_agree(hwnd):
     return random_w, random_h
 
 
-
 def get_red_pixels(image):
     pixels = image.load()
 
@@ -245,7 +244,7 @@ def go_to_village(hwnd):
     flag = check_health_bar(hwnd)
     if flag:
         check_active_window(hwnd)
-        time.sleep(2)
+        time.sleep(5)
         rect_recovery_free_exp = get_window_free_up(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
         time.sleep(2)
