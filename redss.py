@@ -79,6 +79,22 @@ def get_window_to_village(hwnd, w=193, h=193, border=10):
     return (start_x, start_y, start_x + w, start_y + h)
 
 
+def get_window_free_up(hwnd):
+    rect = get_window_to_village(hwnd)
+    width = rect[0]
+    height = rect[1]
+
+    w_up = width + 15
+    h_up = height + 115
+
+    w_down = w_up + 158
+    h_down = h_up + 20
+    random_w = random.randint(w_up, w_down)
+    random_h = random.randint(h_up, h_down)
+
+    return random_w, random_h
+
+
 def get_red_pixels(image):
     pixels = image.load()
 
