@@ -624,13 +624,15 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             if self.pushButton_startstop.text() == 'Stop':
                 self.pressed_res = True
-                self.press_res()
+                # self.press_res()
+                threading.Thread(target=self.press_res).start()
         else:
             self.pressed_res = False
 
     def press_res(self):
         if self.pressed_res:
             try:
+                time.sleep(15)
                 respawn = random.randint(60000, 360000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)

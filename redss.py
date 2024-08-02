@@ -42,7 +42,7 @@ def check_active_window(hwnd):
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    directory = r'C:\l2essence\Screenshot'
+    # directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
 
@@ -147,25 +147,30 @@ def get_red_pixels(image):
 
 
 def check_health_bar(hwnd):
-    file = create_screenshot(hwnd)
-    image = Image.open(file)
-    x1, y1 = 63, 0
-    x2, y2 = x1 + 345, y1 + 33
-    death = False
-
-    cropped_image = image.crop((x1, y1, x2, y2))
-
-    red_pixels = get_red_pixels(cropped_image)
-    if red_pixels <= 200:
-        print('Боец погиб')
-        death = True
-    else:
-        print('Боец еще в строю')
+    if hwnd in get_lineage_hwnd():
+        print(f'Yes, {hwnd} is have')
+        file = create_screenshot(hwnd)
+        image = Image.open(file)
+        x1, y1 = 63, 0
+        x2, y2 = x1 + 345, y1 + 33
         death = False
 
-    time.sleep(2)
-    os.remove(file)
-    return death
+        cropped_image = image.crop((x1, y1, x2, y2))
+
+        red_pixels = get_red_pixels(cropped_image)
+        if red_pixels <= 200:
+            print('Боец погиб')
+            death = True
+        else:
+            print('Боец еще в строю')
+            death = False
+
+        time.sleep(2)
+        os.remove(file)
+        return death
+    else:
+        print('Окно критануло?')
+        return False
 
 
 def get_mouse_position():
