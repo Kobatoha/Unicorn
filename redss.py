@@ -11,6 +11,8 @@ import win32api
 import mouse
 import random
 from pywinauto import Desktop
+import ctypes
+from ctypes import wintypes
 
 
 def get_lineage_hwnd():
@@ -37,12 +39,44 @@ def check_active_window(hwnd):
                 get_focus_lineage_window(hwnd)
 
 
-def create_screenshot(hwnd):
+def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    directory = r'C:\Games\LineageII Essence\Screenshot'
+    directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
+
+
+def create_screenshot_inside(hwnd):
+    user32 = ctypes.windll.user32
+    gdi32 = ctypes.windll.gdi32
+
+    PrintWindow = user32.PrintWindow
+
+    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
+    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
+    directory = r'C:\l2essence\Screenshot'
+    file = os.listdir(directory)[-1]
+    return rf'{directory}\{file}'
+
+
+def get_window_size(hwnd):
+    left, top, right, bottom = win32gui.GetWindowRect(hwnd)
+    height = bottom - top
+    width = right - left
+    return width, height
+
+
+def get_window_to_village(hwnd, w=193, h=193, border=10):
+    window_width, window_height = get_window_size(hwnd)
+
+    center_x = window_width // 2
+    center_y = window_height // 2 + border
+
+    start_x = center_x - w // 2
+    start_y = center_y - h // 2
+
+    return (start_x, start_y, start_x + w, start_y + h)
 
 
 def get_red_pixels(image):
@@ -179,8 +213,8 @@ def go_to_village(hwnd):
 def use_teleport(hwnd):
     time.sleep(1)
     print('Летим на свободный телепорт')
-    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x38, 0)
-    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x38, 0)
+    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 122, 0)
+    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 122, 0)
 
 
 if __name__ == '__main__':
