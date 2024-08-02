@@ -95,6 +95,39 @@ def get_window_free_up(hwnd):
     return random_w, random_h
 
 
+def get_window_free_agree(hwnd):
+    rect = get_window_to_village(hwnd)
+    width = rect[0]
+    height = rect[1]
+
+    w_up = width + 17
+    h_up = height + 135
+
+    w_down = w_up + 70
+    h_down = h_up + 17
+    random_w = random.randint(w_up, w_down)
+    random_h = random.randint(h_up, h_down)
+
+    return random_w, random_h
+
+
+def get_window_pay_agree(hwnd):
+    rect = get_window_to_village(hwnd)
+    width = rect[0]
+    height = rect[1]
+
+    w_up = width + 6
+    h_up = height + 175
+
+    w_down = w_up + 75
+    h_down = h_up + 15
+    random_w = random.randint(w_up, w_down)
+    random_h = random.randint(h_up, h_down)
+
+    return random_w, random_h
+
+
+
 def get_red_pixels(image):
     pixels = image.load()
 
@@ -163,7 +196,7 @@ def send_left_click_pyautogui(hwnd, x, y):
     rect = win32gui.GetWindowRect(hwnd)
     x0, y0 = rect[0], rect[1]
 
-    pyautogui.moveTo(x0 + x, y0 + y)
+    pyautogui.moveTo(x0 + x, y0 + y, 0.25)
     time.sleep(2)
     pyautogui.leftClick()
     mouse.click('left')
@@ -173,7 +206,7 @@ def move_mouse(hwnd, x, y):
     rect = win32gui.GetWindowRect(hwnd)
     x0, y0 = rect[0], rect[1]
 
-    pyautogui.moveTo(x0 + x, y0 + y)
+    pyautogui.moveTo(x0 + x, y0 + y, 0.25)
 
 
 def get_focus_lineage_window(hwnd):
@@ -213,13 +246,13 @@ def go_to_village(hwnd):
     if flag:
         check_active_window(hwnd)
         time.sleep(2)
-        rect_recovery_free_exp = free_res_rect()
+        rect_recovery_free_exp = get_window_free_up(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
         time.sleep(2)
-        rect_recovery_agree = res_agree_rect()
+        rect_recovery_agree = get_window_free_agree(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
         time.sleep(1)
-        rect_recovery_pay_exp = res_agree_pay_rect()
+        rect_recovery_pay_exp = get_window_pay_agree(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
         time.sleep(5)
         return True

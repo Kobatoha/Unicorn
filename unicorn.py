@@ -691,17 +691,20 @@ class Main(Ui_MainWindow):
 
 
 if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Main()
-    ui.setupUi(MainWindow)
+    try:
+        import sys
+        app = QtWidgets.QApplication(sys.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Main()
+        ui.setupUi(MainWindow)
 
-    thread = threading.Thread(target=ui.update_hot_time_icon)
-    thread.start()
-    thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
-    thread_press_insert.start()
-    # thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
-    # thread_press_f11.start()
-    MainWindow.show()
-    sys.exit(app.exec_())
+        thread = threading.Thread(target=ui.update_hot_time_icon)
+        thread.start()
+        thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
+        thread_press_insert.start()
+        # thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
+        # thread_press_f11.start()
+        MainWindow.show()
+        sys.exit(app.exec_())
+    except:
+        sys.exit(app.exec_())
