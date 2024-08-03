@@ -142,26 +142,26 @@ class Main(Ui_MainWindow):
         except FileNotFoundError:
             pass
 
-    ### functions ###
+    # functions
     def press_insert(self):
         self.pushButton_startstop.click()
 
     def hotkey_thread_insert(self):
         add_hotkey('INSERT', self.press_insert)
 
-    def check_window_in_system(self):
-        time.sleep(10)
-        hwnd_windows = redss.get_lineage_hwnd()
-        if self.pushButton_startstop.text() == 'Stop':
-            print(self.pushButton_startstop.text())
-            if int(self.label_id_window.text()) not in hwnd_windows:
-                print(self.label_id_window.text(), hwnd_windows)
-                self.press_insert()
-                print('Клиент не найден, вырубаем бота')
-            else:
-                print(self.label_id_window.text(), hwnd_windows)
-                print('Клиент на месте, все ок')
-                self.check_window_in_system()
+    # def check_window_in_system(self):
+    #     time.sleep(10)
+    #     hwnd_windows = redss.get_lineage_hwnd()
+    #     if self.pushButton_startstop.text() == 'Stop':
+    #         print(self.pushButton_startstop.text())
+    #         if int(self.label_id_window.text()) not in hwnd_windows:
+    #             print(self.label_id_window.text(), hwnd_windows)
+    #             self.press_insert()
+    #             print('Клиент не найден, вырубаем бота')
+    #         else:
+    #             print(self.label_id_window.text(), hwnd_windows)
+    #             print('Клиент на месте, все ок')
+    #             self.check_window_in_system()
 
     def startstop(self):
         if self.pushButton_startstop.text() == 'Start':
@@ -662,10 +662,11 @@ class Main(Ui_MainWindow):
                     time.sleep(2)
                     self.continue_pressed()
                 print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+                self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
                 QtCore.QTimer.singleShot(respawn, self.press_res)
             except:
-                print('Произошла ошибка воскрешения, ждем минуту для повтора')
-                time.sleep(60)
+                print('Произошла ошибка воскрешения, ждем 30 секунд для повтора')
+                time.sleep(30)
 
     def press_f11(self):
         self.pushButton_located.click()
@@ -717,7 +718,7 @@ if __name__ == "__main__":
 
         thread = threading.Thread(target=ui.update_hot_time_icon)
         thread.start()
-        threading.Thread(target=ui.check_window_in_system).start()
+        # threading.Thread(target=ui.check_window_in_system).start()
         thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
         thread_press_insert.start()
         # thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
