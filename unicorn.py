@@ -149,26 +149,11 @@ class Main(Ui_MainWindow):
     def hotkey_thread_insert(self):
         add_hotkey('INSERT', self.press_insert)
 
-    # def check_window_in_system(self):
-    #     time.sleep(10)
-    #     hwnd_windows = redss.get_lineage_hwnd()
-    #     if self.pushButton_startstop.text() == 'Stop':
-    #         print(self.pushButton_startstop.text())
-    #         if int(self.label_id_window.text()) not in hwnd_windows:
-    #             print(self.label_id_window.text(), hwnd_windows)
-    #             self.press_insert()
-    #             print('Клиент не найден, вырубаем бота')
-    #         else:
-    #             print(self.label_id_window.text(), hwnd_windows)
-    #             print('Клиент на месте, все ок')
-    #             self.check_window_in_system()
-
     def startstop(self):
         if self.pushButton_startstop.text() == 'Start':
             self.pushButton_startstop.setText('Stop')
             self.label_information_actions.setText("Started clicker")
             self.lineEdit_window_id.setDisabled(True)
-
             self.toggle_1(self.checkBox_1.checkState())
             self.toggle_2(self.checkBox_2.checkState())
             self.toggle_3(self.checkBox_3.checkState())
@@ -648,7 +633,7 @@ class Main(Ui_MainWindow):
         if self.pressed_res:
             try:
                 time.sleep(15)
-                respawn = random.randint(60000, 360000)
+                respawn = random.randint(60000, 180000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)
                 seconds = int(total_seconds % 60)
@@ -665,8 +650,8 @@ class Main(Ui_MainWindow):
                 self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
                 QtCore.QTimer.singleShot(respawn, self.press_res)
             except:
-                print('Произошла ошибка воскрешения, ждем 30 секунд для повтора')
-                time.sleep(30)
+                print('Произошла ошибка воскрешения, ждем 10 секунд для повтора')
+                time.sleep(10)
 
     def press_f11(self):
         self.pushButton_located.click()
@@ -718,7 +703,6 @@ if __name__ == "__main__":
 
         thread = threading.Thread(target=ui.update_hot_time_icon)
         thread.start()
-        # threading.Thread(target=ui.check_window_in_system).start()
         thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
         thread_press_insert.start()
         # thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
