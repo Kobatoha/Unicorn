@@ -201,6 +201,8 @@ class Main(Ui_MainWindow):
             self.pressed_R = False
             self.pressed_T = False
             self.pressed_res = False
+            self._res_thread = None
+            self.countdown_timer = None
 
     def paused_pressed(self):
         self.pressed_1 = False
@@ -622,22 +624,28 @@ class Main(Ui_MainWindow):
 
     def toggle_res(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            print('toggle_res activated')
+            if self.pushButton_startstop.text() == 'Stop' and not self._res_thread:
                 self.pressed_res = True
                 # self.press_res()
-                threading.Thread(target=self.press_res).start()
+                self._res_thread = threading.Thread(target=self.press_res, daemon=True)
+                self._res_thread.start()
         else:
             self.pressed_res = False
+            self._res_thread = None
+            if self.countdown_timer:
+                self.countdown_timer.stop()
+                self.lineEdit_res.setText("")
 
     def press_res(self):
-        if self.pressed_res:
+        time.sleep(10)
+        while self.pressed_res:
+            print(datetime.datetime.now().strftime('%H:%M:%S'), 'press_res')
             try:
-                time.sleep(15)
                 respawn = random.randint(60000, 180000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)
                 seconds = int(total_seconds % 60)
-                print(datetime.datetime.now().strftime('%H:%M:%S'))
                 hwnd = int(self.lineEdit_window_id.text())
                 death = redss.go_to_village(hwnd)
                 if death:
@@ -648,10 +656,33 @@ class Main(Ui_MainWindow):
                     self.continue_pressed()
                 print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
                 self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
-                QtCore.QTimer.singleShot(respawn, self.press_res)
-            except:
-                print('Произошла ошибка воскрешения, ждем 10 секунд для повтора')
+                # QtCore.QTimer.singleShot(respawn, self.press_res)
+
+                self.start_countdown(total_seconds)
+
+                time.sleep(total_seconds)
+            except Exception as e:
+                print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
                 time.sleep(10)
+
+        self._res_thread = None
+
+    def start_countdown(self, total_seconds):
+        self.countdown_time = total_seconds
+        if not self.countdown_timer:
+            self.countdown_timer = QtCore.QTimer()
+            self.countdown_timer.timeout.connect(self.update_countdown)
+        self.countdown_timer.start(1000)  # Обновление каждую секунду
+
+    def update_countdown(self):
+        if self.countdown_time > 0:
+            self.countdown_time -= 1
+            minutes = int(self.countdown_time // 60)
+            seconds = int(self.countdown_time % 60)
+            self.lineEdit_res.setText(f"{minutes:02}:{seconds:02}")
+        else:
+            self.countdown_timer.stop()
+            self.lineEdit_res.setText("00:00")
 
     def press_f11(self):
         self.pushButton_located.click()
@@ -700,7 +731,6 @@ if __name__ == "__main__":
         MainWindow = QtWidgets.QMainWindow()
         ui = Main()
         ui.setupUi(MainWindow)
-
         thread = threading.Thread(target=ui.update_hot_time_icon)
         thread.start()
         thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert)
