@@ -416,10 +416,10 @@ class Ui_MainWindow(object):
         self.lineEdit_tilda.setGeometry(QtCore.QRect(180, 290, 60, 20))
         self.lineEdit_tilda.setObjectName("lineEdit_tilda")
 
-        self.lineEdit_res = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_res.setGeometry(QtCore.QRect(180, 320, 60, 20))
-        self.lineEdit_res.setObjectName("lineEdit_res")
-        self.lineEdit_res.setReadOnly(True)
+        self.label_res = QtWidgets.QLabel(self.centralwidget)
+        self.label_res.setGeometry(QtCore.QRect(180, 320, 60, 20))
+        self.label_res.setObjectName("lineEdit_res")
+        self.label_res.setStyleSheet("background: none;")
 
         ### --------------------- ###
         ###      ICONS BLOCK      ###

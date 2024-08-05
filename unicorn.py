@@ -201,8 +201,8 @@ class Main(Ui_MainWindow):
             self.pressed_R = False
             self.pressed_T = False
             self.pressed_res = False
-            self._res_thread = None
-            self.countdown_timer = None
+            # self._res_thread = None
+            # self.countdown_timer = None
 
     def paused_pressed(self):
         self.pressed_1 = False
@@ -632,20 +632,16 @@ class Main(Ui_MainWindow):
                 self._res_thread.start()
         else:
             self.pressed_res = False
+            if self._res_thread and self._res_thread.is_alive():
+                self._res_thread.join()
             self._res_thread = None
-            if self.countdown_timer:
-                self.countdown_timer.stop()
-                self.lineEdit_res.setText("")
+            self.label_res.setText("")
 
     def press_res(self):
         time.sleep(10)
         while self.pressed_res:
             print(datetime.datetime.now().strftime('%H:%M:%S'), 'press_res')
             try:
-                respawn = random.randint(60000, 180000)
-                total_seconds = respawn / 1000
-                minutes = int(total_seconds // 60)
-                seconds = int(total_seconds % 60)
                 hwnd = int(self.lineEdit_window_id.text())
                 death = redss.go_to_village(hwnd)
                 if death:
@@ -654,35 +650,44 @@ class Main(Ui_MainWindow):
                     redss.use_teleport(hwnd)
                     time.sleep(2)
                     self.continue_pressed()
+
+                respawn = random.randint(60000, 180000)
+                total_seconds = respawn / 1000
+                minutes = int(total_seconds // 60)
+                seconds = int(total_seconds % 60)
                 print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+                next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
                 self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
                 # QtCore.QTimer.singleShot(respawn, self.press_res)
+                self.label_res.setText(f'Next: {next_check.strftime('%M:%S')}')
+                # self.start_countdown(total_seconds)
 
-                self.start_countdown(total_seconds)
-
-                time.sleep(total_seconds)
+                for _ in range(int(total_seconds)):
+                    if not self.pressed_res:
+                        break
+                    time.sleep(1)
             except Exception as e:
                 print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
                 time.sleep(10)
 
         self._res_thread = None
 
-    def start_countdown(self, total_seconds):
-        self.countdown_time = total_seconds
-        if not self.countdown_timer:
-            self.countdown_timer = QtCore.QTimer()
-            self.countdown_timer.timeout.connect(self.update_countdown)
-        self.countdown_timer.start(1000)  # Обновление каждую секунду
-
-    def update_countdown(self):
-        if self.countdown_time > 0:
-            self.countdown_time -= 1
-            minutes = int(self.countdown_time // 60)
-            seconds = int(self.countdown_time % 60)
-            self.lineEdit_res.setText(f"{minutes:02}:{seconds:02}")
-        else:
-            self.countdown_timer.stop()
-            self.lineEdit_res.setText("00:00")
+    # def start_countdown(self, total_seconds):
+    #     self.countdown_time = total_seconds
+    #     if not self.countdown_timer:
+    #         self.countdown_timer = QtCore.QTimer()
+    #         self.countdown_timer.timeout.connect(self.update_countdown)
+    #     self.countdown_timer.start(1000)  # Обновление каждую секунду
+    #
+    # def update_countdown(self):
+    #     if self.countdown_time > 0:
+    #         self.countdown_time -= 1
+    #         minutes = int(self.countdown_time // 60)
+    #         seconds = int(self.countdown_time % 60)
+    #         self.lineEdit_res.setText(f"{minutes:02}:{seconds:02}")
+    #     else:
+    #         self.countdown_timer.stop()
+    #         self.lineEdit_res.setText("00:00")
 
     def press_f11(self):
         self.pushButton_located.click()
