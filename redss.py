@@ -42,7 +42,7 @@ def check_active_window(hwnd):
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    # directory = r'C:\l2essence\Screenshot'
+    directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
 

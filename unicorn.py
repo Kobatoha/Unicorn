@@ -640,7 +640,6 @@ class Main(Ui_MainWindow):
     def press_res(self):
         time.sleep(10)
         while self.pressed_res:
-            print(datetime.datetime.now().strftime('%H:%M:%S'), 'press_res')
             try:
                 hwnd = int(self.lineEdit_window_id.text())
                 death = redss.go_to_village(hwnd)
@@ -658,12 +657,11 @@ class Main(Ui_MainWindow):
                 print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
                 next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
                 self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
-                # QtCore.QTimer.singleShot(respawn, self.press_res)
                 self.label_res.setText(f'Next: {next_check.strftime('%M:%S')}')
-                # self.start_countdown(total_seconds)
 
                 for _ in range(int(total_seconds)):
                     if not self.pressed_res:
+                        self.label_res.setText('')
                         break
                     time.sleep(1)
             except Exception as e:
@@ -671,23 +669,6 @@ class Main(Ui_MainWindow):
                 time.sleep(10)
 
         self._res_thread = None
-
-    # def start_countdown(self, total_seconds):
-    #     self.countdown_time = total_seconds
-    #     if not self.countdown_timer:
-    #         self.countdown_timer = QtCore.QTimer()
-    #         self.countdown_timer.timeout.connect(self.update_countdown)
-    #     self.countdown_timer.start(1000)  # Обновление каждую секунду
-    #
-    # def update_countdown(self):
-    #     if self.countdown_time > 0:
-    #         self.countdown_time -= 1
-    #         minutes = int(self.countdown_time // 60)
-    #         seconds = int(self.countdown_time % 60)
-    #         self.lineEdit_res.setText(f"{minutes:02}:{seconds:02}")
-    #     else:
-    #         self.countdown_timer.stop()
-    #         self.lineEdit_res.setText("00:00")
 
     def press_f11(self):
         self.pushButton_located.click()
