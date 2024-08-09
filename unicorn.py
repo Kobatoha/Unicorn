@@ -201,8 +201,7 @@ class Main(Ui_MainWindow):
             self.pressed_R = False
             self.pressed_T = False
             self.pressed_res = False
-            # self._res_thread = None
-            # self.countdown_timer = None
+
 
     def paused_pressed(self):
         self.pressed_1 = False
