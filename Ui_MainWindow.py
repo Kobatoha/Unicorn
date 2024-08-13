@@ -25,7 +25,6 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-
         ### --------------------- ###
         ###   Turning Keys BLOCK  ###
         ### --------------------- ###
@@ -489,7 +488,7 @@ class Ui_MainWindow(object):
         self.pressed_res = False
 
         self._res_thread = None
-        self.countdown_timer = None
+        self.res_process = False
 
         ### --------------------- ###
         ###      Window BLOCK     ###
