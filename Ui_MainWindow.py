@@ -488,7 +488,7 @@ class Ui_MainWindow(object):
         self.pressed_res = False
 
         self._res_thread = None
-        self.res_process = False
+        self.res_process = None
 
         ### --------------------- ###
         ###      Window BLOCK     ###
