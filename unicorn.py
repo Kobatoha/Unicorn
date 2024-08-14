@@ -642,7 +642,30 @@ class Main(Ui_MainWindow):
         while self.pressed_res:
             try:
                 hwnd = int(self.lineEdit_window_id.text())
-                death = redss.go_to_village(hwnd)
+                flag = redss.check_health_bar(hwnd)
+                if flag and self.pressed_res:
+                    redss.check_active_window(hwnd)
+                    time.sleep(5)
+                    rect_recovery_free_exp = redss.get_window_free_up(hwnd)
+                    rect_recovery_agree = redss.get_window_free_agree(hwnd)
+                    rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
+                    if self.pressed_res:
+                        redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
+                        time.sleep(2)
+                        death = False
+                        if self.pressed_res:
+                            redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
+                            time.sleep(1)
+                            death = False
+                            if self.pressed_res:
+                                redss.send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
+                                time.sleep(5)
+                                death = True
+                    else:
+                        break
+                else:
+                    death = False
+                # death = redss.go_to_village(hwnd)
                 if death:
                     self.paused_pressed()
                     time.sleep(2)
