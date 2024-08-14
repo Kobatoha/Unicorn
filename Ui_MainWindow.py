@@ -670,6 +670,3 @@ class Ui_MainWindow(object):
         self.client_button = QtWidgets.QPushButton('...', self.centralwidget)
         self.client_button.setGeometry(QtCore.QRect(250, 350, 40, 20))
         self.client_button.clicked.connect(self.select_directory)
-
-
-

@@ -733,7 +733,7 @@ class Main(Ui_MainWindow):
             self.label_id_window.setText(str(coordinate))
 
     def select_directory(self):
-        directory = QtWidgets.QFileDialog.getExistingDirectoryUrl()
+        directory = QtWidgets.QFileDialog.getExistingDirectory()
         print(directory)
 
 
