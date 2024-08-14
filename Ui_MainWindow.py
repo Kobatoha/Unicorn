@@ -667,4 +667,9 @@ class Ui_MainWindow(object):
         self.label_information_actions.setObjectName("label_information_actions")
         self.label_information_actions.setStyleSheet("background: none;")
 
+        self.client_button = QtWidgets.QPushButton('...', self.centralwidget)
+        self.client_button.setGeometry(QtCore.QRect(250, 350, 40, 20))
+        self.client_button.clicked.connect(self.select_directory)
+
+
 

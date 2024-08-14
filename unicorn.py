@@ -732,6 +732,10 @@ class Main(Ui_MainWindow):
             coordinate = win32gui.WindowFromPoint((x, y))
             self.label_id_window.setText(str(coordinate))
 
+    def select_directory(self):
+        directory = QtWidgets.QFileDialog.getExistingDirectoryUrl()
+        print(directory)
+
 
 if __name__ == "__main__":
     try:
