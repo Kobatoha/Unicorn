@@ -146,6 +146,15 @@ def get_red_pixels(image):
     return len(red_pixels)
 
 
+def press_alt_f(hwnd):
+
+    # win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, '0x12', 0)
+    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 164, 0)
+
+    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 164, 0)
+    # win32api.SendMessage(hwnd, win32con.WM_KEYUP, '0x12', 0)
+
+
 def check_health_bar(hwnd):
     file = create_screenshot(hwnd)
     image = Image.open(file)

@@ -733,8 +733,9 @@ class Main(Ui_MainWindow):
             self.label_id_window.setText(str(coordinate))
 
     def select_directory(self):
-        directory = QtWidgets.QFileDialog.getExistingDirectory()
-        print(directory)
+        directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Выбрать директорию")
+        if directory:
+            print(directory)
 
 
 if __name__ == "__main__":
