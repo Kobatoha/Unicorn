@@ -673,7 +673,7 @@ class Main(Ui_MainWindow):
                     time.sleep(2)
                     self.continue_pressed()
 
-                respawn = random.randint(60000, 180000)
+                respawn = random.randint(30000, 120000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)
                 seconds = int(total_seconds % 60)
