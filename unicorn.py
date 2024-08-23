@@ -38,106 +38,306 @@ class Main(Ui_MainWindow):
 
     # settings file
     def save_settings(self):
-        settings = {
-            'edit_window_id': self.lineEdit_window_id.text(),
+        if 'profile 1' in self.pushButton_save.text():
+            settings = {
+                'edit_window_id': self.lineEdit_window_id.text(),
 
-            'edit_f1': self.lineEdit_f1.text(),
-            'edit_f2': self.lineEdit_f2.text(),
-            'edit_f3': self.lineEdit_f3.text(),
-            'edit_f4': self.lineEdit_f4.text(),
-            'edit_f5': self.lineEdit_f5.text(),
-            'edit_Q': self.lineEdit_Q.text(),
-            'edit_W': self.lineEdit_W.text(),
-            'edit_E': self.lineEdit_E.text(),
-            'edit_R': self.lineEdit_R.text(),
-            'edit_fT': self.lineEdit_T.text(),
+                'edit_f1': self.lineEdit_f1.text(),
+                'edit_f2': self.lineEdit_f2.text(),
+                'edit_f3': self.lineEdit_f3.text(),
+                'edit_f4': self.lineEdit_f4.text(),
+                'edit_f5': self.lineEdit_f5.text(),
+                'edit_Q': self.lineEdit_Q.text(),
+                'edit_W': self.lineEdit_W.text(),
+                'edit_E': self.lineEdit_E.text(),
+                'edit_R': self.lineEdit_R.text(),
+                'edit_fT': self.lineEdit_T.text(),
 
-            'checkbox_f1': self.checkBox_f1.isChecked(),
-            'checkbox_f2': self.checkBox_f2.isChecked(),
-            'checkbox_f3': self.checkBox_f3.isChecked(),
-            'checkbox_f4': self.checkBox_f4.isChecked(),
-            'checkbox_f5': self.checkBox_f5.isChecked(),
-            'checkbox_Q': self.checkBox_Q.isChecked(),
-            'checkbox_W': self.checkBox_W.isChecked(),
-            'checkbox_E': self.checkBox_E.isChecked(),
-            'checkbox_R': self.checkBox_R.isChecked(),
-            'checkbox_T': self.checkBox_T.isChecked(),
+                'checkbox_f1': self.checkBox_f1.isChecked(),
+                'checkbox_f2': self.checkBox_f2.isChecked(),
+                'checkbox_f3': self.checkBox_f3.isChecked(),
+                'checkbox_f4': self.checkBox_f4.isChecked(),
+                'checkbox_f5': self.checkBox_f5.isChecked(),
+                'checkbox_Q': self.checkBox_Q.isChecked(),
+                'checkbox_W': self.checkBox_W.isChecked(),
+                'checkbox_E': self.checkBox_E.isChecked(),
+                'checkbox_R': self.checkBox_R.isChecked(),
+                'checkbox_T': self.checkBox_T.isChecked(),
 
-            'edit_1': self.lineEdit_1.text(),
-            'edit_2': self.lineEdit_2.text(),
-            'edit_3': self.lineEdit_3.text(),
-            'edit_4': self.lineEdit_4.text(),
-            'edit_5': self.lineEdit_5.text(),
-            'edit_6': self.lineEdit_6.text(),
-            'edit_7': self.lineEdit_7.text(),
-            'edit_8': self.lineEdit_8.text(),
-            'edit_9': self.lineEdit_9.text(),
-            'edit_tilda': self.lineEdit_tilda.text(),
+                'edit_1': self.lineEdit_1.text(),
+                'edit_2': self.lineEdit_2.text(),
+                'edit_3': self.lineEdit_3.text(),
+                'edit_4': self.lineEdit_4.text(),
+                'edit_5': self.lineEdit_5.text(),
+                'edit_6': self.lineEdit_6.text(),
+                'edit_7': self.lineEdit_7.text(),
+                'edit_8': self.lineEdit_8.text(),
+                'edit_9': self.lineEdit_9.text(),
+                'edit_tilda': self.lineEdit_tilda.text(),
 
-            'checkbox_1': self.checkBox_1.isChecked(),
-            'checkbox_2': self.checkBox_2.isChecked(),
-            'checkbox_3': self.checkBox_3.isChecked(),
-            'checkbox_4': self.checkBox_4.isChecked(),
-            'checkbox_5': self.checkBox_5.isChecked(),
-            'checkbox_6': self.checkBox_6.isChecked(),
-            'checkbox_7': self.checkBox_7.isChecked(),
-            'checkbox_8': self.checkBox_8.isChecked(),
-            'checkbox_9': self.checkBox_9.isChecked(),
-            'checkbox_tilda': self.checkBox_tilda.isChecked(),
-        }
-        with open('settings.json', 'w') as file:
-            json.dump(settings, file)
+                'checkbox_1': self.checkBox_1.isChecked(),
+                'checkbox_2': self.checkBox_2.isChecked(),
+                'checkbox_3': self.checkBox_3.isChecked(),
+                'checkbox_4': self.checkBox_4.isChecked(),
+                'checkbox_5': self.checkBox_5.isChecked(),
+                'checkbox_6': self.checkBox_6.isChecked(),
+                'checkbox_7': self.checkBox_7.isChecked(),
+                'checkbox_8': self.checkBox_8.isChecked(),
+                'checkbox_9': self.checkBox_9.isChecked(),
+                'checkbox_tilda': self.checkBox_tilda.isChecked(),
+            }
+            with open('settings_profile1.json', 'w') as file:
+                json.dump(settings, file)
+        elif 'profile 2' in self.pushButton_save.text():
+            settings = {
+                'edit_window_id': self.lineEdit_window_id.text(),
+
+                'edit_f1': self.lineEdit_f1.text(),
+                'edit_f2': self.lineEdit_f2.text(),
+                'edit_f3': self.lineEdit_f3.text(),
+                'edit_f4': self.lineEdit_f4.text(),
+                'edit_f5': self.lineEdit_f5.text(),
+                'edit_Q': self.lineEdit_Q.text(),
+                'edit_W': self.lineEdit_W.text(),
+                'edit_E': self.lineEdit_E.text(),
+                'edit_R': self.lineEdit_R.text(),
+                'edit_fT': self.lineEdit_T.text(),
+
+                'checkbox_f1': self.checkBox_f1.isChecked(),
+                'checkbox_f2': self.checkBox_f2.isChecked(),
+                'checkbox_f3': self.checkBox_f3.isChecked(),
+                'checkbox_f4': self.checkBox_f4.isChecked(),
+                'checkbox_f5': self.checkBox_f5.isChecked(),
+                'checkbox_Q': self.checkBox_Q.isChecked(),
+                'checkbox_W': self.checkBox_W.isChecked(),
+                'checkbox_E': self.checkBox_E.isChecked(),
+                'checkbox_R': self.checkBox_R.isChecked(),
+                'checkbox_T': self.checkBox_T.isChecked(),
+
+                'edit_1': self.lineEdit_1.text(),
+                'edit_2': self.lineEdit_2.text(),
+                'edit_3': self.lineEdit_3.text(),
+                'edit_4': self.lineEdit_4.text(),
+                'edit_5': self.lineEdit_5.text(),
+                'edit_6': self.lineEdit_6.text(),
+                'edit_7': self.lineEdit_7.text(),
+                'edit_8': self.lineEdit_8.text(),
+                'edit_9': self.lineEdit_9.text(),
+                'edit_tilda': self.lineEdit_tilda.text(),
+
+                'checkbox_1': self.checkBox_1.isChecked(),
+                'checkbox_2': self.checkBox_2.isChecked(),
+                'checkbox_3': self.checkBox_3.isChecked(),
+                'checkbox_4': self.checkBox_4.isChecked(),
+                'checkbox_5': self.checkBox_5.isChecked(),
+                'checkbox_6': self.checkBox_6.isChecked(),
+                'checkbox_7': self.checkBox_7.isChecked(),
+                'checkbox_8': self.checkBox_8.isChecked(),
+                'checkbox_9': self.checkBox_9.isChecked(),
+                'checkbox_tilda': self.checkBox_tilda.isChecked(),
+            }
+            with open('settings_profile2.json', 'w') as file:
+                json.dump(settings, file)
+        elif 'profile 3' in self.pushButton_save.text():
+            settings = {
+                'edit_window_id': self.lineEdit_window_id.text(),
+
+                'edit_f1': self.lineEdit_f1.text(),
+                'edit_f2': self.lineEdit_f2.text(),
+                'edit_f3': self.lineEdit_f3.text(),
+                'edit_f4': self.lineEdit_f4.text(),
+                'edit_f5': self.lineEdit_f5.text(),
+                'edit_Q': self.lineEdit_Q.text(),
+                'edit_W': self.lineEdit_W.text(),
+                'edit_E': self.lineEdit_E.text(),
+                'edit_R': self.lineEdit_R.text(),
+                'edit_fT': self.lineEdit_T.text(),
+
+                'checkbox_f1': self.checkBox_f1.isChecked(),
+                'checkbox_f2': self.checkBox_f2.isChecked(),
+                'checkbox_f3': self.checkBox_f3.isChecked(),
+                'checkbox_f4': self.checkBox_f4.isChecked(),
+                'checkbox_f5': self.checkBox_f5.isChecked(),
+                'checkbox_Q': self.checkBox_Q.isChecked(),
+                'checkbox_W': self.checkBox_W.isChecked(),
+                'checkbox_E': self.checkBox_E.isChecked(),
+                'checkbox_R': self.checkBox_R.isChecked(),
+                'checkbox_T': self.checkBox_T.isChecked(),
+
+                'edit_1': self.lineEdit_1.text(),
+                'edit_2': self.lineEdit_2.text(),
+                'edit_3': self.lineEdit_3.text(),
+                'edit_4': self.lineEdit_4.text(),
+                'edit_5': self.lineEdit_5.text(),
+                'edit_6': self.lineEdit_6.text(),
+                'edit_7': self.lineEdit_7.text(),
+                'edit_8': self.lineEdit_8.text(),
+                'edit_9': self.lineEdit_9.text(),
+                'edit_tilda': self.lineEdit_tilda.text(),
+
+                'checkbox_1': self.checkBox_1.isChecked(),
+                'checkbox_2': self.checkBox_2.isChecked(),
+                'checkbox_3': self.checkBox_3.isChecked(),
+                'checkbox_4': self.checkBox_4.isChecked(),
+                'checkbox_5': self.checkBox_5.isChecked(),
+                'checkbox_6': self.checkBox_6.isChecked(),
+                'checkbox_7': self.checkBox_7.isChecked(),
+                'checkbox_8': self.checkBox_8.isChecked(),
+                'checkbox_9': self.checkBox_9.isChecked(),
+                'checkbox_tilda': self.checkBox_tilda.isChecked(),
+            }
+            with open('settings_profile3.json', 'w') as file:
+                json.dump(settings, file)
 
     def load_settings(self):
         try:
-            with open('settings.json', 'r') as file:
-                settings = json.load(file)
+            if 'profile 1' in self.pushButton_load.text():
+                with open('settings_profile1.json', 'r') as file:
+                    settings = json.load(file)
 
-                self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+                    self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
 
-                self.lineEdit_f1.setText(settings.get('edit_f1', '')),
-                self.lineEdit_f2.setText(settings.get('edit_f2', '')),
-                self.lineEdit_f3.setText(settings.get('edit_f3', '')),
-                self.lineEdit_f4.setText(settings.get('edit_f4', '')),
-                self.lineEdit_f5.setText(settings.get('edit_f5', '')),
-                self.lineEdit_Q.setText(settings.get('edit_Q', '')),
-                self.lineEdit_W.setText(settings.get('edit_W', '')),
-                self.lineEdit_E.setText(settings.get('edit_E', '')),
-                self.lineEdit_R.setText(settings.get('edit_R', '')),
-                self.lineEdit_T.setText(settings.get('edit_T', '')),
+                    self.lineEdit_f1.setText(settings.get('edit_f1', '')),
+                    self.lineEdit_f2.setText(settings.get('edit_f2', '')),
+                    self.lineEdit_f3.setText(settings.get('edit_f3', '')),
+                    self.lineEdit_f4.setText(settings.get('edit_f4', '')),
+                    self.lineEdit_f5.setText(settings.get('edit_f5', '')),
+                    self.lineEdit_Q.setText(settings.get('edit_Q', '')),
+                    self.lineEdit_W.setText(settings.get('edit_W', '')),
+                    self.lineEdit_E.setText(settings.get('edit_E', '')),
+                    self.lineEdit_R.setText(settings.get('edit_R', '')),
+                    self.lineEdit_T.setText(settings.get('edit_T', '')),
 
-                self.checkBox_f1.setChecked(settings.get('checkbox_f1', '')),
-                self.checkBox_f2.setChecked(settings.get('checkbox_f2', '')),
-                self.checkBox_f3.setChecked(settings.get('checkbox_f3', '')),
-                self.checkBox_f4.setChecked(settings.get('checkbox_f4', '')),
-                self.checkBox_f5.setChecked(settings.get('checkbox_f5', '')),
-                self.checkBox_Q.setChecked(settings.get('checkbox_Q', '')),
-                self.checkBox_W.setChecked(settings.get('checkbox_W', '')),
-                self.checkBox_E.setChecked(settings.get('checkbox_E', '')),
-                self.checkBox_R.setChecked(settings.get('checkbox_R', '')),
-                self.checkBox_T.setChecked(settings.get('checkbox_T', '')),
+                    self.checkBox_f1.setChecked(settings.get('checkbox_f1', '')),
+                    self.checkBox_f2.setChecked(settings.get('checkbox_f2', '')),
+                    self.checkBox_f3.setChecked(settings.get('checkbox_f3', '')),
+                    self.checkBox_f4.setChecked(settings.get('checkbox_f4', '')),
+                    self.checkBox_f5.setChecked(settings.get('checkbox_f5', '')),
+                    self.checkBox_Q.setChecked(settings.get('checkbox_Q', '')),
+                    self.checkBox_W.setChecked(settings.get('checkbox_W', '')),
+                    self.checkBox_E.setChecked(settings.get('checkbox_E', '')),
+                    self.checkBox_R.setChecked(settings.get('checkbox_R', '')),
+                    self.checkBox_T.setChecked(settings.get('checkbox_T', '')),
 
-                self.lineEdit_1.setText(settings.get('edit_1', '')),
-                self.lineEdit_2.setText(settings.get('edit_2', '')),
-                self.lineEdit_3.setText(settings.get('edit_3', '')),
-                self.lineEdit_4.setText(settings.get('edit_4', '')),
-                self.lineEdit_5.setText(settings.get('edit_5', '')),
-                self.lineEdit_6.setText(settings.get('edit_6', '')),
-                self.lineEdit_7.setText(settings.get('edit_7', '')),
-                self.lineEdit_8.setText(settings.get('edit_8', '')),
-                self.lineEdit_9.setText(settings.get('edit_9', '')),
-                self.lineEdit_tilda.setText(settings.get('edit_tilda', '')),
+                    self.lineEdit_1.setText(settings.get('edit_1', '')),
+                    self.lineEdit_2.setText(settings.get('edit_2', '')),
+                    self.lineEdit_3.setText(settings.get('edit_3', '')),
+                    self.lineEdit_4.setText(settings.get('edit_4', '')),
+                    self.lineEdit_5.setText(settings.get('edit_5', '')),
+                    self.lineEdit_6.setText(settings.get('edit_6', '')),
+                    self.lineEdit_7.setText(settings.get('edit_7', '')),
+                    self.lineEdit_8.setText(settings.get('edit_8', '')),
+                    self.lineEdit_9.setText(settings.get('edit_9', '')),
+                    self.lineEdit_tilda.setText(settings.get('edit_tilda', '')),
 
-                self.checkBox_1.setChecked(settings.get('checkbox_1', '')),
-                self.checkBox_2.setChecked(settings.get('checkbox_2', '')),
-                self.checkBox_3.setChecked(settings.get('checkbox_3', '')),
-                self.checkBox_4.setChecked(settings.get('checkbox_4', '')),
-                self.checkBox_5.setChecked(settings.get('checkbox_5', '')),
-                self.checkBox_6.setChecked(settings.get('checkbox_6', '')),
-                self.checkBox_7.setChecked(settings.get('checkbox_7', '')),
-                self.checkBox_8.setChecked(settings.get('checkbox_8', '')),
-                self.checkBox_9.setChecked(settings.get('checkbox_9', '')),
-                self.checkBox_tilda.setChecked(settings.get('checkbox_tilda', '')),
+                    self.checkBox_1.setChecked(settings.get('checkbox_1', '')),
+                    self.checkBox_2.setChecked(settings.get('checkbox_2', '')),
+                    self.checkBox_3.setChecked(settings.get('checkbox_3', '')),
+                    self.checkBox_4.setChecked(settings.get('checkbox_4', '')),
+                    self.checkBox_5.setChecked(settings.get('checkbox_5', '')),
+                    self.checkBox_6.setChecked(settings.get('checkbox_6', '')),
+                    self.checkBox_7.setChecked(settings.get('checkbox_7', '')),
+                    self.checkBox_8.setChecked(settings.get('checkbox_8', '')),
+                    self.checkBox_9.setChecked(settings.get('checkbox_9', '')),
+                    self.checkBox_tilda.setChecked(settings.get('checkbox_tilda', ''))
+            elif 'profile 2' in self.pushButton_load.text():
+                with open('settings_profile2.json', 'r') as file:
+                    settings = json.load(file)
+
+                    self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+
+                    self.lineEdit_f1.setText(settings.get('edit_f1', '')),
+                    self.lineEdit_f2.setText(settings.get('edit_f2', '')),
+                    self.lineEdit_f3.setText(settings.get('edit_f3', '')),
+                    self.lineEdit_f4.setText(settings.get('edit_f4', '')),
+                    self.lineEdit_f5.setText(settings.get('edit_f5', '')),
+                    self.lineEdit_Q.setText(settings.get('edit_Q', '')),
+                    self.lineEdit_W.setText(settings.get('edit_W', '')),
+                    self.lineEdit_E.setText(settings.get('edit_E', '')),
+                    self.lineEdit_R.setText(settings.get('edit_R', '')),
+                    self.lineEdit_T.setText(settings.get('edit_T', '')),
+
+                    self.checkBox_f1.setChecked(settings.get('checkbox_f1', '')),
+                    self.checkBox_f2.setChecked(settings.get('checkbox_f2', '')),
+                    self.checkBox_f3.setChecked(settings.get('checkbox_f3', '')),
+                    self.checkBox_f4.setChecked(settings.get('checkbox_f4', '')),
+                    self.checkBox_f5.setChecked(settings.get('checkbox_f5', '')),
+                    self.checkBox_Q.setChecked(settings.get('checkbox_Q', '')),
+                    self.checkBox_W.setChecked(settings.get('checkbox_W', '')),
+                    self.checkBox_E.setChecked(settings.get('checkbox_E', '')),
+                    self.checkBox_R.setChecked(settings.get('checkbox_R', '')),
+                    self.checkBox_T.setChecked(settings.get('checkbox_T', '')),
+
+                    self.lineEdit_1.setText(settings.get('edit_1', '')),
+                    self.lineEdit_2.setText(settings.get('edit_2', '')),
+                    self.lineEdit_3.setText(settings.get('edit_3', '')),
+                    self.lineEdit_4.setText(settings.get('edit_4', '')),
+                    self.lineEdit_5.setText(settings.get('edit_5', '')),
+                    self.lineEdit_6.setText(settings.get('edit_6', '')),
+                    self.lineEdit_7.setText(settings.get('edit_7', '')),
+                    self.lineEdit_8.setText(settings.get('edit_8', '')),
+                    self.lineEdit_9.setText(settings.get('edit_9', '')),
+                    self.lineEdit_tilda.setText(settings.get('edit_tilda', '')),
+
+                    self.checkBox_1.setChecked(settings.get('checkbox_1', '')),
+                    self.checkBox_2.setChecked(settings.get('checkbox_2', '')),
+                    self.checkBox_3.setChecked(settings.get('checkbox_3', '')),
+                    self.checkBox_4.setChecked(settings.get('checkbox_4', '')),
+                    self.checkBox_5.setChecked(settings.get('checkbox_5', '')),
+                    self.checkBox_6.setChecked(settings.get('checkbox_6', '')),
+                    self.checkBox_7.setChecked(settings.get('checkbox_7', '')),
+                    self.checkBox_8.setChecked(settings.get('checkbox_8', '')),
+                    self.checkBox_9.setChecked(settings.get('checkbox_9', '')),
+                    self.checkBox_tilda.setChecked(settings.get('checkbox_tilda', ''))
+            elif 'profile 3' in self.pushButton_load.text():
+                with open('settings_profile3.json', 'r') as file:
+                    settings = json.load(file)
+
+                    self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+
+                    self.lineEdit_f1.setText(settings.get('edit_f1', '')),
+                    self.lineEdit_f2.setText(settings.get('edit_f2', '')),
+                    self.lineEdit_f3.setText(settings.get('edit_f3', '')),
+                    self.lineEdit_f4.setText(settings.get('edit_f4', '')),
+                    self.lineEdit_f5.setText(settings.get('edit_f5', '')),
+                    self.lineEdit_Q.setText(settings.get('edit_Q', '')),
+                    self.lineEdit_W.setText(settings.get('edit_W', '')),
+                    self.lineEdit_E.setText(settings.get('edit_E', '')),
+                    self.lineEdit_R.setText(settings.get('edit_R', '')),
+                    self.lineEdit_T.setText(settings.get('edit_T', '')),
+
+                    self.checkBox_f1.setChecked(settings.get('checkbox_f1', '')),
+                    self.checkBox_f2.setChecked(settings.get('checkbox_f2', '')),
+                    self.checkBox_f3.setChecked(settings.get('checkbox_f3', '')),
+                    self.checkBox_f4.setChecked(settings.get('checkbox_f4', '')),
+                    self.checkBox_f5.setChecked(settings.get('checkbox_f5', '')),
+                    self.checkBox_Q.setChecked(settings.get('checkbox_Q', '')),
+                    self.checkBox_W.setChecked(settings.get('checkbox_W', '')),
+                    self.checkBox_E.setChecked(settings.get('checkbox_E', '')),
+                    self.checkBox_R.setChecked(settings.get('checkbox_R', '')),
+                    self.checkBox_T.setChecked(settings.get('checkbox_T', '')),
+
+                    self.lineEdit_1.setText(settings.get('edit_1', '')),
+                    self.lineEdit_2.setText(settings.get('edit_2', '')),
+                    self.lineEdit_3.setText(settings.get('edit_3', '')),
+                    self.lineEdit_4.setText(settings.get('edit_4', '')),
+                    self.lineEdit_5.setText(settings.get('edit_5', '')),
+                    self.lineEdit_6.setText(settings.get('edit_6', '')),
+                    self.lineEdit_7.setText(settings.get('edit_7', '')),
+                    self.lineEdit_8.setText(settings.get('edit_8', '')),
+                    self.lineEdit_9.setText(settings.get('edit_9', '')),
+                    self.lineEdit_tilda.setText(settings.get('edit_tilda', '')),
+
+                    self.checkBox_1.setChecked(settings.get('checkbox_1', '')),
+                    self.checkBox_2.setChecked(settings.get('checkbox_2', '')),
+                    self.checkBox_3.setChecked(settings.get('checkbox_3', '')),
+                    self.checkBox_4.setChecked(settings.get('checkbox_4', '')),
+                    self.checkBox_5.setChecked(settings.get('checkbox_5', '')),
+                    self.checkBox_6.setChecked(settings.get('checkbox_6', '')),
+                    self.checkBox_7.setChecked(settings.get('checkbox_7', '')),
+                    self.checkBox_8.setChecked(settings.get('checkbox_8', '')),
+                    self.checkBox_9.setChecked(settings.get('checkbox_9', '')),
+                    self.checkBox_tilda.setChecked(settings.get('checkbox_tilda', ''))
 
         except FileNotFoundError:
             pass
@@ -257,13 +457,16 @@ class Main(Ui_MainWindow):
         self.label_information_actions.setText('Save profile')
 
     def profile1(self):
-        print('click profile 1')
+        self.pushButton_save.setText('save\n profile 1')
+        self.pushButton_load.setText('load\n profile 1')
 
     def profile2(self):
-        print('click profile 2')
+        self.pushButton_save.setText('save\n profile 2')
+        self.pushButton_load.setText('load\n profile 2')
 
     def profile3(self):
-        print('click profile 3')
+        self.pushButton_save.setText('save\n profile 3')
+        self.pushButton_load.setText('load\n profile 3')
 
     def update_hot_time_icon(self):
         while True:
@@ -732,10 +935,10 @@ class Main(Ui_MainWindow):
             coordinate = win32gui.WindowFromPoint((x, y))
             self.label_id_window.setText(str(coordinate))
 
-    def select_directory(self):
-        directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Выбрать директорию")
-        if directory:
-            print(directory)
+    # def select_directory(self):
+    #     directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Выбрать директорию")
+    #     if directory:
+    #         print(directory)
 
 
 if __name__ == "__main__":
@@ -754,4 +957,4 @@ if __name__ == "__main__":
         MainWindow.show()
         sys.exit(app.exec_())
     except:
-        sys.exit(app.exec_())
+        print('error name-main')
