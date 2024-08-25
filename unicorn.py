@@ -353,12 +353,9 @@ class Main(Ui_MainWindow):
             self.lineEdit_profile1.setDisabled(False)
             self.lineEdit_profile2.setDisabled(False)
             self.lineEdit_profile3.setDisabled(False)
+
     def load_profile(self):
-        profiles = {
-            self.lineEdit_profile1: 'settings_profile1.json',
-            self.lineEdit_profile2: 'settings_profile2.json',
-            self.lineEdit_profile3: 'settings_profile3.json'
-        }
+        profiles = self.get_profiles()
         for profile in profiles:
             try:
                 with open(profiles[profile], 'r') as file:
@@ -366,6 +363,14 @@ class Main(Ui_MainWindow):
                     profile.setText(settings.get('profile', ''))
             except:
                 pass
+
+    def get_profiles(self):
+        profiles = {
+            self.lineEdit_profile1: 'settings_profile1.json',
+            self.lineEdit_profile2: 'settings_profile2.json',
+            self.lineEdit_profile3: 'settings_profile3.json'
+        }
+        return profiles
 
     def rename_profile(self):
         if self.lineEdit_profile1.text() != '':
