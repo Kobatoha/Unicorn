@@ -190,6 +190,7 @@ class Main(Ui_MainWindow):
                 json.dump(settings, file)
 
     def load_settings(self):
+        self.init_profiles_json()
         self.load_profile()
         self.rename_profile()
         try:
@@ -371,6 +372,16 @@ class Main(Ui_MainWindow):
             self.lineEdit_profile3: 'settings_profile3.json'
         }
         return profiles
+
+    def init_profiles_json(self):
+        profiles = self.get_profiles()
+        for profile in profiles:
+            try:
+                with open(profiles[profile], 'r') as file:
+                    settings = json.load(file)
+                    profile.setText(settings.get('profile', ''))
+            except:
+                print(f'not {profiles[profile]} in directory')
 
     def rename_profile(self):
         if self.lineEdit_profile1.text() != '':
