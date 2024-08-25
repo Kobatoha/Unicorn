@@ -190,6 +190,7 @@ class Main(Ui_MainWindow):
                 json.dump(settings, file)
 
     def load_settings(self):
+        self.load_profile()
         self.rename_profile()
         try:
             if 'profile 1' in self.pushButton_load.text():
@@ -352,6 +353,19 @@ class Main(Ui_MainWindow):
             self.lineEdit_profile1.setDisabled(False)
             self.lineEdit_profile2.setDisabled(False)
             self.lineEdit_profile3.setDisabled(False)
+    def load_profile(self):
+        profiles = {
+            self.lineEdit_profile1: 'settings_profile1.json',
+            self.lineEdit_profile2: 'settings_profile2.json',
+            self.lineEdit_profile3: 'settings_profile3.json'
+        }
+        for profile in profiles:
+            try:
+                with open(profiles[profile], 'r') as file:
+                    settings = json.load(file)
+                    profile.setText(settings.get('profile', ''))
+            except:
+                pass
 
     def rename_profile(self):
         if self.lineEdit_profile1.text() != '':
