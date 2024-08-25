@@ -381,7 +381,55 @@ class Main(Ui_MainWindow):
                     settings = json.load(file)
                     profile.setText(settings.get('profile', ''))
             except:
-                print(f'not {profiles[profile]} in directory')
+                settings = {
+                    'profile': profiles[profile].split('.')[0].split('_')[1],
+
+                    'edit_f1': '',
+                    'edit_f2': '',
+                    'edit_f3': '',
+                    'edit_f4': '',
+                    'edit_f5': '',
+                    'edit_Q': '',
+                    'edit_W': '',
+                    'edit_E': '',
+                    'edit_R': '',
+                    'edit_fT': '',
+
+                    'checkbox_f1': False,
+                    'checkbox_f2': False,
+                    'checkbox_f3': False,
+                    'checkbox_f4': False,
+                    'checkbox_f5': False,
+                    'checkbox_Q': False,
+                    'checkbox_W': False,
+                    'checkbox_E': False,
+                    'checkbox_R': False,
+                    'checkbox_T': False,
+
+                    'edit_1': '',
+                    'edit_2': '',
+                    'edit_3': '',
+                    'edit_4': '',
+                    'edit_5': '',
+                    'edit_6': '',
+                    'edit_7': '',
+                    'edit_8': '',
+                    'edit_9': '',
+                    'edit_tilda': '',
+
+                    'checkbox_1': False,
+                    'checkbox_2': False,
+                    'checkbox_3': False,
+                    'checkbox_4': False,
+                    'checkbox_5': False,
+                    'checkbox_6': False,
+                    'checkbox_7': False,
+                    'checkbox_8': False,
+                    'checkbox_9': False,
+                    'checkbox_tilda': False,
+                }
+                with open(profiles[profile], 'w') as file:
+                    json.dump(settings, file)
 
     def rename_profile(self):
         if self.lineEdit_profile1.text() != '':
