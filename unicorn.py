@@ -342,6 +342,16 @@ class Main(Ui_MainWindow):
         except FileNotFoundError:
             pass
 
+    def activate_profile(self):
+        if self.pushButton_startstop.text() == 'Stop':
+            self.lineEdit_profile1.setDisabled(True)
+            self.lineEdit_profile2.setDisabled(True)
+            self.lineEdit_profile3.setDisabled(True)
+        else:
+            self.lineEdit_profile1.setDisabled(False)
+            self.lineEdit_profile2.setDisabled(False)
+            self.lineEdit_profile3.setDisabled(False)
+
     # functions
     def press_insert(self):
         self.pushButton_startstop.click()
@@ -375,6 +385,7 @@ class Main(Ui_MainWindow):
             self.toggle_R(self.checkBox_R.checkState())
             self.toggle_T(self.checkBox_T.checkState())
             self.toggle_res(self.check_box_res.checkState())
+            self.activate_profile()
 
         else:
             self.pushButton_startstop.setText('Start')
@@ -402,7 +413,7 @@ class Main(Ui_MainWindow):
             self.pressed_T = False
             self.pressed_res = False
             self.res_process = False
-
+            self.activate_profile()
 
     def paused_pressed(self):
         self.pressed_1 = False
@@ -459,14 +470,17 @@ class Main(Ui_MainWindow):
     def profile1(self):
         self.pushButton_save.setText('save\n profile 1')
         self.pushButton_load.setText('load\n profile 1')
+        self.load_settings()
 
     def profile2(self):
         self.pushButton_save.setText('save\n profile 2')
         self.pushButton_load.setText('load\n profile 2')
+        self.load_settings()
 
     def profile3(self):
         self.pushButton_save.setText('save\n profile 3')
         self.pushButton_load.setText('load\n profile 3')
+        self.load_settings()
 
     def update_hot_time_icon(self):
         while True:

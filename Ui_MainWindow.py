@@ -584,25 +584,44 @@ class Ui_MainWindow(object):
         self.label_profiles.setStyleSheet("background: none;")
 
         self.pushButton_profile1 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_profile1.setGeometry(QtCore.QRect(170, 420, 111, 21))
+        self.pushButton_profile1.setGeometry(QtCore.QRect(240, 420, 50, 20))
         self.pushButton_profile1.setStyleSheet("background-color: rgb(255, 239, 220);")
         self.pushButton_profile1.setObjectName("pushButton_profile1")
         self.pushButton_profile1.setText('profile 1')
         self.pushButton_profile1.clicked.connect(self.profile1)
 
+        self.lineEdit_profile1 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_profile1.setGeometry(QtCore.QRect(170, 420, 60, 20))
+        self.lineEdit_profile1.setObjectName("lineEdit_window_id")
+        self.lineEdit_profile1.setStyleSheet("background-color: rgb(239, 239, 239);")
+        self.lineEdit_profile1.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
+
         self.pushButton_profile2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_profile2.setGeometry(QtCore.QRect(170, 450, 111, 21))
+        self.pushButton_profile2.setGeometry(QtCore.QRect(240, 450, 50, 20))
         self.pushButton_profile2.setStyleSheet("background-color: rgb(255, 239, 220);")
         self.pushButton_profile2.setObjectName("pushButton_profile2")
         self.pushButton_profile2.setText('profile 2')
         self.pushButton_profile2.clicked.connect(self.profile2)
 
+
+        self.lineEdit_profile2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_profile2.setGeometry(QtCore.QRect(170, 450, 60, 20))
+        self.lineEdit_profile2.setObjectName("lineEdit_window_id")
+        self.lineEdit_profile2.setStyleSheet("background-color: rgb(239, 239, 239);")
+        self.lineEdit_profile2.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
+
         self.pushButton_profile3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_profile3.setGeometry(QtCore.QRect(170, 480, 111, 21))
+        self.pushButton_profile3.setGeometry(QtCore.QRect(240, 480, 50, 20))
         self.pushButton_profile3.setStyleSheet("background-color: rgb(255, 239, 220);")
         self.pushButton_profile3.setObjectName("pushButton_profile3")
         self.pushButton_profile3.setText('profile 3')
         self.pushButton_profile3.clicked.connect(self.profile3)
+
+        self.lineEdit_profile3 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_profile3.setGeometry(QtCore.QRect(170, 480, 60, 20))
+        self.lineEdit_profile3.setObjectName("lineEdit_window_id")
+        self.lineEdit_profile3.setStyleSheet("background-color: rgb(239, 239, 239);")
+        self.lineEdit_profile3.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
 
         self.line_profiles = QtWidgets.QFrame(self.centralwidget)
         self.line_profiles.setGeometry(QtCore.QRect(209, 390, 71, 20))
@@ -632,6 +651,7 @@ class Ui_MainWindow(object):
         self.pushButton_load.setObjectName("pushButton_load")
         self.pushButton_load.setText('load\n profile 1')
         self.pushButton_load.clicked.connect(self.load_settings)
+        self.pushButton_load.hide()
 
         self.load_settings()
 
