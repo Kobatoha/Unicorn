@@ -40,7 +40,7 @@ class Main(Ui_MainWindow):
     def save_settings(self):
         if 'profile 1' in self.pushButton_save.text():
             settings = {
-                'edit_window_id': self.lineEdit_window_id.text(),
+                'profile': self.lineEdit_profile1.text(),
 
                 'edit_f1': self.lineEdit_f1.text(),
                 'edit_f2': self.lineEdit_f2.text(),
@@ -90,7 +90,7 @@ class Main(Ui_MainWindow):
                 json.dump(settings, file)
         elif 'profile 2' in self.pushButton_save.text():
             settings = {
-                'edit_window_id': self.lineEdit_window_id.text(),
+                'profile': self.lineEdit_profile2.text(),
 
                 'edit_f1': self.lineEdit_f1.text(),
                 'edit_f2': self.lineEdit_f2.text(),
@@ -140,7 +140,7 @@ class Main(Ui_MainWindow):
                 json.dump(settings, file)
         elif 'profile 3' in self.pushButton_save.text():
             settings = {
-                'edit_window_id': self.lineEdit_window_id.text(),
+                'profile': self.lineEdit_profile3.text(),
 
                 'edit_f1': self.lineEdit_f1.text(),
                 'edit_f2': self.lineEdit_f2.text(),
@@ -190,12 +190,13 @@ class Main(Ui_MainWindow):
                 json.dump(settings, file)
 
     def load_settings(self):
+        self.rename_profile()
         try:
             if 'profile 1' in self.pushButton_load.text():
                 with open('settings_profile1.json', 'r') as file:
                     settings = json.load(file)
 
-                    self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+                    self.lineEdit_profile1.setText(settings.get('profile', '')),
 
                     self.lineEdit_f1.setText(settings.get('edit_f1', '')),
                     self.lineEdit_f2.setText(settings.get('edit_f2', '')),
@@ -244,7 +245,7 @@ class Main(Ui_MainWindow):
                 with open('settings_profile2.json', 'r') as file:
                     settings = json.load(file)
 
-                    self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+                    self.lineEdit_profile2.setText(settings.get('profile', '')),
 
                     self.lineEdit_f1.setText(settings.get('edit_f1', '')),
                     self.lineEdit_f2.setText(settings.get('edit_f2', '')),
@@ -293,7 +294,7 @@ class Main(Ui_MainWindow):
                 with open('settings_profile3.json', 'r') as file:
                     settings = json.load(file)
 
-                    self.lineEdit_window_id.setText(settings.get('edit_window_id', ''))
+                    self.lineEdit_profile3.setText(settings.get('profile', '')),
 
                     self.lineEdit_f1.setText(settings.get('edit_f1', '')),
                     self.lineEdit_f2.setText(settings.get('edit_f2', '')),
@@ -351,6 +352,14 @@ class Main(Ui_MainWindow):
             self.lineEdit_profile1.setDisabled(False)
             self.lineEdit_profile2.setDisabled(False)
             self.lineEdit_profile3.setDisabled(False)
+
+    def rename_profile(self):
+        if self.lineEdit_profile1.text() != '':
+            self.pushButton_profile1.setText(self.lineEdit_profile1.text())
+        if self.lineEdit_profile2.text() != '':
+            self.pushButton_profile2.setText(self.lineEdit_profile2.text())
+        if self.lineEdit_profile3.text() != '':
+            self.pushButton_profile3.setText(self.lineEdit_profile3.text())
 
     # functions
     def press_insert(self):
