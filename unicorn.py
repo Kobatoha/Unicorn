@@ -972,10 +972,13 @@ class Main(Ui_MainWindow):
                 # death = redss.go_to_village(hwnd)
                 if death:
                     self.paused_pressed()
-                    time.sleep(2)
-                    redss.use_teleport(hwnd)
-                    time.sleep(2)
-                    self.continue_pressed()
+                    time.sleep(90)
+                    if self.pressed_res:
+                        redss.use_teleport(hwnd)
+                        time.sleep(2)
+                        self.continue_pressed()
+                    else:
+                        break
 
                 respawn = random.randint(30000, 120000)
                 total_seconds = respawn / 1000
