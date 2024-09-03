@@ -972,7 +972,7 @@ class Main(Ui_MainWindow):
                 # death = redss.go_to_village(hwnd)
                 if death:
                     self.paused_pressed()
-                    time.sleep(90)
+                    time.sleep(120)
                     if self.pressed_res:
                         redss.use_teleport(hwnd)
                         time.sleep(2)
