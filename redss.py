@@ -42,9 +42,17 @@ def check_active_window(hwnd):
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    directory = r'C:\l2essence\Screenshot'
+    # directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
+
+
+def get_countrattack_icon(image):
+    width, height = image.width, image.height
+
+    r1, r2 = width // 2 + (width // 2 // 2 // 2), (width // 2) + (width // 2 // 2)
+    u1, u2 = height // 2 - (height // 2 // 2 // 2), height // 2
+    return image.crop((r1, u1, r2, u2))
 
 
 def create_screenshot_inside(hwnd):
@@ -146,6 +154,27 @@ def get_red_pixels(image):
     return len(red_pixels)
 
 
+def get_pink_pixels(image):
+    pixels = image.load()
+
+    # Определим приблизительный розовый цвет
+    desired_pink_color = (255, 192, 203)  # Это может быть стандартный "розовый"
+
+    pink_pixels = []
+
+    for y in range(image.size[1]):
+        for x in range(image.size[0]):
+            current_color = pixels[x, y]
+
+            # Проверяем, что текущий цвет близок к розовому (можно подстроить допустимое отклонение)
+            if abs(current_color[0] - desired_pink_color[0]) < 30 and \
+               abs(current_color[1] - desired_pink_color[1]) < 30 and \
+               abs(current_color[2] - desired_pink_color[2]) < 30:
+                pink_pixels.append((x, y))
+
+    return len(pink_pixels)
+
+
 def press_alt_f(hwnd):
 
     # win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, '0x12', 0)
@@ -155,12 +184,28 @@ def press_alt_f(hwnd):
     # win32api.SendMessage(hwnd, win32con.WM_KEYUP, '0x12', 0)
 
 
+
+def check_flag(hwnd):
+    file = create_screenshot(hwnd)
+    image = Image.open(file)
+
+    icon = False
+
+    countrattack_icon = get_countrattack_icon(image)
+    pink_pixels = get_pink_pixels(countrattack_icon)
+    print(pink_pixels)
+
+
 def check_health_bar(hwnd):
     file = create_screenshot(hwnd)
     image = Image.open(file)
     x1, y1 = 63, 0
     x2, y2 = x1 + 345, y1 + 33
     death = False
+
+    countrattack_icon = get_countrattack_icon(image)
+    pink_pixels = get_pink_pixels(countrattack_icon)
+    print(pink_pixels)
 
     cropped_image = image.crop((x1, y1, x2, y2))
 
