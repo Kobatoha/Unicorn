@@ -184,7 +184,6 @@ def press_alt_f(hwnd):
     # win32api.SendMessage(hwnd, win32con.WM_KEYUP, '0x12', 0)
 
 
-
 def check_flag(hwnd):
     file = create_screenshot(hwnd)
     image = Image.open(file)
@@ -194,6 +193,30 @@ def check_flag(hwnd):
     countrattack_icon = get_countrattack_icon(image)
     pink_pixels = get_pink_pixels(countrattack_icon)
     print(pink_pixels)
+
+
+def check_icon_flag(hwnd):
+    file = create_screenshot(hwnd)
+    image = Image.open(file)
+
+    icon = 'icon.jpg'
+
+    icon_width, icon_height = icon.size
+
+    # Пройдемся по всему изображению скользящим окном, чтобы найти участок, похожий на иконку
+    for y in range(image.size[1] - icon_height + 1):
+        for x in range(image.size[0] - icon_width + 1):
+            # Вырезаем участок изображения размером с иконку
+            region = image.crop((x, y, x + icon_width, y + icon_height))
+
+            # Сравниваем иконку и текущий участок изображения
+            diff = ImageChops.difference(region, icon)
+
+            # Если разница минимальна (все пиксели равны или почти равны), значит, мы нашли иконку
+            if not diff.getbbox():
+                return True  # Иконка найдена
+
+    return False  # Иконка не найдена
 
 
 def check_health_bar(hwnd):
