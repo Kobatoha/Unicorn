@@ -490,6 +490,18 @@ class Ui_MainWindow(object):
         self._res_thread = None
         self.res_process = None
 
+        self.check_box_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
+        self.check_box_night_teleport.setGeometry(QtCore.QRect(250, 350, 40, 20))
+
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.check_box_night_teleport.setFont(font)
+        self.check_box_night_teleport.setObjectName("check_box_night_teleport")
+        self.check_box_night_teleport.setText("Zzz")
+        self.check_box_night_teleport.setStyleSheet("background: none;")
+        self.check_box_night_teleport.stateChanged.connect(self.toggle_night_teleport)
+
         ### --------------------- ###
         ###      Window BLOCK     ###
         ### --------------------- ###

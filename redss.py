@@ -154,27 +154,6 @@ def get_red_pixels(image):
     return len(red_pixels)
 
 
-def get_pink_pixels(image):
-    pixels = image.load()
-
-    # Определим приблизительный розовый цвет
-    desired_pink_color = (255, 192, 203)  # Это может быть стандартный "розовый"
-
-    pink_pixels = []
-
-    for y in range(image.size[1]):
-        for x in range(image.size[0]):
-            current_color = pixels[x, y]
-
-            # Проверяем, что текущий цвет близок к розовому (можно подстроить допустимое отклонение)
-            if abs(current_color[0] - desired_pink_color[0]) < 30 and \
-               abs(current_color[1] - desired_pink_color[1]) < 30 and \
-               abs(current_color[2] - desired_pink_color[2]) < 30:
-                pink_pixels.append((x, y))
-
-    return len(pink_pixels)
-
-
 def press_alt_f(hwnd):
 
     # win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, '0x12', 0)
@@ -184,51 +163,12 @@ def press_alt_f(hwnd):
     # win32api.SendMessage(hwnd, win32con.WM_KEYUP, '0x12', 0)
 
 
-def check_flag(hwnd):
-    file = create_screenshot(hwnd)
-    image = Image.open(file)
-
-    icon = False
-
-    countrattack_icon = get_countrattack_icon(image)
-    pink_pixels = get_pink_pixels(countrattack_icon)
-    print(pink_pixels)
-
-
-def check_icon_flag(hwnd):
-    file = create_screenshot(hwnd)
-    image = Image.open(file)
-
-    icon = 'icon.jpg'
-
-    icon_width, icon_height = icon.size
-
-    # Пройдемся по всему изображению скользящим окном, чтобы найти участок, похожий на иконку
-    for y in range(image.size[1] - icon_height + 1):
-        for x in range(image.size[0] - icon_width + 1):
-            # Вырезаем участок изображения размером с иконку
-            region = image.crop((x, y, x + icon_width, y + icon_height))
-
-            # Сравниваем иконку и текущий участок изображения
-            diff = ImageChops.difference(region, icon)
-
-            # Если разница минимальна (все пиксели равны или почти равны), значит, мы нашли иконку
-            if not diff.getbbox():
-                return True  # Иконка найдена
-
-    return False  # Иконка не найдена
-
-
 def check_health_bar(hwnd):
     file = create_screenshot(hwnd)
     image = Image.open(file)
     x1, y1 = 63, 0
     x2, y2 = x1 + 345, y1 + 33
     death = False
-
-    countrattack_icon = get_countrattack_icon(image)
-    pink_pixels = get_pink_pixels(countrattack_icon)
-    print(pink_pixels)
 
     cropped_image = image.crop((x1, y1, x2, y2))
 
@@ -340,6 +280,14 @@ def use_teleport(hwnd):
     print('Летим на свободный телепорт')
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 122, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 122, 0)
+
+
+def night_use_teleport(hwnd):
+    now = datetime.now().strftime('%H:%M')
+    if '23:00' <= now <= '23:59' or '00:00' <= now <= '08:00':
+        print('Перезалетаем на свободный телепорт')
+        win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 122, 0)
+        win32api.SendMessage(hwnd, win32con.WM_KEYUP, 122, 0)
 
 
 if __name__ == '__main__':

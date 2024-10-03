@@ -1000,6 +1000,17 @@ class Main(Ui_MainWindow):
 
         self._res_thread = None
 
+    # def toggle_night_teleport(self, state):
+    #     if state == QtCore.Qt.Checked:
+    #         print('toggle_night_teleport activated')
+    #         if self.pushButton_startstop.text() == 'Stop' and not self._res_thread:
+    #             self.pressed_night_teleport = True
+    #             threading.Thread(target=self.press_night_teleport).start()
+    #     else:
+    #         self.pressed_night_teleport = False
+    #
+    # def pressed_night_teleport(self):
+
     def press_f11(self):
         self.pushButton_located.click()
 
