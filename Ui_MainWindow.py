@@ -119,6 +119,7 @@ class Ui_MainWindow(object):
         self.checkBox_f1.stateChanged.connect(self.toggle_f1)
         self.keyboard = Controller()
         self.pressed_f1 = False
+        self._f1_thread = None
 
         self.checkBox_f2 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f2.setGeometry(QtCore.QRect(100, 50, 40, 20))
@@ -132,6 +133,7 @@ class Ui_MainWindow(object):
         self.checkBox_f2.stateChanged.connect(self.toggle_f2)
         self.keyboard = Controller()
         self.pressed_f2 = False
+        self._f2_thread = None
 
         self.checkBox_f3 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f3.setGeometry(QtCore.QRect(100, 80, 40, 20))
@@ -145,6 +147,7 @@ class Ui_MainWindow(object):
         self.checkBox_f3.stateChanged.connect(self.toggle_f3)
         self.keyboard = Controller()
         self.pressed_f3 = False
+        self._f3_thread = None
 
         self.checkBox_f4 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f4.setGeometry(QtCore.QRect(100, 110, 40, 20))
@@ -158,6 +161,7 @@ class Ui_MainWindow(object):
         self.checkBox_f4.stateChanged.connect(self.toggle_f4)
         self.keyboard = Controller()
         self.pressed_f4 = False
+        self._f4_thread = None
 
         self.checkBox_f5 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_f5.setGeometry(QtCore.QRect(100, 140, 40, 20))
@@ -171,6 +175,7 @@ class Ui_MainWindow(object):
         self.checkBox_f5.stateChanged.connect(self.toggle_f5)
         self.keyboard = Controller()
         self.pressed_f5 = False
+        self._f5_thread = None
 
         self.checkBox_Q = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_Q.setGeometry(QtCore.QRect(100, 170, 40, 20))
@@ -184,6 +189,7 @@ class Ui_MainWindow(object):
         self.checkBox_Q.stateChanged.connect(self.toggle_Q)
         self.keyboard = Controller()
         self.pressed_Q = False
+        self._Q_thread = None
 
         self.checkBox_W = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_W.setGeometry(QtCore.QRect(100, 200, 40, 20))
@@ -197,6 +203,7 @@ class Ui_MainWindow(object):
         self.checkBox_W.stateChanged.connect(self.toggle_W)
         self.keyboard = Controller()
         self.pressed_W = False
+        self._W_thread = None
 
         self.checkBox_E = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_E.setGeometry(QtCore.QRect(100, 230, 40, 20))
@@ -210,6 +217,7 @@ class Ui_MainWindow(object):
         self.checkBox_E.stateChanged.connect(self.toggle_E)
         self.keyboard = Controller()
         self.pressed_E = False
+        self._E_thread = None
 
         self.checkBox_R = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_R.setGeometry(QtCore.QRect(100, 260, 40, 20))
@@ -223,6 +231,7 @@ class Ui_MainWindow(object):
         self.checkBox_R.stateChanged.connect(self.toggle_R)
         self.keyboard = Controller()
         self.pressed_R = False
+        self._R_thread = None
 
         self.checkBox_T = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_T.setGeometry(QtCore.QRect(100, 290, 40, 20))
@@ -236,7 +245,7 @@ class Ui_MainWindow(object):
         self.checkBox_T.stateChanged.connect(self.toggle_T)
         self.keyboard = Controller()
         self.pressed_T = False
-
+        self._T_thread = None
 
         ### --------------------- ###
         ###   CheckBox 1-0 BLOCK  ###
@@ -253,6 +262,7 @@ class Ui_MainWindow(object):
         self.checkBox_1.stateChanged.connect(self.toggle_1)
         self.keyboard = Controller()
         self.pressed_1 = False
+        self._1_thread = None
 
         self.checkBox_2 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_2.setGeometry(QtCore.QRect(250, 50, 40, 20))
@@ -266,6 +276,7 @@ class Ui_MainWindow(object):
         self.checkBox_2.stateChanged.connect(self.toggle_2)
         self.keyboard = Controller()
         self.pressed_2 = False
+        self._2_thread = None
 
         self.checkBox_3 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_3.setGeometry(QtCore.QRect(250, 80, 40, 20))
@@ -279,6 +290,7 @@ class Ui_MainWindow(object):
         self.checkBox_3.stateChanged.connect(self.toggle_3)
         self.keyboard = Controller()
         self.pressed_3 = False
+        self._3_thread = None
 
         self.checkBox_4 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_4.setGeometry(QtCore.QRect(250, 110, 40, 20))
@@ -292,6 +304,7 @@ class Ui_MainWindow(object):
         self.checkBox_4.stateChanged.connect(self.toggle_4)
         self.keyboard = Controller()
         self.pressed_4 = False
+        self._4_thread = None
 
         self.checkBox_5 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_5.setGeometry(QtCore.QRect(250, 140, 40, 20))
@@ -305,6 +318,7 @@ class Ui_MainWindow(object):
         self.checkBox_5.stateChanged.connect(self.toggle_5)
         self.keyboard = Controller()
         self.pressed_5 = False
+        self._5_thread = None
 
         self.checkBox_6 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_6.setGeometry(QtCore.QRect(250, 170, 40, 20))
@@ -318,6 +332,7 @@ class Ui_MainWindow(object):
         self.checkBox_6.stateChanged.connect(self.toggle_6)
         self.keyboard = Controller()
         self.pressed_6 = False
+        self._6_thread = None
 
         self.checkBox_7 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_7.setGeometry(QtCore.QRect(250, 200, 40, 20))
@@ -331,6 +346,7 @@ class Ui_MainWindow(object):
         self.checkBox_7.stateChanged.connect(self.toggle_7)
         self.keyboard = Controller()
         self.pressed_7 = False
+        self._7_thread = None
 
         self.checkBox_8 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_8.setGeometry(QtCore.QRect(250, 230, 40, 20))
@@ -344,6 +360,7 @@ class Ui_MainWindow(object):
         self.checkBox_8.stateChanged.connect(self.toggle_8)
         self.keyboard = Controller()
         self.pressed_8 = False
+        self._8_thread = None
 
         self.checkBox_9 = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_9.setGeometry(QtCore.QRect(250, 260, 40, 20))
@@ -357,6 +374,7 @@ class Ui_MainWindow(object):
         self.checkBox_9.stateChanged.connect(self.toggle_9)
         self.keyboard = Controller()
         self.pressed_9 = False
+        self._9_thread = None
 
         self.checkBox_tilda = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_tilda.setGeometry(QtCore.QRect(250, 290, 40, 20))
@@ -370,7 +388,7 @@ class Ui_MainWindow(object):
         self.checkBox_tilda.stateChanged.connect(self.toggle_tilda)
         self.keyboard = Controller()
         self.pressed_tilda = False
-
+        self._tilda_thread = None
 
         ### --------------------- ###
         ###   LineEdit Q-V BLOCK  ###
@@ -490,17 +508,17 @@ class Ui_MainWindow(object):
         self._res_thread = None
         self.res_process = None
 
-        self.check_box_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
-        self.check_box_night_teleport.setGeometry(QtCore.QRect(250, 350, 40, 20))
-
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.check_box_night_teleport.setFont(font)
-        self.check_box_night_teleport.setObjectName("check_box_night_teleport")
-        self.check_box_night_teleport.setText("Zzz")
-        self.check_box_night_teleport.setStyleSheet("background: none;")
-        self.check_box_night_teleport.stateChanged.connect(self.toggle_night_teleport)
+        # self.check_box_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
+        # self.check_box_night_teleport.setGeometry(QtCore.QRect(250, 350, 40, 20))
+        #
+        # font = QtGui.QFont()
+        # font.setBold(True)
+        # font.setWeight(75)
+        # self.check_box_night_teleport.setFont(font)
+        # self.check_box_night_teleport.setObjectName("check_box_night_teleport")
+        # self.check_box_night_teleport.setText("Zzz")
+        # self.check_box_night_teleport.setStyleSheet("background: none;")
+        # self.check_box_night_teleport.stateChanged.connect(self.toggle_night_teleport)
 
         ### --------------------- ###
         ###      Window BLOCK     ###
@@ -577,7 +595,7 @@ class Ui_MainWindow(object):
         self.label_id_window.setFont(font)
         self.label_id_window.setAlignment(QtCore.Qt.AlignCenter)
         self.label_id_window.setObjectName("label_id_window")
-        self.label_id_window.setText("F11")
+        self.label_id_window.setText("")
         self.label_id_window.setStyleSheet("background: none;")
 
         self.lineEdit_window_id = QtWidgets.QLineEdit(self.centralwidget)

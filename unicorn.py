@@ -588,343 +588,485 @@ class Main(Ui_MainWindow):
 
     def toggle_1(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._1_thread:
                 self.pressed_1 = True
-                # self.press_1()
-                threading.Thread(target=self.press_1).start()
+                self._1_thread = threading.Thread(target=self.press_1, daemon=True)
+                self._1_thread.start()
         else:
             self.pressed_1 = False
+            if self._1_thread and self._1_thread.is_alive():
+                self._1_thread.join()
+            self._1_thread = None
 
     def press_1(self):
         while self.pressed_1:
             interval = int(self.lineEdit_1.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 49, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 49, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 49, 0)
-            QtCore.QTimer.singleShot(interval, self.press_1)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 49, 0)
+            time.sleep(interval / 1000)
+
+        self._1_thread = None
 
     def toggle_2(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._2_thread:
                 self.pressed_2 = True
-                # self.press_2()
-                threading.Thread(target=self.press_2).start()
+                self._2_thread = threading.Thread(target=self.press_2, daemon=True)
+                self._2_thread.start()
         else:
             self.pressed_2 = False
+            if self._2_thread and self._2_thread.is_alive():
+                self._2_thread.join()
+            self._2_thread = None
 
     def press_2(self):
         while self.pressed_2:
             interval = int(self.lineEdit_2.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 50, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 50, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 50, 0)
-            QtCore.QTimer.singleShot(interval, self.press_2)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 50, 0)
+            time.sleep(interval / 1000)
+
+        self._2_thread = None
 
     def toggle_3(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._3_thread:
                 self.pressed_3 = True
-                # self.press_3()
-                threading.Thread(target=self.press_3).start()
+                self._3_thread = threading.Thread(target=self.press_3, daemon=True)
+                self._3_thread.start()
         else:
             self.pressed_3 = False
+            if self._3_thread and self._3_thread.is_alive():
+                self._3_thread.join()
+            self._3_thread = None
 
     def press_3(self):
         while self.pressed_3:
             interval = int(self.lineEdit_3.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 51, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 51, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 51, 0)
-            QtCore.QTimer.singleShot(interval, self.press_3)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 51, 0)
+            time.sleep(interval / 1000)
+
+        self._3_thread = None
 
     def toggle_4(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._4_thread:
                 self.pressed_4 = True
-                # self.press_4()
-                threading.Thread(target=self.press_4).start()
+                self._4_thread = threading.Thread(target=self.press_4, daemon=True)
+                self._4_thread.start()
         else:
             self.pressed_4 = False
+            if self._4_thread and self._4_thread.is_alive():
+                self._4_thread.join()
+            self._4_thread = None
 
     def press_4(self):
         while self.pressed_4:
             interval = int(self.lineEdit_4.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 52, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 52, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 52, 0)
-            QtCore.QTimer.singleShot(interval, self.press_4)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 52, 0)
+            time.sleep(interval / 1000)
+
+        self._4_thread = None
 
     def toggle_5(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._5_thread:
                 self.pressed_5 = True
-                # self.press_5()
-                threading.Thread(target=self.press_5).start()
+                self._5_thread = threading.Thread(target=self.press_5, daemon=True)
+                self._5_thread.start()
         else:
             self.pressed_5 = False
+            if self._5_thread and self._5_thread.is_alive():
+                self._5_thread.join()
+            self._5_thread = None
 
     def press_5(self):
         while self.pressed_5:
             interval = int(self.lineEdit_5.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 53, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 53, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 53, 0)
-            QtCore.QTimer.singleShot(interval, self.press_5)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 53, 0)
+            time.sleep(interval / 1000)
+
+        self._5_thread = None
 
     def toggle_6(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._6_thread:
                 self.pressed_6 = True
-                # self.press_6()
-                threading.Thread(target=self.press_6).start()
+                self._6_thread = threading.Thread(target=self.press_6, daemon=True)
+                self._6_thread.start()
         else:
             self.pressed_6 = False
+            if self._6_thread and self._6_thread.is_alive():
+                self._6_thread.join()
+            self._6_thread = None
 
     def press_6(self):
         while self.pressed_6:
             interval = int(self.lineEdit_6.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 54, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 54, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 54, 0)
-            QtCore.QTimer.singleShot(interval, self.press_6)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 54, 0)
+            time.sleep(interval / 1000)
+
+        self._6_thread = None
 
     def toggle_7(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._7_thread:
                 self.pressed_7 = True
-                # self.press_7()
-                threading.Thread(target=self.press_7).start()
+                self._7_thread = threading.Thread(target=self.press_7, daemon=True)
+                self._7_thread.start()
         else:
             self.pressed_7 = False
+            if self._7_thread and self._7_thread.is_alive():
+                self._7_thread.join()
+            self._7_thread = None
 
     def press_7(self):
         while self.pressed_7:
             interval = int(self.lineEdit_7.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 55, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 55, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 55, 0)
-            QtCore.QTimer.singleShot(interval, self.press_7)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 55, 0)
+            time.sleep(interval / 1000)
+
+        self._7_thread = None
 
     def toggle_8(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._8_thread:
                 self.pressed_8 = True
-                # self.press_8()
-                threading.Thread(target=self.press_8).start()
+                self._8_thread = threading.Thread(target=self.press_8, daemon=True)
+                self._8_thread.start()
         else:
             self.pressed_8 = False
+            if self._8_thread and self._8_thread.is_alive():
+                self._8_thread.join()
+            self._8_thread = None
 
     def press_8(self):
         while self.pressed_8:
             interval = int(self.lineEdit_8.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 56, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 56, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 56, 0)
-            QtCore.QTimer.singleShot(interval, self.press_8)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 56, 0)
+            time.sleep(interval / 1000)
+
+        self._8_thread = None
 
     def toggle_9(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._9_thread:
                 self.pressed_9 = True
-                # self.press_9()
-                threading.Thread(target=self.press_9).start()
+                self._9_thread = threading.Thread(target=self.press_9, daemon=True)
+                self._9_thread.start()
         else:
             self.pressed_9 = False
+            if self._9_thread and self._9_thread.is_alive():
+                self._9_thread.join()
+            self._9_thread = None
 
     def press_9(self):
         while self.pressed_9:
             interval = int(self.lineEdit_9.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 57, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 57, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 57, 0)
-            QtCore.QTimer.singleShot(interval, self.press_9)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 57, 0)
+            time.sleep(interval / 1000)
+
+        self._9_thread = None
 
     def toggle_tilda(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._tilda_thread:
                 self.pressed_tilda = True
-                # self.press_tilda()
-                threading.Thread(target=self.press_tilda).start()
+                self._tilda_thread = threading.Thread(target=self.press_tilda, daemon=True)
+                self._tilda_thread.start()
         else:
             self.pressed_tilda = False
+            if self._tilda_thread and self._tilda_thread.is_alive():
+                self._tilda_thread.join()
+            self._tilda_thread = None
 
     def press_tilda(self):
         while self.pressed_tilda:
             interval = int(self.lineEdit_tilda.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 192, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 192, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 192, 0)
-            QtCore.QTimer.singleShot(interval, self.press_tilda)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 192, 0)
+            time.sleep(interval / 1000)
+
+        self._tilda_thread = None
 
     def toggle_f1(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._f1_thread:
                 self.pressed_f1 = True
-                # self.press_f1()
-                threading.Thread(target=self.press_f1).start()
+                self._f1_thread = threading.Thread(target=self.press_f1, daemon=True)
+                self._f1_thread.start()
         else:
             self.pressed_f1 = False
+            if self._f1_thread and self._f1_thread.is_alive():
+                self._f1_thread.join()
+            self._f1_thread = None
 
     def press_f1(self):
         while self.pressed_f1:
             interval = int(self.lineEdit_f1.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F1, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F1, 0)
-            QtCore.QTimer.singleShot(interval, self.press_f1)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F1, 0)
+            time.sleep(interval / 1000)
+
+        self._f1_thread = None
 
     def toggle_f2(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._f2_thread:
                 self.pressed_f2 = True
-                # self.press_f2()
-                threading.Thread(target=self.press_f2).start()
+                self._f2_thread = threading.Thread(target=self.press_f2, daemon=True)
+                self._f2_thread.start()
         else:
             self.pressed_f2 = False
+            if self._f2_thread and self._f2_thread.is_alive():
+                self._f2_thread.join()
+            self._f2_thread = None
 
     def press_f2(self):
         while self.pressed_f2:
             interval = int(self.lineEdit_f2.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F2, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F2, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F2, 0)
-            QtCore.QTimer.singleShot(interval, self.press_f2)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F2, 0)
+            time.sleep(interval / 1000)
+
+        self._f2_thread = None
 
     def toggle_f3(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._f3_thread:
                 self.pressed_f3 = True
-                # self.press_f3()
-                threading.Thread(target=self.press_f3).start()
+                self._f3_thread = threading.Thread(target=self.press_f3, daemon=True)
+                self._f3_thread.start()
         else:
             self.pressed_f3 = False
+            if self._f3_thread and self._f3_thread.is_alive():
+                self._f3_thread.join()
+            self._f3_thread = None
 
     def press_f3(self):
         while self.pressed_f3:
             interval = int(self.lineEdit_f3.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F3, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F3, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F3, 0)
-            QtCore.QTimer.singleShot(interval, self.press_f3)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F3, 0)
+            time.sleep(interval / 1000)
+
+        self._f3_thread = None
 
     def toggle_f4(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._f4_thread:
                 self.pressed_f4 = True
-                # self.press_f4()
-                threading.Thread(target=self.press_f4).start()
+                self._f4_thread = threading.Thread(target=self.press_f4, daemon=True)
+                self._f4_thread.start()
         else:
             self.pressed_f4 = False
+            if self._f4_thread and self._f4_thread.is_alive():
+                self._f4_thread.join()
+            self._f4_thread = None
 
     def press_f4(self):
         while self.pressed_f4:
             interval = int(self.lineEdit_f4.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F4, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F4, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F4, 0)
-            QtCore.QTimer.singleShot(interval, self.press_f4)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F4, 0)
+            time.sleep(interval / 1000)
+
+        self._f4_thread = None
 
     def toggle_f5(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._f5_thread:
                 self.pressed_f5 = True
-                # self.press_f5()
-                threading.Thread(target=self.press_f5).start()
+                self._f5_thread = threading.Thread(target=self.press_f5, daemon=True)
+                self._f5_thread.start()
         else:
             self.pressed_f5 = False
+            if self._f5_thread and self._f5_thread.is_alive():
+                self._f5_thread.join()
+            self._f5_thread = None
 
     def press_f5(self):
         while self.pressed_f5:
             interval = int(self.lineEdit_f5.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, win32con.VK_F5, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F5, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, win32con.VK_F5, 0)
-            QtCore.QTimer.singleShot(interval, self.press_f5)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F5, 0)
+            time.sleep(interval / 1000)
+
+        self._f5_thread = None
 
     def toggle_Q(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._Q_thread:
                 self.pressed_Q = True
-                # self.press_Q()
-                threading.Thread(target=self.press_Q).start()
+                self._Q_thread = threading.Thread(target=self.press_Q, daemon=True)
+                self._Q_thread.start()
         else:
             self.pressed_Q = False
+            if self._Q_thread and self._Q_thread.is_alive():
+                self._Q_thread.join()
+            self._Q_thread = None
 
     def press_Q(self):
         while self.pressed_Q:
             interval = int(self.lineEdit_Q.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 81, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 81, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 81, 0)
-            QtCore.QTimer.singleShot(interval, self.press_Q)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 81, 0)
+            time.sleep(interval / 1000)
+
+        self._Q_thread = None
 
     def toggle_W(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._W_thread:
                 self.pressed_W = True
-                # self.press_W()
-                threading.Thread(target=self.press_W).start()
+                self._W_thread = threading.Thread(target=self.press_W, daemon=True)
+                self._W_thread.start()
         else:
             self.pressed_W = False
+            if self._W_thread and self._W_thread.is_alive():
+                self._W_thread.join()
+            self._W_thread = None
 
     def press_W(self):
         while self.pressed_W:
             interval = int(self.lineEdit_W.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 87, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 87, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 87, 0)
-            QtCore.QTimer.singleShot(interval, self.press_W)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 87, 0)
+            time.sleep(interval / 1000)
+
+        self._W_thread = None
 
     def toggle_E(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._E_thread:
                 self.pressed_E = True
                 # self.press_E()
-                threading.Thread(target=self.press_E).start()
+                self._E_thread = threading.Thread(target=self.press_E, daemon=True)
+                self._E_thread.start()
         else:
             self.pressed_E = False
+            if self._E_thread and self._E_thread.is_alive():
+                self._E_thread.join()
+            self._E_thread = None
 
     def press_E(self):
         while self.pressed_E:
             interval = int(self.lineEdit_E.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 69, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 69, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 69, 0)
-            QtCore.QTimer.singleShot(interval, self.press_E)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 69, 0)
+            time.sleep(interval / 1000)
+
+        self._E_thread = None
 
     def toggle_R(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._R_thread:
                 self.pressed_R = True
-                # self.press_R()
-                threading.Thread(target=self.press_R).start()
+                self._R_thread = threading.Thread(target=self.press_R, daemon=True)
+                self._R_thread.start()
         else:
             self.pressed_R = False
+            if self._R_thread and self._R_thread.is_alive():
+                self._R_thread.join()
+            self._R_thread = None
 
     def press_R(self):
         while self.pressed_R:
             interval = int(self.lineEdit_R.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 82, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 82, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 82, 0)
-            QtCore.QTimer.singleShot(interval, self.press_R)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 82, 0)
+            time.sleep(interval / 1000)
+
+        self._R_thread = None
 
     def toggle_T(self, state):
         if state == QtCore.Qt.Checked:
-            if self.pushButton_startstop.text() == 'Stop':
+            if self.pushButton_startstop.text() == 'Stop' and not self._T_thread:
                 self.pressed_T = True
                 # self.press_T()
-                threading.Thread(target=self.press_T).start()
+                self._T_thread = threading.Thread(target=self.press_T, daemon=True)
+                self._T_thread.start()
         else:
             self.pressed_T = False
+            if self._T_thread and self._T_thread.is_alive():
+                self._T_thread.join()
+            self._T_thread = None
 
     def press_T(self):
         while self.pressed_T:
             interval = int(self.lineEdit_T.text())
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYDOWN, 84, 0)
+            hwnd = self.lineEdit_window_id.text()
+
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 84, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(self.lineEdit_window_id.text(), win32con.WM_KEYUP, 84, 0)
-            QtCore.QTimer.singleShot(interval, self.press_T)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 84, 0)
+            time.sleep(interval / 1000)
+
+        self._T_thread = None
 
     def toggle_res(self, state):
         if state == QtCore.Qt.Checked:
