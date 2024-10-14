@@ -103,7 +103,6 @@ class Ui_MainWindow(object):
         self.lineEdit_T.setGeometry(QtCore.QRect(30, 290, 60, 20))
         self.lineEdit_T.setObjectName("lineEdit_T")
 
-
         ### --------------------- ###
         ### CheckBox F1-F12 BLOCK ###
         ### --------------------- ###
@@ -508,18 +507,6 @@ class Ui_MainWindow(object):
         self._res_thread = None
         self.res_process = None
 
-        # self.check_box_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
-        # self.check_box_night_teleport.setGeometry(QtCore.QRect(250, 350, 40, 20))
-        #
-        # font = QtGui.QFont()
-        # font.setBold(True)
-        # font.setWeight(75)
-        # self.check_box_night_teleport.setFont(font)
-        # self.check_box_night_teleport.setObjectName("check_box_night_teleport")
-        # self.check_box_night_teleport.setText("Zzz")
-        # self.check_box_night_teleport.setStyleSheet("background: none;")
-        # self.check_box_night_teleport.stateChanged.connect(self.toggle_night_teleport)
-
         ### --------------------- ###
         ###      Window BLOCK     ###
         ### --------------------- ###
@@ -633,7 +620,6 @@ class Ui_MainWindow(object):
         self.pushButton_profile2.setText('profile 2')
         self.pushButton_profile2.clicked.connect(self.profile2)
 
-
         self.lineEdit_profile2 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_profile2.setGeometry(QtCore.QRect(170, 450, 60, 20))
         self.lineEdit_profile2.setObjectName("lineEdit_window_id")
@@ -712,7 +698,3 @@ class Ui_MainWindow(object):
         self.label_information_actions.setAlignment(QtCore.Qt.AlignCenter)
         self.label_information_actions.setObjectName("label_information_actions")
         self.label_information_actions.setStyleSheet("background: none;")
-
-        # self.client_button = QtWidgets.QPushButton('...', self.centralwidget)
-        # self.client_button.setGeometry(QtCore.QRect(250, 350, 40, 20))
-        # self.client_button.clicked.connect(self.select_directory)
