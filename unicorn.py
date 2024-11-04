@@ -1071,12 +1071,13 @@ class Main(Ui_MainWindow):
     def toggle_res(self, state):
         if state == QtCore.Qt.Checked:
             print('toggle_res activated')
+            self.check_box_res_random.setDisabled(True)
             if self.pushButton_startstop.text() == 'Stop' and not self._res_thread:
                 self.pressed_res = True
-                # self.press_res()
                 self._res_thread = threading.Thread(target=self.press_res, daemon=True)
                 self._res_thread.start()
         else:
+            self.check_box_res_random.setDisabled(False)
             self.pressed_res = False
             if self._res_thread and self._res_thread.is_alive():
                 self._res_thread.join()
@@ -1111,7 +1112,6 @@ class Main(Ui_MainWindow):
                         break
                 else:
                     death = False
-                # death = redss.go_to_village(hwnd)
                 if death:
                     self.paused_pressed()
                     time.sleep(120)
@@ -1141,6 +1141,80 @@ class Main(Ui_MainWindow):
                 time.sleep(10)
 
         self._res_thread = None
+
+    def toggle_res_random(self, state):
+        if state == QtCore.Qt.Checked:
+            print('toggle_res_random activated')
+            self.check_box_res.setDisabled(True)
+            if self.pushButton_startstop.text() == 'Stop' and not self._res_random_thread:
+                self.pressed_res_random = True
+                self._res_random_thread = threading.Thread(target=self.press_res_random, daemon=True)
+                self._res_random_thread.start()
+        else:
+            self.check_box_res.setDisabled(False)
+            self.pressed_res_random = False
+            if self._res_random_thread and self._res_random_thread.is_alive():
+                self._res_random_thread.join()
+            self._res_random_thread = None
+            self.label_res_random.setText("")
+
+    def press_res_random(self):
+        time.sleep(10)
+        while self.pressed_res_random:
+            try:
+                hwnd = int(self.lineEdit_window_id.text())
+                flag = redss.check_health_bar(hwnd)
+                if flag and self.pressed_res_random:
+                    redss.check_active_window(hwnd)
+                    time.sleep(5)
+                    rect_recovery_free_exp = redss.get_window_free_up(hwnd)
+                    rect_recovery_agree = redss.get_window_free_agree(hwnd)
+                    rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
+                    if self.pressed_res_random:
+                        redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
+                        time.sleep(2)
+                        death = False
+                        if self.pressed_res_random:
+                            redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
+                            time.sleep(1)
+                            death = False
+                            if self.pressed_res_random:
+                                redss.send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
+                                time.sleep(5)
+                                death = True
+                    else:
+                        break
+                else:
+                    death = False
+                if death:
+                    self.paused_pressed()
+                    time.sleep(120)
+                    if self.pressed_res_random:
+                        redss.use_teleport(hwnd)
+                        time.sleep(2)
+                        self.continue_pressed()
+                    else:
+                        break
+
+                respawn = random.randint(30000, 120000)
+                total_seconds = respawn / 1000
+                minutes = int(total_seconds // 60)
+                seconds = int(total_seconds % 60)
+                print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+                next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
+                self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
+                self.label_res_random.setText(f'Next: {next_check.strftime('%M:%S')}')
+
+                for _ in range(int(total_seconds)):
+                    if not self.pressed_res_random:
+                        self.label_res_random.setText('')
+                        break
+                    time.sleep(1)
+            except Exception as e:
+                print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
+                time.sleep(10)
+
+        self._res_random_thread = None
 
     def press_f11(self):
         self.pushButton_located.click()

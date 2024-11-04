@@ -16,10 +16,10 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowTitle("Unicorn")
         MainWindow.setWindowIcon(QtGui.QIcon("images/unicorn.png"))
-        MainWindow.resize(300, 600)
+        MainWindow.resize(350, 600)
         MainWindow.setMinimumSize(QtCore.QSize(165, 360))
-        MainWindow.setMaximumSize(QtCore.QSize(300, 600))
-        MainWindow.setBaseSize(QtCore.QSize(300, 600))
+        MainWindow.setMaximumSize(QtCore.QSize(350, 600))
+        MainWindow.setBaseSize(QtCore.QSize(350, 600))
         MainWindow.setStyleSheet("background-image: url('images/bg_image.jpg');")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.line_tuning_keys_2.setObjectName("line_tuning_keys_2")
 
         self.line_half_window = QtWidgets.QFrame(self.centralwidget)
-        self.line_half_window.setGeometry(QtCore.QRect(150, 20, 20, 350))
+        self.line_half_window.setGeometry(QtCore.QRect(150, 20, 20, 300))
         self.line_half_window.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_half_window.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_half_window.setStyleSheet("background: none;")
@@ -437,6 +437,11 @@ class Ui_MainWindow(object):
         self.label_res.setObjectName("lineEdit_res")
         self.label_res.setStyleSheet("background: none;")
 
+        self.label_res_random = QtWidgets.QLabel(self.centralwidget)
+        self.label_res_random.setGeometry(QtCore.QRect(180, 350, 60, 20))
+        self.label_res_random.setObjectName("lineEdit_res_random")
+        self.label_res_random.setStyleSheet("background: none;")
+
         ### --------------------- ###
         ###      ICONS BLOCK      ###
         ### --------------------- ###
@@ -506,6 +511,24 @@ class Ui_MainWindow(object):
 
         self._res_thread = None
         self.res_process = None
+
+        ### auto ressurection 2###
+        self.check_box_res_random = QtWidgets.QCheckBox(self.centralwidget)
+        self.check_box_res_random.setGeometry(QtCore.QRect(250, 350, 85, 20))
+
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.check_box_res_random.setFont(font)
+        self.check_box_res_random.setObjectName("check_box_res_random")
+        self.check_box_res_random.setText("res random")
+        self.check_box_res_random.setStyleSheet("background: none;")
+        self.check_box_res_random.stateChanged.connect(self.toggle_res_random)
+        self.keyboard = Controller()
+        self.pressed_res_random = False
+
+        self._res_random_thread = None
+        self.res_random_process = None
 
         ### --------------------- ###
         ###      Window BLOCK     ###
