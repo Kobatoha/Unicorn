@@ -42,7 +42,7 @@ def check_active_window(hwnd):
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    directory = r'C:\l2essence\Screenshot'
+    # directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
 
@@ -280,6 +280,23 @@ def use_teleport(hwnd):
     print('Летим на свободный телепорт')
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 122, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 122, 0)
+
+
+def use_teleport_random(hwnd):
+    tp = ['f7', 'f8', 'f9', 'f10', 'f11']
+    teleport = {
+        'f7': 118,
+        'f8': 119,
+        'f9': 120,
+        'f10': 121,
+        'f11': 122
+    }
+    key = random.choice(tp)
+    time.sleep(1)
+    print('Летим на свободный телепорт')
+    print(teleport[key])
+    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, teleport[key], 0)
+    win32api.SendMessage(hwnd, win32con.WM_KEYUP, teleport[key], 0)
 
 
 def night_use_teleport(hwnd):
