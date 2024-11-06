@@ -505,6 +505,7 @@ class Ui_MainWindow(object):
         self.check_box_res.setObjectName("check_box_res")
         self.check_box_res.setText("res")
         self.check_box_res.setStyleSheet("background: none;")
+        self.check_box_res.setToolTip('Свободный телепорт должен быть на F11')
         self.check_box_res.stateChanged.connect(self.toggle_res)
         self.keyboard = Controller()
         self.pressed_res = False
@@ -524,11 +525,13 @@ class Ui_MainWindow(object):
         self.check_box_res_random.setText("res random")
         self.check_box_res_random.setStyleSheet("background: none;")
         self.check_box_res_random.stateChanged.connect(self.toggle_res_random)
+        self.check_box_res_random.setToolTip('Свободный телепорт должен быть на F7, F8, F9, F10, F11')
         self.keyboard = Controller()
         self.pressed_res_random = False
 
         self._res_random_thread = None
         self.res_random_process = None
+
 
         ### --------------------- ###
         ###      Window BLOCK     ###
