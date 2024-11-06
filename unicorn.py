@@ -1190,7 +1190,7 @@ class Main(Ui_MainWindow):
                     self.paused_pressed()
                     time.sleep(120)
                     if self.pressed_res_random:
-                        redss.use_teleport(hwnd)
+                        redss.use_teleport_random(hwnd)
                         time.sleep(2)
                         self.continue_pressed()
                     else:
