@@ -293,8 +293,7 @@ def use_teleport_random(hwnd):
     }
     key = random.choice(tp)
     time.sleep(1)
-    print('Летим на свободный телепорт')
-    print(teleport[key])
+    print(f'Летим на свободный телепорт ({key})')
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, teleport[key], 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, teleport[key], 0)
 
