@@ -472,6 +472,8 @@ class Main(Ui_MainWindow):
             self.toggle_R(self.checkBox_R.checkState())
             self.toggle_T(self.checkBox_T.checkState())
             self.toggle_res(self.check_box_res.checkState())
+            self.toggle_res_random(self.check_box_res_random.checkState())
+            self.toggle_night_teleport(self.checkBox_night_teleport.checkState())
             self.activate_profile()
 
         else:
@@ -499,7 +501,9 @@ class Main(Ui_MainWindow):
             self.pressed_R = False
             self.pressed_T = False
             self.pressed_res = False
+            self.pressed_res_random = False
             self.res_process = False
+            self.pressed_night_teleport = False
             self.activate_profile()
 
     def paused_pressed(self):
@@ -1090,6 +1094,8 @@ class Main(Ui_MainWindow):
             try:
                 hwnd = int(self.lineEdit_window_id.text())
                 flag = redss.check_health_bar(hwnd)
+                if flag:
+                    self.res_process = True
                 if flag and self.pressed_res:
                     redss.check_active_window(hwnd)
                     time.sleep(5)
@@ -1112,6 +1118,7 @@ class Main(Ui_MainWindow):
                         break
                 else:
                     death = False
+                    self.res_process = False
                 if death:
                     self.paused_pressed()
                     time.sleep(120)
@@ -1119,7 +1126,9 @@ class Main(Ui_MainWindow):
                         redss.use_teleport(hwnd)
                         time.sleep(2)
                         self.continue_pressed()
+                        self.res_process = False
                     else:
+                        self.res_process = False
                         break
 
                 respawn = random.randint(30000, 120000)
@@ -1164,6 +1173,8 @@ class Main(Ui_MainWindow):
             try:
                 hwnd = int(self.lineEdit_window_id.text())
                 flag = redss.check_health_bar(hwnd)
+                if flag:
+                    self.res_process = True
                 if flag and self.pressed_res_random:
                     redss.check_active_window(hwnd)
                     time.sleep(5)
@@ -1186,6 +1197,7 @@ class Main(Ui_MainWindow):
                         break
                 else:
                     death = False
+                    self.res_process = False
                 if death:
                     self.paused_pressed()
                     time.sleep(120)
@@ -1193,9 +1205,12 @@ class Main(Ui_MainWindow):
                         redss.use_teleport_random(hwnd)
                         time.sleep(2)
                         self.continue_pressed()
+                        self.res_process = False
                     else:
+                        self.res_process = False
                         break
 
+                self.res_process = False
                 respawn = random.randint(30000, 120000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)
@@ -1215,6 +1230,60 @@ class Main(Ui_MainWindow):
                 time.sleep(10)
 
         self._res_random_thread = None
+
+    def toggle_night_teleport(self, state):
+        if state == QtCore.Qt.Checked:
+            print('toggle_night_teleport activated')
+            if self.pushButton_startstop.text() == 'Stop' and not self._night_teleport_thread:
+                self.pressed_night_teleport = True
+                self._night_teleport_thread = threading.Thread(target=self.press_night_teleport, daemon=True)
+                self._night_teleport_thread.start()
+        else:
+            self.pressed_night_teleport = False
+            if self._night_teleport_thread and self._night_teleport_thread.is_alive():
+                self._night_teleport_thread.join()
+            self._night_teleport_thread = None
+            self.label_night_teleport.setText("")
+
+    def press_night_teleport(self):
+        respawn = 720000
+        total_seconds = respawn / 1000
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+        next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
+        self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
+        self.label_night_teleport.setText(f'Next: {next_check.strftime('%M:%S')}')
+        time.sleep(12 * 60)
+        while self.pressed_night_teleport:
+            try:
+                if not self.res_process:
+                    self.paused_pressed()
+                    hwnd = int(self.lineEdit_window_id.text())
+                    time.sleep(1)
+                    redss.use_teleport_random(hwnd)
+                    time.sleep(1)
+                    self.continue_pressed()
+
+                respawn = 720000
+                total_seconds = respawn / 1000
+                minutes = int(total_seconds // 60)
+                seconds = int(total_seconds % 60)
+                print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+                next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
+                self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
+                self.label_night_teleport.setText(f'Next: {next_check.strftime('%M:%S')}')
+
+                for _ in range(int(total_seconds)):
+                    if not self.pressed_night_teleport:
+                        self.label_night_teleport.setText('')
+                        break
+                    time.sleep(1)
+            except Exception as e:
+                print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
+                time.sleep(10)
+
+        self._night_teleport_thread = None
 
     def press_f11(self):
         self.pushButton_located.click()

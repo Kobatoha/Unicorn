@@ -442,6 +442,11 @@ class Ui_MainWindow(object):
         self.label_res_random.setObjectName("lineEdit_res_random")
         self.label_res_random.setStyleSheet("background: none;")
 
+        self.label_night_teleport = QtWidgets.QLabel(self.centralwidget)
+        self.label_night_teleport.setGeometry(QtCore.QRect(30, 350, 60, 20))
+        self.label_night_teleport.setObjectName("lineEdit_res_random")
+        self.label_night_teleport.setStyleSheet("background: none;")
+
         ### --------------------- ###
         ###      ICONS BLOCK      ###
         ### --------------------- ###
@@ -532,6 +537,20 @@ class Ui_MainWindow(object):
         self._res_random_thread = None
         self.res_random_process = None
 
+        self.checkBox_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox_night_teleport.setGeometry(QtCore.QRect(100, 350, 40, 20))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.checkBox_night_teleport.setFont(font)
+        self.checkBox_night_teleport.setObjectName("checkBox_night_teleport")
+        self.checkBox_night_teleport.setText("tp")
+        self.checkBox_night_teleport.setStyleSheet("background: none;")
+        self.checkBox_night_teleport.setToolTip('Летает на свободный телепорт каждые 12 минут. '
+                                                'Свободный телепорт должен быть на F11')
+        self.checkBox_night_teleport.stateChanged.connect(self.toggle_night_teleport)
+        self.pressed_night_teleport = False
+        self._night_teleport_thread = None
 
         ### --------------------- ###
         ###      Window BLOCK     ###
