@@ -547,7 +547,7 @@ class Ui_MainWindow(object):
         self.checkBox_night_teleport.setText("tp")
         self.checkBox_night_teleport.setStyleSheet("background: none;")
         self.checkBox_night_teleport.setToolTip('Летает на свободный телепорт каждые 12 минут. '
-                                                'Свободный телепорт должен быть на F11')
+                                                'Свободный телепорт должен быть на F7, F8, F9, F10, F11')
         self.checkBox_night_teleport.stateChanged.connect(self.toggle_night_teleport)
         self.pressed_night_teleport = False
         self._night_teleport_thread = None
