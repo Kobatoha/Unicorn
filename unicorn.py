@@ -474,6 +474,7 @@ class Main(Ui_MainWindow):
             self.toggle_res(self.check_box_res.checkState())
             self.toggle_res_random(self.check_box_res_random.checkState())
             self.toggle_night_teleport(self.checkBox_night_teleport.checkState())
+            self.toggle_night_teleport_solo(self.checkBox_night_teleport_solo.checkState())
             self.activate_profile()
 
         else:
@@ -504,6 +505,7 @@ class Main(Ui_MainWindow):
             self.pressed_res_random = False
             self.res_process = False
             self.pressed_night_teleport = False
+            self.pressed_night_teleport_solo = False
             self.activate_profile()
 
     def paused_pressed(self):
@@ -1234,11 +1236,13 @@ class Main(Ui_MainWindow):
     def toggle_night_teleport(self, state):
         if state == QtCore.Qt.Checked:
             print('toggle_night_teleport activated')
+            self.checkBox_night_teleport_solo.setDisabled(True)
             if self.pushButton_startstop.text() == 'Stop' and not self._night_teleport_thread:
                 self.pressed_night_teleport = True
                 self._night_teleport_thread = threading.Thread(target=self.press_night_teleport, daemon=True)
                 self._night_teleport_thread.start()
         else:
+            self.checkBox_night_teleport_solo.setDisabled(False)
             self.pressed_night_teleport = False
             if self._night_teleport_thread and self._night_teleport_thread.is_alive():
                 self._night_teleport_thread.join()
@@ -1284,6 +1288,62 @@ class Main(Ui_MainWindow):
                 time.sleep(10)
 
         self._night_teleport_thread = None
+
+    def toggle_night_teleport_solo(self, state):
+        if state == QtCore.Qt.Checked:
+            print('toggle_night_teleport_solo activated')
+            self.checkBox_night_teleport.setDisabled(True)
+            if self.pushButton_startstop.text() == 'Stop' and not self._night_teleport_solo_thread:
+                self.pressed_night_teleport_solo = True
+                self._night_teleport_solo_thread = threading.Thread(target=self.press_night_teleport_solo, daemon=True)
+                self._night_teleport_solo_thread.start()
+        else:
+            self.checkBox_night_teleport.setDisabled(False)
+            self.pressed_night_teleport_solo = False
+            if self._night_teleport_solo_thread and self._night_teleport_solo_thread.is_alive():
+                self._night_teleport_solo_thread.join()
+            self._night_teleport_solo_thread = None
+            self.label_night_teleport_solo.setText("")
+
+    def press_night_teleport_solo(self):
+        respawn = 720000
+        total_seconds = respawn / 1000
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+        next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
+        self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
+        self.label_night_teleport_solo.setText(f'Next: {next_check.strftime('%M:%S')}')
+        time.sleep(12 * 60)
+        while self.pressed_night_teleport_solo:
+            try:
+                if not self.res_process:
+                    self.paused_pressed()
+                    hwnd = int(self.lineEdit_window_id.text())
+                    time.sleep(1)
+                    redss.use_teleport(hwnd)
+                    time.sleep(1)
+                    self.continue_pressed()
+
+                respawn = 720000
+                total_seconds = respawn / 1000
+                minutes = int(total_seconds // 60)
+                seconds = int(total_seconds % 60)
+                print(datetime.datetime.now().strftime('%H:%M:%S'), f'Проверка через: {minutes} min. и {seconds} sec.')
+                next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
+                self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
+                self.label_night_teleport_solo.setText(f'Next: {next_check.strftime('%M:%S')}')
+
+                for _ in range(int(total_seconds)):
+                    if not self.pressed_night_teleport_solo:
+                        self.label_night_teleport_solo.setText('')
+                        break
+                    time.sleep(1)
+            except Exception as e:
+                print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
+                time.sleep(10)
+
+        self._night_teleport_solo_thread = None
 
     def press_f11(self):
         self.pushButton_located.click()
