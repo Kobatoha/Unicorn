@@ -39,6 +39,14 @@ def check_active_window(hwnd):
                 get_focus_lineage_window(hwnd)
 
 
+def check_active_window_insert(hwnd):
+    windows = get_lineage_windows()
+    for window in windows:
+        if window._hWnd == hwnd:
+            active = window.isActive
+            return active
+
+
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
