@@ -1263,7 +1263,11 @@ class Main(Ui_MainWindow):
         next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
         self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
         self.label_night_teleport.setText(f'Next: {next_check.strftime('%M:%S')}')
-        time.sleep(12 * 60)
+        for _ in range(int(total_seconds)):
+            if not self.pressed_night_teleport:
+                self.label_night_teleport.setText('')
+                break
+            time.sleep(1)
         while self.pressed_night_teleport:
             try:
                 if not self.res_process:
@@ -1319,7 +1323,11 @@ class Main(Ui_MainWindow):
         next_check = datetime.datetime.now() + datetime.timedelta(minutes=minutes, seconds=seconds)
         self.label_information_actions.setText(f'Next check HP: {minutes} min. and {seconds} sec.')
         self.label_night_teleport_solo.setText(f'Next: {next_check.strftime('%M:%S')}')
-        time.sleep(12 * 60)
+        for _ in range(int(total_seconds)):
+            if not self.pressed_night_teleport_solo:
+                self.label_night_teleport_solo.setText('')
+                break
+            time.sleep(1)
         while self.pressed_night_teleport_solo:
             try:
                 if not self.res_process:
