@@ -50,7 +50,7 @@ def check_active_window_insert(hwnd):
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    directory = r'C:\l2essence\Screenshot'
+    # directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
 
@@ -187,9 +187,9 @@ def check_health_bar(hwnd):
     else:
         print('Боец еще в строю')
         death = False
+        os.remove(file)
 
     time.sleep(2)
-    os.remove(file)
     return death
 
 
