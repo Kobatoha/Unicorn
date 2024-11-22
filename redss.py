@@ -203,7 +203,31 @@ def check_health_bar(hwnd):
     return death
 
 
+def check_health_bar_string(hwnd):
+    print(datetime.now().strftime('%H:%M:%S'))
+    file = create_screenshot(hwnd)
+    image = Image.open(file)
+    x1, y1 = 63, 0
+    x2, y2 = x1 + 345, y1 + 33
+    death = False
 
+    cropped_image = image.crop((x1, y1, x2, y2))
+
+    hp_string = get_hp_string(cropped_image)
+    hp = hp_string[:-1].split(' ')[1].split('/')
+    current_hp, full_hp = hp[0], hp[1]
+
+    if current_hp == 0:
+        print(current_hp, 'Боец погиб')
+        death = True
+    else:
+        print(current_hp, 'Боец еще в строю')
+        death = False
+        os.remove(file)
+
+    time.sleep(0.5)
+    print(datetime.now().strftime('%H:%M:%S'))
+    return death
 
 
 def get_mouse_position():
