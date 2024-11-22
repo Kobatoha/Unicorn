@@ -454,6 +454,7 @@ class Main(Ui_MainWindow):
     def startstop(self):
         if self.pushButton_startstop.text() == 'Start':
             self.pushButton_startstop.setText('Stop')
+            self.tray_icon.setIcon(QtGui.QIcon("images/icon_on.png"))
             self.label_information_actions.setText("Started clicker")
             self.lineEdit_window_id.setDisabled(True)
             self.toggle_1(self.checkBox_1.checkState())
@@ -484,6 +485,7 @@ class Main(Ui_MainWindow):
 
         else:
             self.pushButton_startstop.setText('Start')
+            self.tray_icon.setIcon(QtGui.QIcon("images/icon_off.png"))
             self.label_information_actions.setText('Stopped clicker')
             self.lineEdit_window_id.setEnabled(True)
             self.pressed_1 = False

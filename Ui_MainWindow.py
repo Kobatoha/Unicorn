@@ -620,6 +620,12 @@ class Ui_MainWindow(object):
         self.label_hotkey_startstop.setText('INSERT')
         self.label_hotkey_startstop.setStyleSheet("background: none;")
 
+        self.tray_icon = QtWidgets.QSystemTrayIcon()
+        self.tray_icon.setIcon(QtGui.QIcon("images/icon_off.png"))
+
+        # Отображаем иконку
+        self.tray_icon.show()
+
         ### button lockated ###
         self.pushButton_located = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_located.setGeometry(QtCore.QRect(30, 490, 41, 41))
