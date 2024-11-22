@@ -1098,7 +1098,7 @@ class Main(Ui_MainWindow):
             self.label_res.setText("")
 
     def press_res(self):
-        time.sleep(10)
+        time.sleep(3)
         while self.pressed_res:
             try:
                 hwnd = int(self.lineEdit_window_id.text())
@@ -1120,8 +1120,12 @@ class Main(Ui_MainWindow):
                             time.sleep(1)
                             death = False
                             if self.pressed_res:
-                                redss.send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
-                                time.sleep(5)
+                                redss.send_left_click_pyautogui(
+                                    hwnd,
+                                    rect_recovery_pay_exp[0],
+                                    rect_recovery_pay_exp[1]
+                                )
+                                time.sleep(0.5)
                                 death = True
                     else:
                         break
@@ -1130,7 +1134,7 @@ class Main(Ui_MainWindow):
                     self.res_process = False
                 if death:
                     self.paused_pressed()
-                    time.sleep(120)
+                    time.sleep(100)
                     if self.pressed_res:
                         redss.use_teleport(hwnd)
                         time.sleep(2)
@@ -1177,7 +1181,7 @@ class Main(Ui_MainWindow):
             self.label_res_random.setText("")
 
     def press_res_random(self):
-        time.sleep(10)
+        time.sleep(3)
         while self.pressed_res_random:
             try:
                 hwnd = int(self.lineEdit_window_id.text())
@@ -1200,7 +1204,7 @@ class Main(Ui_MainWindow):
                             death = False
                             if self.pressed_res_random:
                                 redss.send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
-                                time.sleep(5)
+                                time.sleep(0.5)
                                 death = True
                     else:
                         break
@@ -1209,7 +1213,7 @@ class Main(Ui_MainWindow):
                     self.res_process = False
                 if death:
                     self.paused_pressed()
-                    time.sleep(120)
+                    time.sleep(100)
                     if self.pressed_res_random:
                         redss.use_teleport_random(hwnd)
                         time.sleep(2)
