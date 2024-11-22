@@ -13,6 +13,16 @@ import random
 from pywinauto import Desktop
 import ctypes
 from ctypes import wintypes
+from PIL import Image
+import pytesseract
+
+
+def get_hp_string(image: Image):
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+    recognized_text = pytesseract.image_to_string(image)
+
+    return recognized_text
 
 
 def get_lineage_hwnd():
@@ -191,6 +201,9 @@ def check_health_bar(hwnd):
 
     time.sleep(2)
     return death
+
+
+
 
 
 def get_mouse_position():
