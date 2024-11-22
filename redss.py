@@ -15,6 +15,8 @@ import ctypes
 from ctypes import wintypes
 from PIL import Image
 import pytesseract
+import cv2
+import re
 
 
 def get_hp_string(image: Image):
@@ -73,17 +75,41 @@ def get_countrattack_icon(image):
     return image.crop((r1, u1, r2, u2))
 
 
-def create_screenshot_inside(hwnd):
-    user32 = ctypes.windll.user32
-    gdi32 = ctypes.windll.gdi32
+def screenshot_window(hwnd, output_path="unishot.png"):
+    # Получаем размеры окна
+    left, top, right, bottom = win32gui.GetWindowRect(hwnd)
+    width = right - left - 16
+    height = bottom - top - 41
 
-    PrintWindow = user32.PrintWindow
+    # Получаем контекст устройства окна
+    hwnd_dc = win32gui.GetWindowDC(hwnd)
+    mfc_dc = win32ui.CreateDCFromHandle(hwnd_dc)
+    save_dc = mfc_dc.CreateCompatibleDC()
 
-    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
-    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    directory = r'C:\l2essence\Screenshot'
-    file = os.listdir(directory)[-1]
-    return rf'{directory}\{file}'
+    # Создаем объект для сохранения битмапа
+    save_bitmap = win32ui.CreateBitmap()
+    save_bitmap.CreateCompatibleBitmap(mfc_dc, width, height)
+    save_dc.SelectObject(save_bitmap)
+
+    # Копируем содержимое клиентской области в битмап
+    save_dc.BitBlt((0, 0), (width, height), mfc_dc, (8, 31), win32con.SRCCOPY)
+
+    # Конвертируем данные из битмапа в изображение Pillow
+    bmp_info = save_bitmap.GetInfo()
+    bmp_data = save_bitmap.GetBitmapBits(True)
+    img = Image.frombuffer("RGB", (bmp_info['bmWidth'], bmp_info['bmHeight']), bmp_data, "raw", "BGRX", 0, 1)
+
+    # Сохраняем изображение в файл
+    img.save(output_path)
+    # img.show()
+
+    # Освобождаем ресурсы
+    win32gui.DeleteObject(save_bitmap.GetHandle())
+    save_dc.DeleteDC()
+    mfc_dc.DeleteDC()
+    win32gui.ReleaseDC(hwnd, hwnd_dc)
+
+    return img
 
 
 def get_window_size(hwnd):
@@ -203,30 +229,50 @@ def check_health_bar(hwnd):
     return death
 
 
+def grey_image_filter(image: str):
+    cv2_image = cv2.imread(image)
+
+    gray_image = cv2.cvtColor(cv2_image, cv2.COLOR_BGR2GRAY)
+
+    _, threshold_image = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
+
+    cv2.imwrite("gray_image.png", threshold_image)
+    return "gray_image.png"
+
+
+def pattern_hp(string: str):
+    text = "(29691/29691\n\n"
+    pattern = r"(\d+)/(\d+)"
+
+    matches = re.search(pattern, text)
+    if matches:
+        number1 = matches.group(1)  # Число до слэша
+        number2 = matches.group(2)  # Число после слэша
+
+        return number1, number2
+
+
 def check_health_bar_string(hwnd):
-    print(datetime.now().strftime('%H:%M:%S'))
-    file = create_screenshot(hwnd)
-    image = Image.open(file)
+    image = screenshot_window(hwnd)
     x1, y1 = 63, 0
     x2, y2 = x1 + 345, y1 + 33
     death = False
 
+    file_name = 'hp_bar.png'
     cropped_image = image.crop((x1, y1, x2, y2))
 
     hp_string = get_hp_string(cropped_image)
-    hp = hp_string[:-1].split(' ')[1].split('/')
-    current_hp, full_hp = hp[0], hp[1]
 
-    if current_hp == 0:
-        print(current_hp, 'Боец погиб')
+    current_hp, full_hp = pattern_hp(hp_string)
+
+    if int(current_hp) == 0:
+        print(f'{current_hp}/{full_hp}', 'Боец погиб')
         death = True
     else:
-        print(current_hp, 'Боец еще в строю')
+        print(f'{current_hp}/{full_hp}', 'Боец еще в строю')
         death = False
-        os.remove(file)
 
     time.sleep(0.5)
-    print(datetime.now().strftime('%H:%M:%S'))
     return death
 
 
