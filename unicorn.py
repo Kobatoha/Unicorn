@@ -1102,7 +1102,7 @@ class Main(Ui_MainWindow):
         while self.pressed_res:
             try:
                 hwnd = int(self.lineEdit_window_id.text())
-                flag = redss.check_health_bar(hwnd)
+                flag = redss.check_health_bar_string(hwnd)
                 if flag:
                     self.res_process = True
                 if flag and self.pressed_res:
