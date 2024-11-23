@@ -67,14 +67,6 @@ def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     return rf'{directory}\{file}'
 
 
-def get_countrattack_icon(image):
-    width, height = image.width, image.height
-
-    r1, r2 = width // 2 + (width // 2 // 2 // 2), (width // 2) + (width // 2 // 2)
-    u1, u2 = height // 2 - (height // 2 // 2 // 2), height // 2
-    return image.crop((r1, u1, r2, u2))
-
-
 def screenshot_window(hwnd, output_path="unishot.png"):
     # Получаем размеры окна
     left, top, right, bottom = win32gui.GetWindowRect(hwnd)
@@ -198,15 +190,6 @@ def get_red_pixels(image):
     return len(red_pixels)
 
 
-def press_alt_f(hwnd):
-
-    # win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, '0x12', 0)
-    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 164, 0)
-
-    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 164, 0)
-    # win32api.SendMessage(hwnd, win32con.WM_KEYUP, '0x12', 0)
-
-
 def check_health_bar(hwnd):
     file = create_screenshot(hwnd)
     image = Image.open(file)
@@ -241,10 +224,9 @@ def grey_image_filter(image: str):
 
 
 def pattern_hp(string: str):
-    text = "(29691/29691\n\n"
     pattern = r"(\d+)/(\d+)"
 
-    matches = re.search(pattern, text)
+    matches = re.search(pattern, string)
     if matches:
         number1 = matches.group(1)  # Число до слэша
         number2 = matches.group(2)  # Число после слэша
@@ -261,15 +243,21 @@ def check_health_bar_string(hwnd):
     file_name = 'hp_bar.png'
     cropped_image = image.crop((x1, y1, x2, y2))
 
+    hp_color = get_red_pixels(cropped_image)
     hp_string = get_hp_string(cropped_image)
 
-    current_hp, full_hp = pattern_hp(hp_string)
+    if hp_string:
+        current_hp, full_hp = pattern_hp(hp_string)
+    else:
+        current_hp, full_hp = 0, 0
 
-    if int(current_hp) == 0:
-        print(f'{current_hp}/{full_hp}', 'Боец погиб')
+    if int(current_hp) == 0 or hp_color == 0:
+        print(f'{current_hp} из {full_hp}', 'Боец погиб')
+        print(f'Красных пикселей: {hp_color}')
         death = True
     else:
-        print(f'{current_hp}/{full_hp}', 'Боец еще в строю')
+        print(f'{current_hp} из {full_hp}', 'Боец еще в строю')
+        print(f'Красных пикселей: {hp_color}')
         death = False
 
     time.sleep(0.5)
@@ -289,14 +277,6 @@ def get_mouse_position():
     y_rel = y - y0
 
     return x_rel, y_rel
-
-
-def send_left_click_sm(hwnd, x, y):
-    lParam = win32api.MAKELONG(x, y)
-
-    # Отправляем сообщение о нажатии левой кнопки мыши
-    win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-    win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, None, lParam)
 
 
 def send_left_click_pyautogui(hwnd, x, y):
