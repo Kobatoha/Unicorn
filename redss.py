@@ -234,6 +234,13 @@ def pattern_hp(string: str):
         return number1, number2
 
 
+def pattern_error_hp(string: str):
+    pattern = r"(\d+)"
+
+    match = re.search(pattern, string)
+    return match.group()
+
+
 def check_health_bar_string(hwnd):
     image = screenshot_window(hwnd)
     x1, y1 = 63, 0
@@ -247,7 +254,10 @@ def check_health_bar_string(hwnd):
     hp_string = get_hp_string(cropped_image)
 
     if hp_string:
-        current_hp, full_hp = pattern_hp(hp_string)
+        try:
+            current_hp, full_hp = pattern_hp(hp_string)
+        except:
+            error_hp = pattern_error_hp(hp_string)
     else:
         current_hp, full_hp = 0, 0
 
