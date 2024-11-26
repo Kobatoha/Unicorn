@@ -261,13 +261,15 @@ def check_health_bar_string(hwnd):
     else:
         current_hp, full_hp = 0, 0
 
-    if int(current_hp) == 0 or hp_color == 0:
+    if hp_color == 0 or int(current_hp) == 0:
         print(f'{current_hp} из {full_hp}', 'Боец погиб')
         print(f'Красных пикселей: {hp_color}')
+        print('-' * 60)
         death = True
     else:
         print(f'{current_hp} из {full_hp}', 'Боец еще в строю')
         print(f'Красных пикселей: {hp_color}')
+        print('-' * 60)
         death = False
 
     time.sleep(0.5)

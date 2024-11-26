@@ -1144,7 +1144,7 @@ class Main(Ui_MainWindow):
                         self.res_process = False
                         break
 
-                respawn = random.randint(30000, 60000)
+                respawn = random.randint(30000, 40000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)
                 seconds = int(total_seconds % 60)
