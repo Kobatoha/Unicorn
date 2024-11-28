@@ -62,7 +62,7 @@ def check_active_window_insert(hwnd):
 def create_screenshot(hwnd, directory=r'C:\Games\LineageII Essence\Screenshot'):
     win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x2C, 0)
     win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x2C, 0)
-    # directory = r'C:\l2essence\Screenshot'
+    directory = r'C:\l2essence\Screenshot'
     file = os.listdir(directory)[-1]
     return rf'{directory}\{file}'
 
@@ -251,24 +251,24 @@ def check_health_bar_string(hwnd):
     cropped_image = image.crop((x1, y1, x2, y2))
 
     hp_color = get_red_pixels(cropped_image)
-    hp_string = get_hp_string(cropped_image)
+    # hp_string = get_hp_string(cropped_image)
 
-    if hp_string:
-        try:
-            current_hp, full_hp = pattern_hp(hp_string)
-        except:
-            error_hp = pattern_error_hp(hp_string)
-    else:
-        current_hp, full_hp = 0, 0
+    # if hp_string:
+    #     try:
+    #         current_hp, full_hp = pattern_hp(hp_string)
+    #     except:
+    #         error_hp = pattern_error_hp(hp_string)
+    # else:
+    #     current_hp, full_hp = 0, 0
 
-    if hp_color == 0 or int(current_hp) == 0:
-        print(f'{current_hp} из {full_hp}', 'Боец погиб')
+    if hp_color == 0:
         print(f'Красных пикселей: {hp_color}')
+        print(f'Боец погиб')
         print('-' * 60)
         death = True
     else:
-        print(f'{current_hp} из {full_hp}', 'Боец еще в строю')
         print(f'Красных пикселей: {hp_color}')
+        print(f'Боец еще в строю')
         print('-' * 60)
         death = False
 

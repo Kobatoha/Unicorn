@@ -15,6 +15,31 @@ from Ui_MainWindow import Ui_MainWindow
 import json
 from PyQt5.QtWidgets import QMessageBox
 import redss
+import logging
+import sys
+
+
+logging.basicConfig(
+    filename='uni_logs.txt',
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+
+class LoggerWriter:
+    def __init__(self, level):
+        self.level = level
+
+    def write(self, message):
+        if message.strip():
+            self.level(message)
+
+    def flush(self):
+        pass
+
+
+sys.stdout = LoggerWriter(logging.info)
+sys.stderr = LoggerWriter(logging.error)
 
 
 class Main(Ui_MainWindow):
@@ -1409,15 +1434,18 @@ if __name__ == "__main__":
         import sys
         app = QtWidgets.QApplication(sys.argv)
         MainWindow = QtWidgets.QMainWindow()
+
         ui = Main()
         ui.setupUi(MainWindow)
-        thread = threading.Thread(target=ui.update_hot_time_icon)
-        thread.start()
-        thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert, daemon=True)
-        thread_press_insert.start()
+
+        thread = threading.Thread(target=ui.update_hot_time_icon).start()
+        thread_press_insert = threading.Thread(target=ui.hotkey_thread_insert, daemon=True).start()
+
         # thread_press_f11 = threading.Thread(target=ui.hotkey_thread_f11)
         # thread_press_f11.start()
+
         MainWindow.show()
         sys.exit(app.exec_())
-    except:
-        print('error name-main')
+        
+    except Exception as e:
+        logging.error(f"Unexpected error in main: {e}")
