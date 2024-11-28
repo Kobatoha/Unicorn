@@ -264,12 +264,11 @@ def check_health_bar_string(hwnd):
     if hp_color == 0:
         print(f'Красных пикселей: {hp_color}')
         print(f'Боец погиб')
-        print('-' * 60)
         death = True
     else:
-        print(f'Красных пикселей: {hp_color}')
-        print(f'Боец еще в строю')
-        print('-' * 60)
+        # print(f'Красных пикселей: {hp_color}')
+        # print(f'Боец еще в строю')
+        # print('-' * 60)
         death = False
 
     time.sleep(0.5)
@@ -296,7 +295,7 @@ def send_left_click_pyautogui(hwnd, x, y):
     x0, y0 = rect[0], rect[1]
 
     pyautogui.moveTo(x0 + x, y0 + y, 0.25)
-    time.sleep(2)
+    time.sleep(1)
     pyautogui.leftClick()
     mouse.click('left')
 

@@ -1132,17 +1132,18 @@ class Main(Ui_MainWindow):
                     self.res_process = True
                 if flag and self.pressed_res:
                     redss.check_active_window(hwnd)
-                    time.sleep(5)
+                    self.paused_pressed()
+                    time.sleep(3)
                     rect_recovery_free_exp = redss.get_window_free_up(hwnd)
                     rect_recovery_agree = redss.get_window_free_agree(hwnd)
                     rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
                     if self.pressed_res:
                         redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
-                        time.sleep(2)
+                        time.sleep(0.5)
                         death = False
                         if self.pressed_res:
                             redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
-                            time.sleep(1)
+                            time.sleep(0.5)
                             death = False
                             if self.pressed_res:
                                 redss.send_left_click_pyautogui(
@@ -1157,6 +1158,7 @@ class Main(Ui_MainWindow):
                 else:
                     death = False
                     self.res_process = False
+                    self.continue_pressed()
                 if death:
                     self.paused_pressed()
                     time.sleep(100)
@@ -1183,6 +1185,7 @@ class Main(Ui_MainWindow):
                         self.label_res.setText('')
                         break
                     time.sleep(1)
+                print('-' * 60)
             except Exception as e:
                 print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
                 time.sleep(10)
