@@ -38,8 +38,8 @@ class LoggerWriter:
         pass
 
 
-sys.stdout = LoggerWriter(logging.info)
-sys.stderr = LoggerWriter(logging.error)
+# sys.stdout = LoggerWriter(logging.info)
+# sys.stderr = LoggerWriter(logging.error)
 
 
 class Main(Ui_MainWindow):
@@ -1123,45 +1123,49 @@ class Main(Ui_MainWindow):
             self.label_res.setText("")
 
     def run_res(self, hwnd):
-        redss.check_active_window(hwnd)
-        self.paused_pressed()
-        time.sleep(3)
-        rect_recovery_free_exp = redss.get_window_free_up(hwnd)
-        rect_recovery_agree = redss.get_window_free_agree(hwnd)
-        rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
-        if self.pressed_res:
-            redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
-            time.sleep(0.5)
-            death = False
-            if self.pressed_res:
-                redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
-                time.sleep(0.5)
-                death = False
+        try:
+            with self.lock:
+                redss.check_active_window(hwnd)
+                self.paused_pressed()
+                time.sleep(3)
+                rect_recovery_free_exp = redss.get_window_free_up(hwnd)
+                rect_recovery_agree = redss.get_window_free_agree(hwnd)
+                rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
                 if self.pressed_res:
-                    redss.send_left_click_pyautogui(
-                        hwnd,
-                        rect_recovery_pay_exp[0],
-                        rect_recovery_pay_exp[1]
-                    )
+                    redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
                     time.sleep(0.5)
-                    death = True
-        else:
-            death = False
-            self.res_process = False
-            self.continue_pressed()
+                    death = False
+                    if self.pressed_res:
+                        redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
+                        time.sleep(0.5)
+                        death = False
+                        if self.pressed_res:
+                            redss.send_left_click_pyautogui(
+                                hwnd,
+                                rect_recovery_pay_exp[0],
+                                rect_recovery_pay_exp[1]
+                            )
+                            time.sleep(0.5)
+                            death = True
+                else:
+                    death = False
+                    self.res_process = False
+                    self.continue_pressed()
 
-        if death:
-            self.paused_pressed()
-            time.sleep(100)
-            if self.pressed_res:
-                redss.use_teleport(hwnd)
-                time.sleep(2)
-                self.continue_pressed()
-                self.res_process = False
-            else:
-                self.res_process = False
+                if death:
+                    self.paused_pressed()
+                    time.sleep(100)
+                    if self.pressed_res:
+                        redss.use_teleport(hwnd)
+                        time.sleep(2)
+                        self.continue_pressed()
+                        self.res_process = False
+                    else:
+                        self.res_process = False
 
-        return death
+                return death
+        finally:
+            print("Завершен поток run_res")
 
     def press_res(self):
         time.sleep(3)
@@ -1172,7 +1176,14 @@ class Main(Ui_MainWindow):
                 if flag:
                     self.res_process = True
                 if flag and self.pressed_res:
-                        death = self.run_res(hwnd=hwnd)
+                    if self._run_res_thread and self._run_res_thread.is_alive():
+                        print("Завершаем текущий поток run_res перед запуском нового")
+                        self.pressed_res = False
+                        self._run_res_thread.join()
+
+                    self.pressed_res = True
+                    self._run_res_thread = threading.Thread(target=self.run_res, args=(hwnd,), daemon=True)
+                    self._run_res_thread.start()
 
                 respawn = random.randint(30000, 40000)
                 total_seconds = respawn / 1000
