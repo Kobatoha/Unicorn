@@ -38,8 +38,8 @@ class LoggerWriter:
         pass
 
 
-# sys.stdout = LoggerWriter(logging.info)
-# sys.stderr = LoggerWriter(logging.error)
+sys.stdout = LoggerWriter(logging.info)
+sys.stderr = LoggerWriter(logging.error)
 
 
 class Main(Ui_MainWindow):
@@ -55,6 +55,30 @@ class Main(Ui_MainWindow):
         self.window.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.window.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowCloseButtonHint)
         self.window.closeEvent = self.closeEvent
+
+        self.last_activity_time = datetime.datetime.now()  # Метка последней активности
+        self.is_running = True  # Флаг для завершения монитора
+
+        # Запуск потока мониторинга
+        self.monitor_thread = threading.Thread(target=self.monitor_application, daemon=True)
+        self.monitor_thread.start()
+
+    def update_activity(self):
+        """Обновляет метку времени последней активности."""
+        self.last_activity_time = datetime.datetime.now()
+
+    def monitor_application(self):
+        """Проверяет состояние приложения."""
+        while self.is_running:
+            time.sleep(30)
+            time_since_last_activity = (datetime.datetime.now() - self.last_activity_time).total_seconds()
+
+            if time_since_last_activity > 60:
+                self.on_application_hang(time_since_last_activity)
+
+    def on_application_hang(self, time_since_last_activity):
+        """Обрабатывает ситуацию зависания приложения."""
+        print(f"⚠️ Приложение зависло! Последняя активность была {time_since_last_activity} секунд назад.")
 
     def closeEvent(self, event):
         # Вызываем функцию sys.exit() при закрытии окна
@@ -1147,6 +1171,10 @@ class Main(Ui_MainWindow):
                             )
                             time.sleep(0.5)
                             death = True
+                        else:
+                            self.continue_pressed()
+                    else:
+                        self.continue_pressed()
                 else:
                     death = False
                     self.res_process = False
@@ -1171,10 +1199,18 @@ class Main(Ui_MainWindow):
         time.sleep(3)
         while self.pressed_res:
             try:
+                self.update_activity()  # Обновляем активность
                 hwnd = int(self.lineEdit_window_id.text())
                 flag = redss.check_health_bar_string(hwnd)
                 if flag:
                     self.res_process = True
+
+                if not self.pressed_res:
+                    print("Работа с run_res завершена, так как self.pressed_res = False.")
+                    if self._run_res_thread and self._run_res_thread.is_alive():
+                        self._run_res_thread.join()
+                    break
+
                 if flag and self.pressed_res:
                     if self._run_res_thread and self._run_res_thread.is_alive():
                         print("Завершаем текущий поток run_res перед запуском нового")
@@ -1203,6 +1239,11 @@ class Main(Ui_MainWindow):
             except Exception as e:
                 print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
                 time.sleep(10)
+
+        # Завершение работы основного потока
+        if self._run_res_thread and self._run_res_thread.is_alive():
+            print("Принудительное завершение run_res при отключении pressed_res.")
+            self._run_res_thread.join()
 
         self._res_thread = None
 

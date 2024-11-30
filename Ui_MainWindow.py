@@ -541,6 +541,8 @@ class Ui_MainWindow(object):
 
         self._res_random_thread = None
         self.res_random_process = None
+        self._run_res_thread = None
+        self.lock = threading.Lock()
 
         self.checkBox_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_night_teleport.setGeometry(QtCore.QRect(100, 350, 40, 20))
