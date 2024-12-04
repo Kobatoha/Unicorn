@@ -129,7 +129,7 @@ def get_window_free_up(hwnd):
     height = rect[1]
 
     w_up = width + 15
-    h_up = height + 115
+    h_up = height + 140
 
     w_down = w_up + 158
     h_down = h_up + 20
@@ -340,19 +340,19 @@ def res_agree_pay_rect():
 
 
 def go_to_village(hwnd):
-    flag = check_health_bar(hwnd)
+    flag = check_health_bar_string(hwnd)
     if flag:
         check_active_window(hwnd)
-        time.sleep(5)
+        time.sleep(0.5)
         rect_recovery_free_exp = get_window_free_up(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
-        time.sleep(2)
+        time.sleep(0.5)
         rect_recovery_agree = get_window_free_agree(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
-        time.sleep(1)
+        time.sleep(0.5)
         rect_recovery_pay_exp = get_window_pay_agree(hwnd)
         send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
-        time.sleep(5)
+        time.sleep(0.5)
         return True
     return False
 
