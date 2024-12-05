@@ -1170,7 +1170,7 @@ class Main(Ui_MainWindow):
 
                 if death:
                     self.paused_pressed()
-                    time.sleep(120)
+                    time.sleep(5)
                     if self.pressed_res:
                         redss.use_teleport(hwnd)
                         time.sleep(2)
@@ -1275,7 +1275,7 @@ class Main(Ui_MainWindow):
 
                 if death:
                     self.paused_pressed()
-                    time.sleep(120)
+                    time.sleep(5)
                     if self.pressed_res_random:
                         redss.use_teleport_random(hwnd)
                         time.sleep(2)
