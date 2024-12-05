@@ -152,7 +152,15 @@ def get_window_free_agree(hwnd):
     random_w = random.randint(w_up, w_down)
     random_h = random.randint(h_up, h_down)
 
+    move_mouse(hwnd, random_w, random_h)
+
     return random_w, random_h
+
+
+def enter_res(hwnd):
+    time.sleep(0.5)
+    win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 13, 0)
+    win32api.SendMessage(hwnd, win32con.WM_KEYUP, 13, 0)
 
 
 def get_window_pay_agree(hwnd):

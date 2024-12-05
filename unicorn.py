@@ -1153,26 +1153,14 @@ class Main(Ui_MainWindow):
                 self.paused_pressed()
                 time.sleep(3)
                 rect_recovery_free_exp = redss.get_window_free_up(hwnd)
-                rect_recovery_agree = redss.get_window_free_agree(hwnd)
-                rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
                 if self.pressed_res:
                     redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
                     time.sleep(0.5)
                     death = False
                     if self.pressed_res:
-                        redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
+                        redss.enter_res(hwnd)
                         time.sleep(0.5)
-                        death = False
-                        if self.pressed_res:
-                            redss.send_left_click_pyautogui(
-                                hwnd,
-                                rect_recovery_pay_exp[0],
-                                rect_recovery_pay_exp[1]
-                            )
-                            time.sleep(0.5)
-                            death = True
-                        else:
-                            self.continue_pressed()
+                        death = True
                     else:
                         self.continue_pressed()
                 else:
@@ -1182,7 +1170,7 @@ class Main(Ui_MainWindow):
 
                 if death:
                     self.paused_pressed()
-                    time.sleep(100)
+                    time.sleep(120)
                     if self.pressed_res:
                         redss.use_teleport(hwnd)
                         time.sleep(2)
@@ -1263,40 +1251,31 @@ class Main(Ui_MainWindow):
             self._res_random_thread = None
             self.label_res_random.setText("")
 
-    def press_res_random(self):
-        time.sleep(3)
-        while self.pressed_res_random:
-            try:
-                hwnd = int(self.lineEdit_window_id.text())
-                flag = redss.check_health_bar(hwnd)
-                if flag:
-                    self.res_process = True
-                if flag and self.pressed_res_random:
-                    redss.check_active_window(hwnd)
-                    time.sleep(5)
-                    rect_recovery_free_exp = redss.get_window_free_up(hwnd)
-                    rect_recovery_agree = redss.get_window_free_agree(hwnd)
-                    rect_recovery_pay_exp = redss.get_window_pay_agree(hwnd)
+    def run_res_random(self, hwnd):
+        try:
+            with self.lock:
+                redss.check_active_window(hwnd)
+                self.paused_pressed()
+                time.sleep(3)
+                rect_recovery_free_exp = redss.get_window_free_up(hwnd)
+                if self.pressed_res_random:
+                    redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
+                    time.sleep(0.5)
+                    death = False
                     if self.pressed_res_random:
-                        redss.send_left_click_pyautogui(hwnd, rect_recovery_free_exp[0], rect_recovery_free_exp[1])
-                        time.sleep(2)
-                        death = False
-                        if self.pressed_res_random:
-                            redss.send_left_click_pyautogui(hwnd, rect_recovery_agree[0], rect_recovery_agree[1])
-                            time.sleep(1)
-                            death = False
-                            if self.pressed_res_random:
-                                redss.send_left_click_pyautogui(hwnd, rect_recovery_pay_exp[0], rect_recovery_pay_exp[1])
-                                time.sleep(0.5)
-                                death = True
+                        redss.enter_res(hwnd)
+                        time.sleep(0.5)
+                        death = True
                     else:
-                        break
+                        self.continue_pressed()
                 else:
                     death = False
                     self.res_process = False
+                    self.continue_pressed()
+
                 if death:
                     self.paused_pressed()
-                    time.sleep(100)
+                    time.sleep(120)
                     if self.pressed_res_random:
                         redss.use_teleport_random(hwnd)
                         time.sleep(2)
@@ -1304,10 +1283,38 @@ class Main(Ui_MainWindow):
                         self.res_process = False
                     else:
                         self.res_process = False
-                        break
 
-                self.res_process = False
-                respawn = random.randint(30000, 120000)
+                return death
+        finally:
+            print("Завершен поток run_res_random")
+
+    def press_res_random(self):
+        time.sleep(3)
+        while self.pressed_res_random:
+            try:
+                self.update_activity()  # Обновляем активность
+                hwnd = int(self.lineEdit_window_id.text())
+                flag = redss.check_health_bar_string(hwnd)
+                if flag:
+                    self.res_process = True
+
+                if not self.pressed_res_random:
+                    print("Работа с run_res_random завершена, так как self.pressed_res = False.")
+                    if self._run_res_random_thread and self._run_res_random_thread.is_alive():
+                        self._run_res_random_thread.join()
+                    break
+
+                if flag and self.pressed_res_random:
+                    if self._run_res_random_thread and self._run_res_random_thread.is_alive():
+                        print("Завершаем текущий поток run_res_random перед запуском нового")
+                        self.pressed_res_random = False
+                        self._run_res_random_thread.join()
+
+                    self.pressed_res_random = True
+                    self._run_res_random_thread = threading.Thread(target=self.run_res_random, args=(hwnd,), daemon=True)
+                    self._run_res_random_thread.start()
+
+                respawn = random.randint(30000, 40000)
                 total_seconds = respawn / 1000
                 minutes = int(total_seconds // 60)
                 seconds = int(total_seconds % 60)
@@ -1321,9 +1328,15 @@ class Main(Ui_MainWindow):
                         self.label_res_random.setText('')
                         break
                     time.sleep(1)
+                print('-' * 60)
             except Exception as e:
                 print(f'Произошла ошибка воскрешения, ждем 10 секунд для повтора: {e}')
                 time.sleep(10)
+
+        # Завершение работы основного потока
+        if self._run_res_random_thread and self._run_res_random_thread.is_alive():
+            print("Принудительное завершение run_res при отключении pressed_res.")
+            self._run_res_random_thread.join()
 
         self._res_random_thread = None
 

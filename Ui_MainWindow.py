@@ -541,6 +541,7 @@ class Ui_MainWindow(object):
 
         self._res_random_thread = None
         self.res_random_process = None
+        self._run_res_random_thread = None
         self._run_res_thread = None
         self.lock = threading.Lock()
 
