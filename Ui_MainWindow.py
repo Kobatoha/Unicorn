@@ -16,10 +16,10 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowTitle("Unicorn")
         MainWindow.setWindowIcon(QtGui.QIcon("images/unicorn.png"))
-        MainWindow.resize(350, 600)
-        MainWindow.setMinimumSize(QtCore.QSize(165, 360))
-        MainWindow.setMaximumSize(QtCore.QSize(350, 600))
-        MainWindow.setBaseSize(QtCore.QSize(350, 600))
+        MainWindow.resize(380, 600)
+        MainWindow.setMinimumSize(QtCore.QSize(165, 380))
+        MainWindow.setMaximumSize(QtCore.QSize(380, 600))
+        MainWindow.setBaseSize(QtCore.QSize(380, 600))
         MainWindow.setStyleSheet("background-image: url('images/bg_image.jpg');")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -523,6 +523,12 @@ class Ui_MainWindow(object):
         self._res_thread = None
         self.res_process = None
 
+        self.check_box_res_without_wait = QtWidgets.QCheckBox(self.centralwidget)
+        self.check_box_res_without_wait.setGeometry(QtCore.QRect(350, 320, 20, 20))
+        self.check_box_res_without_wait.setStyleSheet("background: none;")
+        self.check_box_res_without_wait.setDisabled(True)
+        self.check_box_res_without_wait.setToolTip('Перезалет по точке через 5 секунд после реса')
+
         ### auto ressurection 2###
         self.check_box_res_random = QtWidgets.QCheckBox(self.centralwidget)
         self.check_box_res_random.setGeometry(QtCore.QRect(250, 350, 85, 20))
@@ -544,6 +550,16 @@ class Ui_MainWindow(object):
         self._run_res_random_thread = None
         self._run_res_thread = None
         self.lock = threading.Lock()
+
+        self.check_box_res_random_without_wait = QtWidgets.QCheckBox(self.centralwidget)
+        self.check_box_res_random_without_wait.setGeometry(QtCore.QRect(350, 350, 20, 20))
+        self.check_box_res_random_without_wait.setStyleSheet("background: none;")
+        self.check_box_res_random_without_wait.setDisabled(True)
+        self.check_box_res_random_without_wait.setToolTip('Перезалет по точке через 5 секунд после реса')
+
+        """
+        TELEPORT
+        """
 
         self.checkBox_night_teleport = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox_night_teleport.setGeometry(QtCore.QRect(100, 350, 40, 20))

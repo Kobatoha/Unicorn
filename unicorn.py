@@ -1134,12 +1134,16 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             print('toggle_res activated')
             self.check_box_res_random.setDisabled(True)
+            self.check_box_res_random_without_wait.setDisabled(True)
+            self.check_box_res_without_wait.setDisabled(False)
             if self.pushButton_startstop.text() == 'Stop' and not self._res_thread:
                 self.pressed_res = True
                 self._res_thread = threading.Thread(target=self.press_res, daemon=True)
                 self._res_thread.start()
         else:
             self.check_box_res_random.setDisabled(False)
+            self.check_box_res_without_wait.setChecked(False)
+            self.check_box_res_without_wait.setDisabled(True)
             self.pressed_res = False
             if self._res_thread and self._res_thread.is_alive():
                 self._res_thread.join()
@@ -1171,6 +1175,8 @@ class Main(Ui_MainWindow):
                 if death:
                     self.paused_pressed()
                     time.sleep(5)
+                    if not self.check_box_res_without_wait.checkState():
+                        time.sleep(115)
                     if self.pressed_res:
                         redss.use_teleport(hwnd)
                         time.sleep(2)
@@ -1239,12 +1245,16 @@ class Main(Ui_MainWindow):
         if state == QtCore.Qt.Checked:
             print('toggle_res_random activated')
             self.check_box_res.setDisabled(True)
+            self.check_box_res_without_wait.setDisabled(True)
+            self.check_box_res_random_without_wait.setDisabled(False)
             if self.pushButton_startstop.text() == 'Stop' and not self._res_random_thread:
                 self.pressed_res_random = True
                 self._res_random_thread = threading.Thread(target=self.press_res_random, daemon=True)
                 self._res_random_thread.start()
         else:
             self.check_box_res.setDisabled(False)
+            self.check_box_res_random_without_wait.setChecked(False)
+            self.check_box_res_random_without_wait.setDisabled(True)
             self.pressed_res_random = False
             if self._res_random_thread and self._res_random_thread.is_alive():
                 self._res_random_thread.join()
@@ -1276,6 +1286,8 @@ class Main(Ui_MainWindow):
                 if death:
                     self.paused_pressed()
                     time.sleep(5)
+                    if not self.check_box_res_random_without_wait.checkState():
+                        time.sleep(115)
                     if self.pressed_res_random:
                         redss.use_teleport_random(hwnd)
                         time.sleep(2)
