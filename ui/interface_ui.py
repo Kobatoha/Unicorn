@@ -10,7 +10,7 @@ class InterfaceUi:
         self.line_tuning_keys_1 = None
         self.label_tuning_keys = None
 
-    def setup_ui(self, parent):
+    def add_interface_widgets(self, parent):
         font = QFont()
         font.setBold(False)
         font.setWeight(50)
