@@ -1,3 +1,6 @@
+import threading
+
+
 class AppState:
     def __init__(self):
 
@@ -60,6 +63,19 @@ class AppState:
 
         self.pressed_tilda = False
         self._tilda_thread = None
+
+        self.pressed_res = False
+
+        self._res_thread = None
+        self.res_process = None
+
+        self.pressed_res_random = False
+
+        self._res_random_thread = None
+        self.res_random_process = None
+        self._run_res_random_thread = None
+        self._run_res_thread = None
+        self.lock = threading.Lock()
 
 
 app_state = AppState()
