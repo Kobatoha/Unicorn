@@ -16,19 +16,15 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowTitle("Unicorn")
         MainWindow.setWindowIcon(QtGui.QIcon("images/unicorn.png"))
-        MainWindow.resize(380, 600)
-        MainWindow.setMinimumSize(QtCore.QSize(165, 380))
-        MainWindow.setMaximumSize(QtCore.QSize(380, 600))
-        MainWindow.setBaseSize(QtCore.QSize(380, 600))
+        MainWindow.resize(350, 600)
+        MainWindow.setMinimumSize(QtCore.QSize(165, 360))
+        MainWindow.setMaximumSize(QtCore.QSize(350, 600))
+        MainWindow.setBaseSize(QtCore.QSize(350, 600))
         MainWindow.setStyleSheet("background-image: url('images/bg_image.jpg');")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        ### --------------------- ###
-        ###   Turning Keys BLOCK  ###
-        ### --------------------- ###
-        ### turning keys ###
         self.label_tuning_keys = QtWidgets.QLabel(self.centralwidget)
         self.label_tuning_keys.setGeometry(QtCore.QRect(10, 0, 61, 16))
         font = QtGui.QFont()
