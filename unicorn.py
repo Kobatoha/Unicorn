@@ -100,7 +100,7 @@ class Main(Ui_MainWindow):
                 'edit_W': self.lineEdit_W.text(),
                 'edit_E': self.lineEdit_E.text(),
                 'edit_R': self.lineEdit_R.text(),
-                'edit_fT': self.lineEdit_T.text(),
+                'edit_T': self.lineEdit_T.text(),
 
                 'checkbox_f1': self.checkBox_f1.isChecked(),
                 'checkbox_f2': self.checkBox_f2.isChecked(),
@@ -200,7 +200,7 @@ class Main(Ui_MainWindow):
                 'edit_W': self.lineEdit_W.text(),
                 'edit_E': self.lineEdit_E.text(),
                 'edit_R': self.lineEdit_R.text(),
-                'edit_fT': self.lineEdit_T.text(),
+                'edit_T': self.lineEdit_T.text(),
 
                 'checkbox_f1': self.checkBox_f1.isChecked(),
                 'checkbox_f2': self.checkBox_f2.isChecked(),
@@ -442,7 +442,7 @@ class Main(Ui_MainWindow):
                     'edit_W': '',
                     'edit_E': '',
                     'edit_R': '',
-                    'edit_fT': '',
+                    'edit_T': '',
 
                     'checkbox_f1': False,
                     'checkbox_f2': False,
@@ -1001,9 +1001,9 @@ class Main(Ui_MainWindow):
             interval = int(self.lineEdit_f5.text())
             hwnd = self.lineEdit_window_id.text()
 
-            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F5, 0)
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 187, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F5, 0)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 187, 0)
             time.sleep(interval / 1000)
 
         self._f5_thread = None
@@ -1123,9 +1123,9 @@ class Main(Ui_MainWindow):
             interval = int(self.lineEdit_T.text())
             hwnd = self.lineEdit_window_id.text()
 
-            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 84, 0)
+            win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 189, 0)
             time.sleep(interval / 1000)
-            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 84, 0)
+            win32api.SendMessage(hwnd, win32con.WM_KEYUP, 189, 0)
             time.sleep(interval / 1000)
 
         self._T_thread = None

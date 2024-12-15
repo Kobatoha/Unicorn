@@ -284,9 +284,6 @@ def check_health_bar_string(hwnd):
 
 
 def get_mouse_position():
-    print('У вас есть 5 секунд навести мышку в нужное место')
-    time.sleep(5)
-
     x, y = pyautogui.position()
 
     rect = win32gui.GetWindowRect(hwnd)
