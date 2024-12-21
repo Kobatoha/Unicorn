@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class BaseUi:
+class BaseUI:
     def __init__(self):
         self.central_widget = None
 
@@ -15,4 +15,7 @@ class BaseUi:
         main_window.setStyleSheet("background-image: url('resources/images/bg_image.jpg');")
 
         self.central_widget = QtWidgets.QWidget(main_window)
-        self.central_widget.setObjectName("centralwidget")
+        self.central_widget.setObjectName("central_widget")
+
+        main_window.setCentralWidget(self.central_widget)
+
