@@ -4,7 +4,7 @@ from PyQt5.QtGui import QFont
 from logic.state_manager import *
 
 
-class ResurrectionUi:
+class ResurrectionUI:
     def __init__(self):
         self.check_box_res_random_without_wait = None
         self.check_box_res_random = None
