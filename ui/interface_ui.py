@@ -3,73 +3,56 @@ from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtCore import QRect, Qt
 
 
-class InterfaceUi:
+class InterfaceUI:
     def __init__(self):
-        self.label_hottime_2 = None
-        self.label_hottime = None
-        self.line_icons_2 = None
-        self.line_icons_1 = None
-        self.label_icons = None
-        self.line_half_window = None
-        self.line_tuning_keys_2 = None
-        self.line_tuning_keys_1 = None
-        self.label_tuning_keys = None
+        self.hottime_labels = None
+        self.interface_labels = None
+        self.interface_frames = None
 
     def add_interface_widgets(self, parent):
         font = QFont()
         font.setBold(False)
         font.setWeight(50)
-        
-        self.label_tuning_keys = QLabel(parent)
-        self.label_tuning_keys.setGeometry(QRect(10, 0, 61, 16))
 
-        self.label_tuning_keys.setFont(font)
-        self.label_tuning_keys.setObjectName("label_tuning_keys")
-        self.label_tuning_keys.setStyleSheet("background: none;")
-        self.label_tuning_keys.setText("Tuning keys")
+        interface_frames = {
+            'line_tuning_keys_1': {'object_name': 'line_tuning_keys_1', 'rect': [69, 0, 81, 20]},
+            'line_tuning_keys_2': {'object_name': 'line_tuning_keys_2', 'rect': [170, 0, 111, 20]},
+            # 'line_half_window': {'object_name': 'line_half_window', 'rect': [150, 20, 20, 300]},
+            'line_icons_1': {'object_name': 'line_icons_1', 'rect': [50, 370, 101, 20]},
+            'line_icons_2': {'object_name': 'line_icons_2', 'rect': [170, 370, 111, 20]},
+        }
 
-        self.line_tuning_keys_1 = QFrame(parent)
-        self.line_tuning_keys_1.setGeometry(QRect(69, 0, 81, 20))
-        self.line_tuning_keys_1.setFrameShape(QFrame.HLine)
-        self.line_tuning_keys_1.setFrameShadow(QFrame.Sunken)
-        self.line_tuning_keys_1.setStyleSheet("background: none;")
-        self.line_tuning_keys_1.setObjectName("line_tuning_keys_1")
+        self.interface_frames = {}
 
-        self.line_tuning_keys_2 = QFrame(parent)
-        self.line_tuning_keys_2.setGeometry(QRect(170, 0, 111, 20))
-        self.line_tuning_keys_2.setFrameShape(QFrame.HLine)
-        self.line_tuning_keys_2.setFrameShadow(QFrame.Sunken)
-        self.line_tuning_keys_2.setStyleSheet("background: none;")
-        self.line_tuning_keys_2.setObjectName("line_tuning_keys_2")
+        for key, properties in interface_frames.items():
+            frame = QFrame(parent)
+            rect = properties['rect']
+            frame.setGeometry(rect[0], rect[1], rect[2], rect[3])
+            frame.setObjectName(properties['object_name'])
+            frame.setFrameShape(QFrame.HLine)
+            frame.setFrameShadow(QFrame.Sunken)
+            frame.setStyleSheet("background: none;")
 
-        self.line_half_window = QFrame(parent)
-        self.line_half_window.setGeometry(QRect(150, 20, 20, 300))
-        self.line_half_window.setFrameShape(QFrame.VLine)
-        self.line_half_window.setFrameShadow(QFrame.Sunken)
-        self.line_half_window.setStyleSheet("background: none;")
-        self.line_half_window.setObjectName("line_half_window")
+            self.interface_frames[key] = frame
 
-        self.label_icons = QLabel(parent)
-        self.label_icons.setGeometry(QRect(10, 370, 41, 16))
-        self.label_icons.setFont(font)
-        self.label_icons.setAlignment(Qt.AlignCenter)
-        self.label_icons.setObjectName("label_icons")
-        self.label_icons.setText("Icons")
-        self.label_icons.setStyleSheet("background: none;")
+        interface_labels = {
+            'label_tuning_keys': {'object_name': 'label_tuning_keys', 'rect': [10, 0, 61, 16], 'text': 'Tuning keys'},
+            'label_icons': {'object_name': 'label_icons', 'rect': [10, 370, 41, 16], 'text': 'Icons'},
+        }
 
-        self.line_icons_1 = QFrame(parent)
-        self.line_icons_1.setGeometry(QRect(50, 370, 101, 20))
-        self.line_icons_1.setFrameShape(QFrame.HLine)
-        self.line_icons_1.setFrameShadow(QFrame.Sunken)
-        self.line_icons_1.setObjectName("line_icons_1")
-        self.line_icons_1.setStyleSheet("background: none;")
+        self.interface_labels = {}
 
-        self.line_icons_2 = QFrame(parent)
-        self.line_icons_2.setGeometry(QRect(170, 370, 111, 20))
-        self.line_icons_2.setFrameShape(QFrame.HLine)
-        self.line_icons_2.setFrameShadow(QFrame.Sunken)
-        self.line_icons_2.setObjectName("line_icons_2")
-        self.line_icons_2.setStyleSheet("background: none;")
+        for key, properties in interface_labels.items():
+            label = QLabel(parent)
+            rect = properties['rect']
+            label.setGeometry(rect[0], rect[1], rect[2], rect[3])
+            label.setObjectName(properties['object_name'])
+            label.setFont(font)
+            label.setStyleSheet("background: none;")
+            label.setAlignment(Qt.AlignCenter)
+            label.setText(properties['text'])
+
+            self.interface_labels[key] = label
 
     def add_hottime_widgets(self, parent):
         font = QFont()
@@ -79,18 +62,33 @@ class InterfaceUi:
         font.setStrikeOut(False)
         font.setKerning(True)
 
-        self.label_hottime = QLabel(parent)
-        self.label_hottime.setGeometry(QRect(20, 390, 31, 31))
-        self.label_hottime.setPixmap(QPixmap("resources/images/hot_time_off.png"))
-        self.label_hottime.setScaledContents(True)
-        self.label_hottime.setAlignment(Qt.AlignCenter)
-        self.label_hottime.setObjectName("label_hottime")
-        self.label_hottime.setStyleSheet("background: none;")
+        interface_labels = {
+            'label_hottime': {
+                'object_name': 'label_hottime',
+                'rect': [20, 390, 31, 31],
+                'text': None,
+                'pixmap': 'resources/images/hot_time_off.png'
+            },
+            'label_hottime_2': {
+                'object_name': 'label_hottime_2',
+                'rect': [10, 420, 51, 16],
+                'text': 'Hot Time',
+                'pixmap': None
+            },
+        }
 
-        self.label_hottime_2 = QLabel(parent)
-        self.label_hottime_2.setGeometry(QRect(10, 420, 51, 16))
-        self.label_hottime_2.setFont(font)
-        self.label_hottime_2.setAlignment(Qt.AlignCenter)
-        self.label_hottime_2.setObjectName("label_hottime_2")
-        self.label_hottime_2.setText("Hot Time")
-        self.label_hottime_2.setStyleSheet("background: none;")
+        self.hottime_labels = {}
+
+        for key, properties in interface_labels.items():
+            label = QLabel(parent)
+            rect = properties['rect']
+            label.setGeometry(rect[0], rect[1], rect[2], rect[3])
+            label.setPixmap(QPixmap(properties['pixmap']))
+            label.setObjectName(properties['object_name'])
+            label.setFont(font)
+            label.setStyleSheet("background: none;")
+            label.setAlignment(Qt.AlignCenter)
+            label.setScaledContents(True)
+            label.setText(properties['text'])
+
+            self.hottime_labels[key] = label
