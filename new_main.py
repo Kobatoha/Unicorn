@@ -5,9 +5,10 @@ from ui.system_ui import SystemUI
 from ui.resurrection_ui import ResurrectionUI
 from ui.keyboard_ui import KeyboardUI
 from ui.interface_ui import InterfaceUI
+from ui.profile_ui import ProfileUI
 
 
-class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI):
+class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, ProfileUI):
     def __init__(self):
         super().__init__()
         self.MainWindow = QtWidgets.QMainWindow()
@@ -15,13 +16,16 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI):
         self.add_widgets(self.central_widget)
 
     def add_widgets(self, parent):
-        self.add_resurrection_widgets(parent)
-        self.add_keyboard_left_line_edits(parent)
-        self.add_keyboard_left_check_boxes(parent)
-        self.add_keyboard_right_line_edits(parent)
-        self.add_keyboard_right_check_boxes(parent)
-        self.add_interface_widgets(parent)
-        self.add_hottime_widgets(parent)
+        self.create_resurrection_widgets(parent)
+        self.create_keyboard_left_line_edits(parent)
+        self.create_keyboard_left_check_boxes(parent)
+        self.create_keyboard_right_line_edits(parent)
+        self.create_keyboard_right_check_boxes(parent)
+        self.create_interface_widgets(parent)
+        self.create_hottime_widgets(parent)
+        self.create_profile_buttons(parent)
+        self.create_profile_widgets(parent)
+        self.create_profile_line_edits(parent)
 
     def run(self):
         self.MainWindow.show()
