@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QLabel, QFrame
 from PyQt5.QtGui import QFont, QPixmap
-from PyQt5.QtCore import QRect, Qt
+from PyQt5.QtCore import Qt
 
 
 class InterfaceUI:
@@ -9,7 +9,7 @@ class InterfaceUI:
         self.interface_labels = None
         self.interface_frames = None
 
-    def add_interface_widgets(self, parent):
+    def create_interface_widgets(self, parent):
         font = QFont()
         font.setBold(False)
         font.setWeight(50)
@@ -54,7 +54,7 @@ class InterfaceUI:
 
             self.interface_labels[key] = label
 
-    def add_hottime_widgets(self, parent):
+    def create_hottime_widgets(self, parent):
         font = QFont()
         font.setPointSize(7)
         font.setItalic(False)

@@ -10,7 +10,7 @@ class KeyboardUI:
         self.left_check_boxes = None
         self.left_line_edits = None
 
-    def add_keyboard_left_line_edits(self, parent):
+    def create_keyboard_left_line_edits(self, parent):
         left_line_edits = {
             'f1': {'object_name': 'line_edit_f1', 'rect': [30, 20, 60, 20]},
             'f2': {'object_name': 'line_edit_f2', 'rect': [30, 50, 60, 20]},
@@ -29,12 +29,12 @@ class KeyboardUI:
         for key, properties in left_line_edits.items():
             line_edit = QLineEdit(parent)
             rect = properties['rect']
-            line_edit.setGeometry(rect[0], rect[1], rect[2], rect[3])  # Установка положения и размеров
+            line_edit.setGeometry(rect[0], rect[1], rect[2], rect[3])
             line_edit.setObjectName(properties['object_name'])
 
             self.left_line_edits[key] = line_edit
 
-    def add_keyboard_left_check_boxes(self, parent):
+    def create_keyboard_left_check_boxes(self, parent):
         check_box_font = QFont()
         check_box_font.setBold(True)
         check_box_font.setWeight(75)
@@ -65,7 +65,7 @@ class KeyboardUI:
 
             self.left_check_boxes[key] = check_box
 
-    def add_keyboard_right_line_edits(self, parent):
+    def create_keyboard_right_line_edits(self, parent):
         right_line_edits = {
             '1': {'object_name': 'line_edit_1', 'rect': [180, 20, 60, 20]},
             '2': {'object_name': 'line_edit_2', 'rect': [180, 50, 60, 20]},
@@ -89,7 +89,7 @@ class KeyboardUI:
 
             self.right_line_edits[key] = line_edit
 
-    def add_keyboard_right_check_boxes(self, parent):
+    def create_keyboard_right_check_boxes(self, parent):
         check_box_font = QFont()
         check_box_font.setBold(True)
         check_box_font.setWeight(75)

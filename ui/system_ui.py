@@ -6,7 +6,7 @@ class SystemUI:
         self.stop_button = None
         self.start_button = None
 
-    def add_system_buttons(self, parent):
+    def create_system_buttons(self, parent):
         self.start_button = QPushButton(parent)
         self.start_button.setText("Start")
         self.start_button.setGeometry(10, 10, 100, 30)

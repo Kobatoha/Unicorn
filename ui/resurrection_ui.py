@@ -15,7 +15,7 @@ class ResurrectionUI:
         self.label_res_random = None
         self.label_res = None
 
-    def add_resurrection_widgets(self, parent):
+    def create_resurrection_widgets(self, parent):
         self.label_res = QLabel(parent)
         self.label_res.setGeometry(QRect(180, 320, 60, 20))
         self.label_res.setObjectName("lineEdit_res")
@@ -36,7 +36,7 @@ class ResurrectionUI:
         self.label_night_teleport_solo.setObjectName("label_night_teleport")
         self.label_night_teleport_solo.setStyleSheet("background: none;")
 
-    def add_resurrection_check_boxes(self, parent):
+    def create_resurrection_check_boxes(self, parent):
         font = QFont()
         font.setBold(True)
         font.setWeight(75)
