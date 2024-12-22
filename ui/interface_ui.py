@@ -13,6 +13,7 @@ class InterfaceUI:
         font = QFont()
         font.setBold(False)
         font.setWeight(50)
+        font.setPointSize(7)
 
         interface_frames = {
             'line_tuning_keys_1': {'object_name': 'line_tuning_keys_1', 'rect': [69, 0, 81, 20]},
@@ -38,6 +39,11 @@ class InterfaceUI:
         interface_labels = {
             'label_tuning_keys': {'object_name': 'label_tuning_keys', 'rect': [10, 0, 61, 16], 'text': 'Tuning keys'},
             'label_icons': {'object_name': 'label_icons', 'rect': [10, 370, 41, 16], 'text': 'Icons'},
+            'label_information_actions': {
+                'object_name': 'label_information_actions',
+                'rect': [50, 550, 201, 16],
+                'text': 'information'
+            },
         }
 
         self.interface_labels = {}
