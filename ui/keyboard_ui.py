@@ -119,3 +119,9 @@ class KeyboardUI:
             check_box.setStyleSheet("background: none;")
 
             self.right_check_boxes[key] = check_box
+
+    def add_keyboard(self, parent):
+        self.create_keyboard_left_check_boxes(parent)
+        self.create_keyboard_left_line_edits(parent)
+        self.create_keyboard_right_check_boxes(parent)
+        self.create_keyboard_right_line_edits(parent)

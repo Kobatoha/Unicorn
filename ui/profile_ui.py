@@ -10,7 +10,12 @@ class ProfileUI:
         self.profile_labels = None
         self.profile_line_edits = None
 
-    def create_profile_widgets(self, parent):
+    def create_profile_labels(self, parent):
+        font = QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        font.setPointSize(7)
+
         profile_labels = {
             'label_profiles': {'object_name': 'label_profiles', 'rect': [170, 390, 111, 16], 'text': 'Profiles'},
         }
@@ -23,14 +28,12 @@ class ProfileUI:
             label.setGeometry(rect[0], rect[1], rect[2], rect[3])
             label.setObjectName(properties['object_name'])
             label.setText(properties['text'])
+            label.setFont(font)
             label.setStyleSheet("background: none;")
 
             self.profile_labels[key] = label
 
-        font = QFont()
-        font.setBold(False)
-        font.setWeight(50)
-
+    def create_profile_frames(self, parent):
         profile_frames = {
             'line_profiles': {'object_name': 'line_profiles', 'rect': [209, 390, 71, 20]},
         }
@@ -94,3 +97,9 @@ class ProfileUI:
             line_edit.setAlignment(Qt.AlignCenter | Qt.AlignHCenter)
 
             self.profile_line_edits[key] = line_edit
+
+    def add_profile_widgets(self, parent):
+        self.create_profile_labels(parent)
+        self.create_profile_frames(parent)
+        self.create_profile_buttons(parent)
+        self.create_profile_line_edits(parent)

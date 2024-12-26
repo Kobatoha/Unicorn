@@ -13,19 +13,20 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, Profile
         super().__init__()
         self.MainWindow = QtWidgets.QMainWindow()
         self.setup_ui(self.MainWindow)
+        self.create_widgets(self.central_widget)
         self.add_widgets(self.central_widget)
 
-    def add_widgets(self, parent):
+    def create_widgets(self, parent):
         self.create_resurrection_widgets(parent)
-        self.create_keyboard_left_line_edits(parent)
-        self.create_keyboard_left_check_boxes(parent)
-        self.create_keyboard_right_line_edits(parent)
-        self.create_keyboard_right_check_boxes(parent)
         self.create_interface_widgets(parent)
         self.create_hottime_widgets(parent)
-        self.create_profile_buttons(parent)
-        self.create_profile_widgets(parent)
-        self.create_profile_line_edits(parent)
+
+    def add_widgets(self, parent):
+        self.add_profile_widgets(parent)
+        self.add_keyboard(parent)
+
+    def load_setting(self):
+        pass
 
     def run(self):
         self.MainWindow.show()

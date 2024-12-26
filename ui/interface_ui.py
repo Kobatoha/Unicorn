@@ -13,6 +13,7 @@ class InterfaceUI:
         font = QFont()
         font.setBold(False)
         font.setWeight(50)
+        font.setPointSize(7)
 
         interface_frames = {
             'line_tuning_keys_1': {'object_name': 'line_tuning_keys_1', 'rect': [69, 0, 81, 20]},
@@ -20,6 +21,7 @@ class InterfaceUI:
             # 'line_half_window': {'object_name': 'line_half_window', 'rect': [150, 20, 20, 300]},
             'line_icons_1': {'object_name': 'line_icons_1', 'rect': [50, 370, 101, 20]},
             'line_icons_2': {'object_name': 'line_icons_2', 'rect': [170, 370, 111, 20]},
+            'line_window': {'object_name': 'line_window', 'rect': [65, 440, 85, 20]},
         }
 
         self.interface_frames = {}
@@ -38,6 +40,12 @@ class InterfaceUI:
         interface_labels = {
             'label_tuning_keys': {'object_name': 'label_tuning_keys', 'rect': [10, 0, 61, 16], 'text': 'Tuning keys'},
             'label_icons': {'object_name': 'label_icons', 'rect': [10, 370, 41, 16], 'text': 'Icons'},
+            'label_information_actions': {
+                'object_name': 'label_information_actions',
+                'rect': [50, 550, 201, 16],
+                'text': 'information'
+            },
+            'label_window': {'object_name': 'label_window', 'rect': [10, 440, 51, 20], 'text': 'Window id'},
         }
 
         self.interface_labels = {}
