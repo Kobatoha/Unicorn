@@ -1,24 +1,49 @@
 from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtGui import QFont
 
 
 class SystemUI:
     def __init__(self):
-        self.stop_button = None
-        self.start_button = None
+        self.system_buttons = None
 
     def create_system_buttons(self, parent):
 
-        self.pushButton_startstop = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_startstop.setGeometry(QtCore.QRect(100, 490, 40, 40))
-        self.pushButton_startstop.setStyleSheet("background-color: rgb(255, 239, 220);")
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_startstop.setFont(font)
-        self.pushButton_startstop.setObjectName("pushButton_startstop")
-        self.pushButton_startstop.setText('Start')
-        self.pushButton_startstop.clicked.connect(self.startstop)
+        button_font = QFont()
+        button_font.setPointSize(10)
+        button_font.setBold(True)
+        button_font.setWeight(75)
+
+        system_buttons = {
+            'startstop': {
+                'object_name': 'startstop',
+                'rect': [100, 490, 40, 40],
+                'text': 'Start',
+                'icon': None,
+                'icon_size': None
+            },
+            'locate': {
+                'object_name': 'locate',
+                'rect': [30, 490, 41, 41],
+                'text': '',
+                'icon': 'resources/images/target_off.png',
+                'icon_size': [40, 40]
+            }
+        }
+
+        self.system_buttons = {}
+
+        for key, properties in system_buttons.items():
+            button = QPushButton(parent)
+            rect = properties['rect']
+            button.setGeometry(rect[0], rect[1], rect[2], rect[3])
+            button.setFont(button_font)
+            button.setObjectName(properties['object_name'])
+            button.setText(properties['text'])
+            button.setIcon(properties['icon'])
+            button.setIconSize(properties['icon_size'])
+            button.setStyleSheet("background-color: rgb(255, 239, 220);")
+
+    def create_system_widgets(self, parent):
 
         self.label_hotkey_startstop = QtWidgets.QLabel(self.centralwidget)
         self.label_hotkey_startstop.setGeometry(QtCore.QRect(95, 530, 50, 21))
@@ -41,18 +66,7 @@ class SystemUI:
         self.tray_icon.show()
 
         ### button lockated ###
-        self.pushButton_located = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_located.setGeometry(QtCore.QRect(30, 490, 41, 41))
-        self.pushButton_located.setStyleSheet("background-color: rgb(255, 239, 220);")
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        font.setBold(False)
-        font.setWeight(50)
-        self.pushButton_located.setFont(font)
-        self.pushButton_located.setObjectName("pushButton_located")
-        self.pushButton_located.setIcon(QtGui.QIcon('images/target_off.png'))
-        self.pushButton_located.setIconSize(QtCore.QSize(40, 40))
-        self.pushButton_located.clicked.connect(self.get_window_id)
+
 
         self.msg_box_active = False
 
