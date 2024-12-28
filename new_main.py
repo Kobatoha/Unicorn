@@ -15,6 +15,7 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, Profile
         self.setup_ui(self.MainWindow)
         self.create_widgets(self.central_widget)
         self.add_widgets(self.central_widget)
+        self.tray_icon.show()
 
     def create_widgets(self, parent):
         self.create_resurrection_widgets(parent)
@@ -24,6 +25,7 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, Profile
     def add_widgets(self, parent):
         self.add_profile_widgets(parent)
         self.add_keyboard(parent)
+        self.add_system_widgets(parent)
 
     def load_setting(self):
         pass
