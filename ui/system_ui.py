@@ -18,7 +18,7 @@ class SystemUI:
                 'object_name': 'startstop',
                 'rect': [100, 490, 40, 40],
                 'text': 'Start',
-                'icon': None,
+                'icon': '',
                 'icon_size': None
             },
             'locate': {
@@ -42,6 +42,8 @@ class SystemUI:
             button.setIcon(properties['icon'])
             button.setIconSize(properties['icon_size'])
             button.setStyleSheet("background-color: rgb(255, 239, 220);")
+
+            self.system_buttons[key] = button
 
     def create_system_widgets(self, parent):
 
@@ -89,3 +91,6 @@ class SystemUI:
         self.lineEdit_window_id.setObjectName("lineEdit_window_id")
         self.lineEdit_window_id.setStyleSheet("background-color: rgb(239, 239, 239);")
         self.lineEdit_window_id.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignHCenter)
+
+    def add_system_widgets(self, parent):
+        self.create_system_buttons(parent)

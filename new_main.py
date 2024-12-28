@@ -24,6 +24,7 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, Profile
     def add_widgets(self, parent):
         self.add_profile_widgets(parent)
         self.add_keyboard(parent)
+        self.add_system_widgets(parent)
 
     def load_setting(self):
         pass
