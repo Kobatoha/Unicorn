@@ -6,6 +6,7 @@ from logic.state_manager import *
 
 class ResurrectionUI:
     def __init__(self):
+        self.resurrection_labels = None
         self.check_box_res_random_without_wait = None
         self.check_box_res_random = None
         self.check_box_res_without_wait = None
@@ -16,6 +17,30 @@ class ResurrectionUI:
         self.label_res = None
 
     def create_resurrection_widgets(self, parent):
+        resurrection_labels = {
+            'label_tuning_keys': {'object_name': 'label_tuning_keys', 'rect': [10, 0, 61, 16], 'text': 'Tuning keys'},
+            'label_icons': {'object_name': 'label_icons', 'rect': [10, 370, 41, 16], 'text': 'Icons'},
+            'label_information_actions': {
+                'object_name': 'label_information_actions',
+                'rect': [50, 550, 201, 16],
+                'text': 'information'
+            },
+            'label_window': {'object_name': 'label_window', 'rect': [10, 440, 51, 20], 'text': 'Window id'},
+        }
+
+        self.resurrection_labels = {}
+
+        for key, properties in interface_labels.items():
+            label = QLabel(parent)
+            rect = properties['rect']
+            label.setGeometry(rect[0], rect[1], rect[2], rect[3])
+            label.setObjectName(properties['object_name'])
+            label.setFont(font)
+            label.setStyleSheet("background: none;")
+            label.setAlignment(Qt.AlignCenter)
+            label.setText(properties['text'])
+
+            self.interface_labels[key] = label
         self.label_res = QLabel(parent)
         self.label_res.setGeometry(QRect(180, 320, 60, 20))
         self.label_res.setObjectName("lineEdit_res")
