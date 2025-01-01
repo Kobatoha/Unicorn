@@ -100,3 +100,7 @@ class InterfaceUI:
             label.setText(properties['text'])
 
             self.hottime_labels[key] = label
+
+    def add_interface_widgets(self, parent):
+        self.create_interface_widgets(parent)
+        self.create_hottime_widgets(parent)
