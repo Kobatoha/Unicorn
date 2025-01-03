@@ -18,14 +18,14 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, Profile
         self.tray_icon.show()
 
     def create_widgets(self, parent):
-        self.create_interface_widgets(parent)
-        self.create_hottime_widgets(parent)
+        pass
 
     def add_widgets(self, parent):
         self.add_profile_widgets(parent)
         self.add_keyboard(parent)
         self.add_system_widgets(parent)
         self.add_resurrection_widgets(parent)
+        self.add_interface_widgets(parent)
 
     def load_setting(self):
         pass
