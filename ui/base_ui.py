@@ -18,4 +18,3 @@ class BaseUI:
         self.central_widget.setObjectName("central_widget")
 
         main_window.setCentralWidget(self.central_widget)
-

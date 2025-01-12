@@ -1,11 +1,13 @@
 import sys
+
 from PyQt5 import QtWidgets
+
 from ui.base_ui import BaseUI
-from ui.system_ui import SystemUI
-from ui.resurrection_ui import ResurrectionUI
-from ui.keyboard_ui import KeyboardUI
 from ui.interface_ui import InterfaceUI
+from ui.keyboard_ui import KeyboardUI
 from ui.profile_ui import ProfileUI
+from ui.resurrection_ui import ResurrectionUI
+from ui.system_ui import SystemUI
 
 
 class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, ProfileUI):
