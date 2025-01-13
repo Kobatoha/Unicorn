@@ -1,23 +1,20 @@
+import datetime
+import json
+import logging
+import random
+import sys
 import threading
 import time
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QIcon, QPixmap, QDrag
-from PyQt5.QtCore import QSize, Qt, QMimeData, QTimer
-import pyautogui
-import datetime
-import random
-from keyboard import add_hotkey
-from pynput.keyboard import Key, Controller
-import win32gui
+
 import win32api
 import win32con
-from Ui_MainWindow import Ui_MainWindow
-import json
+import win32gui
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-import redss
-import logging
-import sys
+from keyboard import add_hotkey
 
+import redss
+from Ui_MainWindow import Ui_MainWindow
 
 logging.basicConfig(
     filename='uni_logs.txt',
@@ -498,6 +495,7 @@ class Main(Ui_MainWindow):
             active = redss.check_active_window_insert(hwnd)
             if active:
                 self.press_insert()
+
         add_hotkey('INSERT', on_insert)
 
     def startstop(self):
@@ -1323,7 +1321,8 @@ class Main(Ui_MainWindow):
                         self._run_res_random_thread.join()
 
                     self.pressed_res_random = True
-                    self._run_res_random_thread = threading.Thread(target=self.run_res_random, args=(hwnd,), daemon=True)
+                    self._run_res_random_thread = threading.Thread(target=self.run_res_random, args=(hwnd,),
+                                                                   daemon=True)
                     self._run_res_random_thread.start()
 
                 respawn = random.randint(30000, 40000)
@@ -1515,6 +1514,7 @@ class Main(Ui_MainWindow):
 if __name__ == "__main__":
     try:
         import sys
+
         app = QtWidgets.QApplication(sys.argv)
         MainWindow = QtWidgets.QMainWindow()
 
@@ -1529,6 +1529,6 @@ if __name__ == "__main__":
 
         MainWindow.show()
         sys.exit(app.exec_())
-        
+
     except Exception as e:
         logging.error(f"Unexpected error in main: {e}")
