@@ -2,9 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class BaseUI:
-    def __init__(self, main_setup):
+    def __init__(self):
         self.central_widget = None
-        self.main_setup = main_setup
 
     def setup_ui(self, main_window):
         main_window.setObjectName("main_window")
