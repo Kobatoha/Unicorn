@@ -8,9 +8,10 @@ from ui.keyboard_ui import KeyboardUI
 from ui.profile_ui import ProfileUI
 from ui.resurrection_ui import ResurrectionUI
 from ui.system_ui import SystemUI
+from ui.teleport_ui import TeleportUI
 
 
-class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, ProfileUI):
+class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, ProfileUI, TeleportUI):
     def __init__(self):
         super().__init__()
         self.MainWindow = QtWidgets.QMainWindow()
@@ -28,6 +29,7 @@ class MainApp(BaseUI, SystemUI, ResurrectionUI, KeyboardUI, InterfaceUI, Profile
         self.add_system_widgets(parent)
         self.add_resurrection_widgets(parent)
         self.add_interface_widgets(parent)
+        self.add_teleport_widgets(parent)
 
     def load_setting(self):
         pass
